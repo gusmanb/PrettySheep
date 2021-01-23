@@ -1770,6 +1770,16 @@ end asm
 
 end sub
 
+sub fastcall CancelOps()
+
+    asm
+    xor a
+    ld (CURRENT_DRAW_COUNT), a
+    ld (CURRENT_CLEAR_COUNT), a
+    end asm
+
+end sub
+
 #ifdef ENABLE_TILES
 
 sub fastcall SetTileset(TileSet as uInteger)

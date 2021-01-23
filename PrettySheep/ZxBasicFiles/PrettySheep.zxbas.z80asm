@@ -85,7 +85,7 @@ _boyY:
 _boyWait:
 	DEFB 00h
 _sheep:
-	DEFW __LABEL376
+	DEFW __LABEL393
 _sheep.__DATA__.__PTR__:
 	DEFW _sheep.__DATA__
 _sheep.__DATA__:
@@ -217,12 +217,12 @@ _sheep.__DATA__:
 	DEFB 24h
 	DEFB 24h
 	DEFB 4Ch
-__LABEL376:
+__LABEL393:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _wolf:
-	DEFW __LABEL377
+	DEFW __LABEL394
 _wolf.__DATA__.__PTR__:
 	DEFW _wolf.__DATA__
 _wolf.__DATA__:
@@ -354,12 +354,12 @@ _wolf.__DATA__:
 	DEFB 0F0h
 	DEFB 58h
 	DEFB 88h
-__LABEL377:
+__LABEL394:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _girl:
-	DEFW __LABEL378
+	DEFW __LABEL395
 _girl.__DATA__.__PTR__:
 	DEFW _girl.__DATA__
 _girl.__DATA__:
@@ -491,12 +491,12 @@ _girl.__DATA__:
 	DEFB 0F8h
 	DEFB 70h
 	DEFB 10h
-__LABEL378:
+__LABEL395:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _boy:
-	DEFW __LABEL379
+	DEFW __LABEL396
 _boy.__DATA__.__PTR__:
 	DEFW _boy.__DATA__
 _boy.__DATA__:
@@ -628,12 +628,181 @@ _boy.__DATA__:
 	DEFB 0E0h
 	DEFB 70h
 	DEFB 10h
-__LABEL379:
+__LABEL396:
+	DEFW 0001h
+	DEFW 0020h
+	DEFB 01h
+_endSprites:
+	DEFW __LABEL397
+_endSprites.__DATA__.__PTR__:
+	DEFW _endSprites.__DATA__
+_endSprites.__DATA__:
+	DEFB 00h
+	DEFB 01h
+	DEFB 03h
+	DEFB 03h
+	DEFB 01h
+	DEFB 3Fh
+	DEFB 0FBh
+	DEFB 1Fh
+	DEFB 1Fh
+	DEFB 0FFh
+	DEFB 3Fh
+	DEFB 01h
+	DEFB 03h
+	DEFB 03h
+	DEFB 01h
+	DEFB 00h
+	DEFB 0E0h
+	DEFB 0C0h
+	DEFB 0E0h
+	DEFB 0C0h
+	DEFB 0E3h
+	DEFB 0EEh
+	DEFB 0FCh
+	DEFB 0FEh
+	DEFB 0FEh
+	DEFB 0FCh
+	DEFB 0EEh
+	DEFB 0E3h
+	DEFB 0C0h
+	DEFB 0E0h
+	DEFB 0C0h
+	DEFB 0E0h
+	DEFB 00h
+	DEFB 00h
+	DEFB 01h
+	DEFB 03h
+	DEFB 03h
+	DEFB 1Fh
+	DEFB 7Bh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 7Fh
+	DEFB 1Fh
+	DEFB 03h
+	DEFB 03h
+	DEFB 01h
+	DEFB 00h
+	DEFB 00h
+	DEFB 00h
+	DEFB 0F0h
+	DEFB 0E0h
+	DEFB 0C0h
+	DEFB 0E0h
+	DEFB 0EFh
+	DEFB 0FCh
+	DEFB 0FEh
+	DEFB 0FEh
+	DEFB 0FCh
+	DEFB 0EFh
+	DEFB 0E0h
+	DEFB 0C0h
+	DEFB 0E0h
+	DEFB 0F0h
+	DEFB 00h
+	DEFB 1Fh
+	DEFB 3Fh
+	DEFB 7Fh
+	DEFB 7Ch
+	DEFB 0F8h
+	DEFB 0F8h
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0F8h
+	DEFB 0F8h
+	DEFB 7Ch
+	DEFB 7Fh
+	DEFB 3Fh
+	DEFB 1Fh
+	DEFB 0FCh
+	DEFB 0FEh
+	DEFB 0FFh
+	DEFB 0Fh
+	DEFB 06h
+	DEFB 00h
+	DEFB 0E0h
+	DEFB 0F0h
+	DEFB 0F0h
+	DEFB 0E0h
+	DEFB 00h
+	DEFB 06h
+	DEFB 0Fh
+	DEFB 0FFh
+	DEFB 0FEh
+	DEFB 0FCh
+	DEFB 7Ch
+	DEFB 0F8h
+	DEFB 0FCh
+	DEFB 0FEh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0F7h
+	DEFB 0F3h
+	DEFB 0F1h
+	DEFB 0F0h
+	DEFB 0F8h
+	DEFB 0FCh
+	DEFB 7Ch
+	DEFB 3Eh
+	DEFB 3Fh
+	DEFB 1Fh
+	DEFB 0Fh
+	DEFB 0Fh
+	DEFB 8Fh
+	DEFB 0CFh
+	DEFB 0EFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 7Fh
+	DEFB 3Fh
+	DEFB 1Eh
+	DEFB 7Fh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0F1h
+	DEFB 0F0h
+	DEFB 0F0h
+	DEFB 0F0h
+	DEFB 0F0h
+	DEFB 0F0h
+	DEFB 0F0h
+	DEFB 0F1h
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 0FFh
+	DEFB 7Fh
+	DEFB 00h
+	DEFB 0C0h
+	DEFB 0E0h
+	DEFB 0F0h
+	DEFB 0F8h
+	DEFB 0FCh
+	DEFB 7Eh
+	DEFB 3Eh
+	DEFB 3Eh
+	DEFB 7Eh
+	DEFB 0FCh
+	DEFB 0F8h
+	DEFB 0F0h
+	DEFB 0E0h
+	DEFB 0C0h
+	DEFB 00h
+__LABEL397:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _tileSet:
-	DEFW __LABEL380
+	DEFW __LABEL398
 _tileSet.__DATA__.__PTR__:
 	DEFW _tileSet.__DATA__
 _tileSet.__DATA__:
@@ -1029,12 +1198,12 @@ _tileSet.__DATA__:
 	DEFB 0C6h
 	DEFB 7Ch
 	DEFB 38h
-__LABEL380:
+__LABEL398:
 	DEFW 0001h
 	DEFW 0008h
 	DEFB 01h
 _introScreen:
-	DEFW __LABEL381
+	DEFW __LABEL399
 _introScreen.__DATA__.__PTR__:
 	DEFW _introScreen.__DATA__
 _introScreen.__DATA__:
@@ -1102,11 +1271,11 @@ _introScreen.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL381:
+__LABEL399:
 	DEFW 0000h
 	DEFB 02h
 _music:
-	DEFW __LABEL382
+	DEFW __LABEL400
 _music.__DATA__.__PTR__:
 	DEFW _music.__DATA__
 _music.__DATA__:
@@ -1149,11 +1318,11 @@ _music.__DATA__:
 	DEFB 0FFh
 	DEFB 0FFh
 	DEFB 0FFh
-__LABEL382:
+__LABEL400:
 	DEFW 0000h
 	DEFB 01h
 _sheeps:
-	DEFW __LABEL383
+	DEFW __LABEL401
 _sheeps.__DATA__.__PTR__:
 	DEFW _sheeps.__DATA__
 _sheeps.__DATA__:
@@ -1221,12 +1390,12 @@ _sheeps.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL383:
+__LABEL401:
 	DEFW 0001h
 	DEFW 0008h
 	DEFB 01h
 _wolves:
-	DEFW __LABEL384
+	DEFW __LABEL402
 _wolves.__DATA__.__PTR__:
 	DEFW _wolves.__DATA__
 _wolves.__DATA__:
@@ -1245,7 +1414,7 @@ _wolves.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL384:
+__LABEL402:
 	DEFW 0001h
 	DEFW 0005h
 	DEFB 01h
@@ -1289,8 +1458,8 @@ __MAIN_PROGRAM__:
 #line 188 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		DRAW_OPS_SIZE equ (TOTAL_DRAW_OPS * DRAW_OP_SIZE)
 		DRAW_OPS_DATA_SIZE equ (TOTAL_DRAW_OPS * 8)
-		SPRITE_BUFFER_SIZE equ ((1 * SPRITE_1x1_BUFFER_SIZE)+(1 * SPRITE_1x2_BUFFER_SIZE)+(16 * SPRITE_2x2_BUFFER_SIZE))
-		SPRITE_INDEX_SIZE equ ((1 + 1 + 16) * 2)
+		SPRITE_BUFFER_SIZE equ ((1 * SPRITE_1x1_BUFFER_SIZE)+(1 * SPRITE_1x2_BUFFER_SIZE)+(21 * SPRITE_2x2_BUFFER_SIZE))
+		SPRITE_INDEX_SIZE equ ((1 + 1 + 21) * 2)
 		jp GSPRITES_LIB_END
 DRAW_OPS_A:
 		defs DRAW_OPS_SIZE
@@ -2445,6 +2614,17 @@ GSPRITES_LIB_END:
 	call _Create2x2Sprite
 	ld hl, (_boy.__DATA__) + (96)
 	call _Create2x2Sprite
+	ld hl, _endSprites.__DATA__
+	call _Create2x2Sprite
+	ld hl, (_endSprites.__DATA__) + (32)
+	call _Create2x2Sprite
+	ld hl, (_endSprites.__DATA__) + (64)
+	call _Create2x2Sprite
+	ld hl, (_endSprites.__DATA__) + (96)
+	call _Create2x2Sprite
+	ld hl, (_endSprites.__DATA__) + (128)
+	call _Create2x2Sprite
+__LABEL__gameLoop:
 	ld a, 1
 	ld (_musicPos), a
 	ld a, 3
@@ -2506,7 +2686,6 @@ __LABEL4:
 	jp __LABEL0
 __LABEL1:
 	call _InitFastRnd
-__LABEL__gameLoop:
 	xor a
 	ld (_currentLevel), a
 	ld (_nextLevel), a
@@ -2562,9 +2741,9 @@ __LABEL13:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL356
+	jr z, __LABEL373
 	ld a, h
-__LABEL356:
+__LABEL373:
 	or a
 	jp nz, __LABEL10
 	ld a, (_lose)
@@ -2900,14 +3079,22 @@ _Draw2x2Sprite:
 #line 1770 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _Draw2x2Sprite__leave:
 	ret
-_SetTileset:
-#line 1776 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-		call SET_TILEMAP
+_CancelOps:
+#line 1774 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+		xor a
+		ld (CURRENT_DRAW_COUNT), a
+		ld (CURRENT_CLEAR_COUNT), a
 #line 1780 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+_CancelOps__leave:
+	ret
+_SetTileset:
+#line 1786 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+		call SET_TILEMAP
+#line 1790 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _SetTileset__leave:
 	ret
 _SetTile:
-#line 1784 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1794 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -2918,7 +3105,7 @@ _SetTile:
 		push hl
 		exx
 		call SET_TILE
-#line 1797 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1807 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _SetTile__leave:
 	ret
 _PlayMusic:
@@ -2948,12 +3135,12 @@ _PlayMusic:
 	push de
 	push af
 	ld a, 07Dh
-	ld de, 0CC4Ch
-	ld bc, 0CCCCh
+	ld de, 0D723h
+	ld bc, 03D0Ah
 	call BEEP
 	jp __LABEL20
 __LABEL21:
-	ld de, 5
+	ld de, 2
 	ld hl, (_counter)
 	or a
 	sbc hl, de
@@ -3046,12 +3233,12 @@ __LABEL33:
 	ld b, a
 	ld hl, 32768
 	or a
-	jr z, __LABEL358
-__LABEL357:
+	jr z, __LABEL375
+__LABEL374:
 	srl h
 	rr l
-	djnz __LABEL357
-__LABEL358:
+	djnz __LABEL374
+__LABEL375:
 	ex de, hl
 	pop hl
 	call __BAND16
@@ -3101,12 +3288,12 @@ __LABEL40:
 	ld b, a
 	ld hl, 32768
 	or a
-	jr z, __LABEL360
-__LABEL359:
+	jr z, __LABEL377
+__LABEL376:
 	srl h
 	rr l
-	djnz __LABEL359
-__LABEL360:
+	djnz __LABEL376
+__LABEL377:
 	ex de, hl
 	pop hl
 	call __BAND16
@@ -3441,7 +3628,7 @@ _CreateBackground:
 	ld bc, -3
 	add hl, bc
 	ex de, hl
-	ld hl, __LABEL361
+	ld hl, __LABEL378
 	ld bc, 1
 	ldir
 	push ix
@@ -3449,7 +3636,7 @@ _CreateBackground:
 	ld bc, -4
 	add hl, bc
 	ex de, hl
-	ld hl, __LABEL362
+	ld hl, __LABEL379
 	ld bc, 1
 	ldir
 	ld (ix-2), 0
@@ -4012,7 +4199,7 @@ _EraseSun:
 	ld a, (ix+5)
 	ld l, a
 	push hl
-	ld hl, 78
+	ld hl, 79
 	push hl
 	xor a
 	call _SetTile
@@ -4024,7 +4211,7 @@ _EraseSun:
 	inc a
 	ld l, a
 	push hl
-	ld hl, 78
+	ld hl, 79
 	push hl
 	xor a
 	call _SetTile
@@ -4036,7 +4223,7 @@ _EraseSun:
 	ld a, (ix+5)
 	ld l, a
 	push hl
-	ld hl, 78
+	ld hl, 79
 	push hl
 	xor a
 	call _SetTile
@@ -4049,7 +4236,7 @@ _EraseSun:
 	inc a
 	ld l, a
 	push hl
-	ld hl, 78
+	ld hl, 79
 	push hl
 	xor a
 	call _SetTile
@@ -4427,9 +4614,9 @@ _UpdateSheep:
 	sbc a, a
 	ld hl, (_spaceDown - 1)
 	or a
-	jr z, __LABEL363
+	jr z, __LABEL380
 	ld a, h
-__LABEL363:
+__LABEL380:
 	or a
 	jp z, __LABEL139
 	ld h, (ix-7)
@@ -4449,9 +4636,9 @@ __LABEL363:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL364
+	jr z, __LABEL381
 	ld a, h
-__LABEL364:
+__LABEL381:
 	or a
 	jp z, __LABEL139
 	ld a, (ix-8)
@@ -4471,9 +4658,9 @@ __LABEL364:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL365
+	jr z, __LABEL382
 	ld a, h
-__LABEL365:
+__LABEL382:
 	or a
 	jp z, __LABEL139
 	ld a, (ix+5)
@@ -4665,9 +4852,9 @@ __LABEL161:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL366
+	jr z, __LABEL383
 	ld a, h
-__LABEL366:
+__LABEL383:
 	push af
 	ld h, (ix-8)
 	ld a, (_girlY)
@@ -4677,9 +4864,9 @@ __LABEL366:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL367
+	jr z, __LABEL384
 	ld a, h
-__LABEL367:
+__LABEL384:
 	push af
 	ld a, (ix-8)
 	push af
@@ -4692,9 +4879,9 @@ __LABEL367:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL368
+	jr z, __LABEL385
 	ld a, h
-__LABEL368:
+__LABEL385:
 	or a
 	jp z, __LABEL145
 	ld (ix-4), 255
@@ -4968,9 +5155,9 @@ __LABEL203:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL369
+	jr z, __LABEL386
 	ld a, h
-__LABEL369:
+__LABEL386:
 	or a
 	jp z, __LABEL205
 	ld a, 1
@@ -5481,9 +5668,9 @@ __LABEL256:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL370
+	jr z, __LABEL387
 	ld a, h
-__LABEL370:
+__LABEL387:
 	or a
 	jp z, __LABEL261
 	ld a, 49
@@ -5501,9 +5688,9 @@ __LABEL261:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL371
+	jr z, __LABEL388
 	ld a, h
-__LABEL371:
+__LABEL388:
 	or a
 	jp z, __LABEL262
 	ld a, (ix-1)
@@ -5537,9 +5724,9 @@ __LABEL266:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL372
+	jr z, __LABEL389
 	ld a, h
-__LABEL372:
+__LABEL389:
 	or a
 	jp z, __LABEL268
 	ld a, 29
@@ -5622,9 +5809,9 @@ __LABEL268:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL373
+	jr z, __LABEL390
 	ld a, h
-__LABEL373:
+__LABEL390:
 	or a
 	jp z, _UpdateWolf__leave
 	ld hl, _wolfIndex
@@ -5767,9 +5954,9 @@ __LABEL280:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL374
+	jr z, __LABEL391
 	ld a, h
-__LABEL374:
+__LABEL391:
 	or a
 	jp z, __LABEL291
 	ld a, 1
@@ -6050,14 +6237,14 @@ __LABEL318:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL375
+	jr z, __LABEL392
 	ld a, h
-__LABEL375:
+__LABEL392:
 	or a
 	jp z, __LABEL320
 	call _PlayKiss
 	ld hl, (_score)
-	ld de, 100
+	ld de, 20
 	add hl, de
 	ld (_score), hl
 	ld a, 1
@@ -6388,6 +6575,116 @@ _GameOver:
 	push ix
 	ld ix, 0
 	add ix, sp
+	ld hl, 0
+	push hl
+	ld hl, 856
+	push hl
+	ld hl, 98
+	call __BEEPER
+	ld hl, 964
+	push hl
+	ld hl, 87
+	call __BEEPER
+	ld hl, 1223
+	push hl
+	ld hl, 69
+	call __BEEPER
+	ld hl, 1642
+	push hl
+	ld hl, 51
+	call __BEEPER
+	call _CancelOps
+	ld (ix-1), 59
+	jp __LABEL350
+__LABEL353:
+	ld hl, 0
+	ld (_counter), hl
+	ld a, 1
+	push af
+	ld a, (ix-1)
+	push af
+	and 1
+	add a, 17
+	call _Draw2x2Sprite
+	ld a, (ix-1)
+	add a, 6
+	ld (ix-2), a
+	cp 60
+	jp nc, __LABEL356
+	ld a, 25
+	cp (ix-2)
+	jp nc, __LABEL357
+	ld a, 1
+	push af
+	ld a, (ix-2)
+	push af
+	ld a, 19
+	call _Draw2x2Sprite
+	ld a, (ix-2)
+	add a, 5
+	ld (ix-2), a
+	cp 60
+	jp nc, __LABEL360
+	ld a, 1
+	push af
+	ld a, (ix-2)
+	push af
+	ld a, 20
+	call _Draw2x2Sprite
+__LABEL360:
+	ld a, (ix-2)
+	add a, 5
+	ld (ix-2), a
+	cp 60
+	jp nc, __LABEL356
+	ld a, 1
+	push af
+	ld a, (ix-2)
+	push af
+	ld a, 21
+	call _Draw2x2Sprite
+__LABEL362:
+	jp __LABEL356
+__LABEL357:
+	ld a, 1
+	push af
+	ld a, 25
+	push af
+	ld a, 19
+	call _Draw2x2Sprite
+	ld a, 1
+	push af
+	ld a, 30
+	push af
+	ld a, 20
+	call _Draw2x2Sprite
+	ld a, 1
+	push af
+	ld a, 35
+	push af
+	ld a, 21
+	call _Draw2x2Sprite
+__LABEL356:
+	call _RenderFrame
+__LABEL363:
+	ld de, 4
+	ld hl, (_counter)
+	or a
+	sbc hl, de
+	jp c, __LABEL363
+	dec (ix-1)
+__LABEL350:
+	ld a, (ix-1)
+	cp 1
+	jp nc, __LABEL353
+__LABEL365:
+	ld de, 100
+	ld hl, (_counter)
+	or a
+	sbc hl, de
+	jp c, __LABEL365
+	call CLS
+	call _CancelOps
 _GameOver__leave:
 	ld sp, ix
 	pop ix
@@ -6418,16 +6715,16 @@ _DoNextLevel:
 	ld h, 10
 	call __LTI8
 	or a
-	jp z, __LABEL350
+	jp z, __LABEL367
 	ld de, __LABEL60
 	ld bc, -3
 	call __PSTORE_STR
-	jp __LABEL351
-__LABEL350:
-	ld de, __LABEL352
+	jp __LABEL368
+__LABEL367:
+	ld de, __LABEL369
 	ld bc, -3
 	call __PSTORE_STR
-__LABEL351:
+__LABEL368:
 	ld a, 11
 	push af
 	ld a, 7
@@ -6438,7 +6735,7 @@ __LABEL351:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL353
+	ld hl, __LABEL370
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6452,7 +6749,7 @@ __LABEL351:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL354
+	ld hl, __LABEL371
 	xor a
 	call __PRINTSTR
 	ld l, (ix-3)
@@ -6461,7 +6758,7 @@ __LABEL351:
 	call __PRINTSTR
 	ld a, (ix-1)
 	call __PRINTI8
-	ld hl, __LABEL355
+	ld hl, __LABEL372
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6475,7 +6772,7 @@ __LABEL351:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL353
+	ld hl, __LABEL370
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6619,9 +6916,9 @@ __LABEL52:
 __LABEL60:
 	DEFW 0001h
 	DEFB 30h
-__LABEL352:
+__LABEL369:
 	DEFW 0000h
-__LABEL353:
+__LABEL370:
 	DEFW 0013h
 	DEFB 23h
 	DEFB 23h
@@ -6642,7 +6939,7 @@ __LABEL353:
 	DEFB 23h
 	DEFB 23h
 	DEFB 23h
-__LABEL354:
+__LABEL371:
 	DEFW 000Eh
 	DEFB 23h
 	DEFB 20h
@@ -6658,7 +6955,7 @@ __LABEL354:
 	DEFB 45h
 	DEFB 4Ch
 	DEFB 20h
-__LABEL355:
+__LABEL372:
 	DEFW 0003h
 	DEFB 20h
 	DEFB 20h
@@ -6831,7 +7128,7 @@ TMP_ARR_PTR:
 
 		ENDP
 
-#line 5415 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5543 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/asc.asm"
 	; Returns the ascii code for the given str
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/free.asm"
@@ -7184,7 +7481,7 @@ __ASC_END:
 
 		ret
 		ENDP
-#line 5416 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5544 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/band16.asm"
 ; vim:ts=4:et:
 	; FASTCALL bitwise and16 version.
@@ -7205,7 +7502,7 @@ __BAND16:
 
 	    ret
 
-#line 5417 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5545 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/beep.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/stackf.asm"
 	; -------------------------------------------------------------
@@ -7279,7 +7576,7 @@ BEEP:	; The beep command, as in BASIC
 
 
 
-#line 5418 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5546 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/beeper.asm"
 ; vim:ts=4:et:sw=4:
 	; This is a fast beep routine, but needs parameters
@@ -7299,7 +7596,7 @@ __BEEPER:
 	    ret
 
 
-#line 5419 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5547 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/bold.asm"
 	; Sets BOLD flag in P_FLAG permanently
 ; Parameter: BOLD flag in bit 0 of A register
@@ -8486,7 +8783,7 @@ BOLD_TMP:
 
 		ENDP
 
-#line 5420 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5548 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/border.asm"
 	; __FASTCALL__ Routine to change de border
 	; Parameter (color) specified in A register
@@ -8495,7 +8792,7 @@ BOLD_TMP:
 
 	; Nothing to do! (Directly from the ZX Spectrum ROM)
 
-#line 5421 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5549 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/div8.asm"
@@ -8586,7 +8883,7 @@ __MODI8_FAST:	; __FASTCALL__ entry
 
 		ret		; a = Modulus
 
-#line 5424 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5552 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/loadstr.asm"
@@ -8816,7 +9113,7 @@ __LOADSTR:		; __FASTCALL__ entry
 			ldir	; Copies string (length number included)
 			pop hl	; Recovers destiny in hl as result
 			ret
-#line 5427 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5555 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lei8.asm"
 __LEI8: ; Signed <= comparison for 8bit int
@@ -8841,7 +9138,7 @@ checkParity:
 	    ret
 	    ENDP
 #line 2 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
-#line 5428 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5556 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/mul8.asm"
 __MUL8:		; Performs 8bit x 8bit multiplication
 		PROC
@@ -8894,7 +9191,7 @@ __MUL8B:
 		ret		; result = HL
 		ENDP
 
-#line 5429 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5557 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/print_eol_attr.asm"
@@ -8907,7 +9204,7 @@ __MUL8B:
 PRINT_EOL_ATTR:
 		call PRINT_EOL
 		jp COPY_ATTR
-#line 5432 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5560 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printi8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printnum.asm"
 
@@ -8982,7 +9279,7 @@ __PRINTU_LOOP:
 
 		ENDP
 
-#line 5433 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5561 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printstr.asm"
 
 
@@ -9040,7 +9337,7 @@ __PRINT_STR:
 
 			ENDP
 
-#line 5434 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5562 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -9357,7 +9654,7 @@ __PSTORE_STR:
 	    add hl, bc
 	    jp __STORE_STR
 
-#line 5435 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5563 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr2.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -9414,7 +9711,7 @@ __PSTORE_STR2:
 	    add hl, bc
 	    jp __STORE_STR2
 
-#line 5436 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5564 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/str.asm"
 	; The STR$( ) BASIC function implementation
 
@@ -9493,7 +9790,7 @@ __STR_END:
 
 		ENDP
 
-#line 5437 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5565 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strcat.asm"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strlen.asm"
@@ -9638,7 +9935,7 @@ __STRCATEND:
 
 			ENDP
 
-#line 5438 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5566 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strslice.asm"
 	; String slicing library
@@ -9747,7 +10044,7 @@ __FREE_ON_EXIT:
 
 		ENDP
 
-#line 5440 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5568 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/u32tofreg.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/neg32.asm"
 __ABS32:
@@ -9869,10 +10166,10 @@ __U32TOFREG_END:
 		ret
 	    ENDP
 
-#line 5441 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5569 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
-__LABEL361:
+__LABEL378:
 	DEFB 08h
-__LABEL362:
+__LABEL379:
 	DEFB 17h
 	END
