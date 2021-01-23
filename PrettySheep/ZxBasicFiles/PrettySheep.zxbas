@@ -1210,65 +1210,67 @@ Create2x2Sprite(@endSprites + 128)
 
 gameLoop:
 
-musicPos = 1
-ShowIntro(3)
+while 1
 
-while not MultiKeys(KEYSPACE)
+    musicPos = 1
+    ShowIntro(3)
 
-    counter = 0
-    if introFrm = 0 then introFrm = 1 else introFrm = 0
+    while not MultiKeys(KEYSPACE)
 
-    Draw2x2Sprite(SHEEP_SPR_INDEX + introFrm, 4, 41)
-    Draw2x2Sprite(WOLF_SPR_INDEX + introFrm, 16, 41)
-    Draw2x2Sprite(GIRL_SPR_INDEX + introFrm, 28, 41)
-    Draw2x2Sprite(BOY_SPR_INDEX + introFrm, 40, 41)
-
-    RenderFrame()
-
-    PlayMusic()
-
-    while counter < 5
-    end while
-
-end while
-
-InitFastRnd()
-
-currentLevel = 0
-nextLevel = 0
-lose = 0
-score = 0
-PrintScore(score, SCORE_VALUE_X)
-
-while lose = 0
-
-    currentLevel = currentLevel + 1
-    if currentLevel > 14 then currentLevel = 1
-
-    InitLevel(currentLevel)
-
-    do
         counter = 0
-        spaceDown = MultiKeys(KEYSPACE)
-        CheckGate()
-        UpdateBoy()
-        UpdateGirl()
-        UpdateSheeps()
-        UpdateWolves()
+        if introFrm = 0 then introFrm = 1 else introFrm = 0
+
+        Draw2x2Sprite(SHEEP_SPR_INDEX + introFrm, 4, 41)
+        Draw2x2Sprite(WOLF_SPR_INDEX + introFrm, 16, 41)
+        Draw2x2Sprite(GIRL_SPR_INDEX + introFrm, 28, 41)
+        Draw2x2Sprite(BOY_SPR_INDEX + introFrm, 40, 41)
+
         RenderFrame()
-        CheckGameStatus()
-        'print at 0,0;counter
-        while counter < 4
+
+        PlayMusic()
+
+        while counter < 5
         end while
 
-    loop while lose = 0 and nextLevel = 0
+    end while
 
-    if not lose then DoNextLevel(currentLevel)
+    InitFastRnd()
 
+    currentLevel = 0
     nextLevel = 0
+    lose = 0
+    score = 0
+    PrintScore(score, SCORE_VALUE_X)
+
+    while lose = 0
+
+        currentLevel = currentLevel + 1
+        if currentLevel > 14 then currentLevel = 1
+
+        InitLevel(currentLevel)
+
+        do
+            counter = 0
+            spaceDown = MultiKeys(KEYSPACE)
+            CheckGate()
+            UpdateBoy()
+            UpdateGirl()
+            UpdateSheeps()
+            UpdateWolves()
+            RenderFrame()
+            CheckGameStatus()
+            'print at 0,0;counter
+            while counter < 4
+            end while
+
+        loop while lose = 0 and nextLevel = 0
+
+        if not lose then DoNextLevel(currentLevel)
+
+        nextLevel = 0
+
+    end while
+
+    GameOver()
 
 end while
-
-GameOver()
-
-goto gameLoop

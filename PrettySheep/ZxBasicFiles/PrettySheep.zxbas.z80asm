@@ -85,7 +85,7 @@ _boyY:
 _boyWait:
 	DEFB 00h
 _sheep:
-	DEFW __LABEL393
+	DEFW __LABEL395
 _sheep.__DATA__.__PTR__:
 	DEFW _sheep.__DATA__
 _sheep.__DATA__:
@@ -217,12 +217,12 @@ _sheep.__DATA__:
 	DEFB 24h
 	DEFB 24h
 	DEFB 4Ch
-__LABEL393:
+__LABEL395:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _wolf:
-	DEFW __LABEL394
+	DEFW __LABEL396
 _wolf.__DATA__.__PTR__:
 	DEFW _wolf.__DATA__
 _wolf.__DATA__:
@@ -354,12 +354,12 @@ _wolf.__DATA__:
 	DEFB 0F0h
 	DEFB 58h
 	DEFB 88h
-__LABEL394:
+__LABEL396:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _girl:
-	DEFW __LABEL395
+	DEFW __LABEL397
 _girl.__DATA__.__PTR__:
 	DEFW _girl.__DATA__
 _girl.__DATA__:
@@ -491,12 +491,12 @@ _girl.__DATA__:
 	DEFB 0F8h
 	DEFB 70h
 	DEFB 10h
-__LABEL395:
+__LABEL397:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _boy:
-	DEFW __LABEL396
+	DEFW __LABEL398
 _boy.__DATA__.__PTR__:
 	DEFW _boy.__DATA__
 _boy.__DATA__:
@@ -628,12 +628,12 @@ _boy.__DATA__:
 	DEFB 0E0h
 	DEFB 70h
 	DEFB 10h
-__LABEL396:
+__LABEL398:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _endSprites:
-	DEFW __LABEL397
+	DEFW __LABEL399
 _endSprites.__DATA__.__PTR__:
 	DEFW _endSprites.__DATA__
 _endSprites.__DATA__:
@@ -797,12 +797,12 @@ _endSprites.__DATA__:
 	DEFB 0E0h
 	DEFB 0C0h
 	DEFB 00h
-__LABEL397:
+__LABEL399:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _tileSet:
-	DEFW __LABEL398
+	DEFW __LABEL400
 _tileSet.__DATA__.__PTR__:
 	DEFW _tileSet.__DATA__
 _tileSet.__DATA__:
@@ -1198,12 +1198,12 @@ _tileSet.__DATA__:
 	DEFB 0C6h
 	DEFB 7Ch
 	DEFB 38h
-__LABEL398:
+__LABEL400:
 	DEFW 0001h
 	DEFW 0008h
 	DEFB 01h
 _introScreen:
-	DEFW __LABEL399
+	DEFW __LABEL401
 _introScreen.__DATA__.__PTR__:
 	DEFW _introScreen.__DATA__
 _introScreen.__DATA__:
@@ -1271,11 +1271,11 @@ _introScreen.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL399:
+__LABEL401:
 	DEFW 0000h
 	DEFB 02h
 _music:
-	DEFW __LABEL400
+	DEFW __LABEL402
 _music.__DATA__.__PTR__:
 	DEFW _music.__DATA__
 _music.__DATA__:
@@ -1318,11 +1318,11 @@ _music.__DATA__:
 	DEFB 0FFh
 	DEFB 0FFh
 	DEFB 0FFh
-__LABEL400:
+__LABEL402:
 	DEFW 0000h
 	DEFB 01h
 _sheeps:
-	DEFW __LABEL401
+	DEFW __LABEL403
 _sheeps.__DATA__.__PTR__:
 	DEFW _sheeps.__DATA__
 _sheeps.__DATA__:
@@ -1390,12 +1390,12 @@ _sheeps.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL401:
+__LABEL403:
 	DEFW 0001h
 	DEFW 0008h
 	DEFB 01h
 _wolves:
-	DEFW __LABEL402
+	DEFW __LABEL404
 _wolves.__DATA__.__PTR__:
 	DEFW _wolves.__DATA__
 _wolves.__DATA__:
@@ -1414,7 +1414,7 @@ _wolves.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL402:
+__LABEL404:
 	DEFW 0001h
 	DEFW 0005h
 	DEFB 01h
@@ -1567,14 +1567,70 @@ RESET_GFX_LIB:
 		ld bc, 768 - 1
 		ldir
 #line 310
+		xor a
+		ld de, TILE_MAP
+		ld (de), a
+		inc de
+		ld hl, TILE_MAP
+		ld bc, 768 - 1
+		ldir
+#line 313
+#line 314 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+		ret
+		ENDP
+		PROC
+CLEAR_SCREEN:
+		ld hl, DRAW_OPS_A
+		ld (CURRENT_DRAW_OPS), hl
+#line 322
+		ld hl, DRAW_OPS_B
+		ld (CURRENT_CLEAR_OPS), hl
+#line 323
+		ld hl, CELL_MAP_A
+		ld (CURRENT_DRAW_MAP), hl
+#line 325
+		ld hl, CELL_MAP_B
+		ld (CURRENT_CLEAR_MAP), hl
+#line 326
+		ld hl, DRAW_OPS_DATA
+		ld (DRAW_OPS_DATA_INDEX), hl
+#line 328
+		xor a
+		ld (CURRENT_DRAW_COUNT), a
+		ld (CURRENT_CLEAR_COUNT), a
+		xor a
+		ld de, CELL_MAP_A
+		ld (de), a
+		inc de
+		ld hl, CELL_MAP_A
+		ld bc, 768 - 1
+		ldir
+#line 334
+		xor a
+		ld de, CELL_MAP_B
+		ld (de), a
+		inc de
+		ld hl, CELL_MAP_B
+		ld bc, 768 - 1
+		ldir
+#line 335
+		xor a
+		ld de, TILE_MAP
+		ld (de), a
+		inc de
+		ld hl, TILE_MAP
+		ld bc, 768 - 1
+		ldir
+#line 338
+#line 339 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ret
 		ENDP
 		PROC
 		LOCAL RENDER_LOOP, END_RENDER, RESTORE_STACK
 RENDER_FRAME:
-#line 322 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 350 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		halt
-#line 326 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 354 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld a, (CURRENT_DRAW_COUNT)
 		cp 0
 		jp z, END_RENDER
@@ -1586,18 +1642,18 @@ RENDER_LOOP:
 		inc hl
 		ld d, (hl)
 		inc hl
-#line 340
+#line 368
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		inc hl
-#line 341
+#line 369
 		inc hl
-#line 345 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 373 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		push hl
 		ld h, b
 		ld l, c
-#line 349
+#line 377
 		ld (RESTORE_STACK + 1), sp
 		ld sp, hl
 		ex de, hl
@@ -1648,7 +1704,7 @@ END_RENDER:
 		ld (CURRENT_CLEAR_COUNT), a
 		ld hl, DRAW_OPS_DATA
 		ld (DRAW_OPS_DATA_INDEX), hl
-#line 413
+#line 441
 		ret
 		ENDP
 		PROC
@@ -1663,7 +1719,7 @@ CREATE_SPRITE_BUFFER:
 		inc hl
 		ld d, (hl)
 		inc hl
-#line 429
+#line 457
 		push de
 		ex de, hl
 		add hl, bc
@@ -1672,7 +1728,7 @@ CREATE_SPRITE_BUFFER:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 437
+#line 465
 		ld hl, SPRITE_COUNT
 		inc (hl)
 		pop hl
@@ -1697,7 +1753,7 @@ CREATE_1x1_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 464
+#line 492
 		ld hl, 8
 		add hl, de
 		ex de, hl
@@ -1714,7 +1770,7 @@ LOOP:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 485
+#line 513
 		ex de, hl
 		ld (ix+0), d
 		ld (ix+16), e
@@ -1742,7 +1798,7 @@ CREATE_1x2_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 516
+#line 544
 		ldi
 		ldi
 		ldi
@@ -1751,7 +1807,7 @@ CREATE_1x2_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 517
+#line 545
 		ld hl, 8
 		add hl, de
 		ex de, hl
@@ -1768,7 +1824,7 @@ LOOP:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 539
+#line 567
 		ex de, hl
 		ld (ix+0), d
 		ld (ix+24), e
@@ -1796,7 +1852,7 @@ CREATE_2x2_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 570
+#line 598
 		ldi
 		ldi
 		ldi
@@ -1805,7 +1861,7 @@ CREATE_2x2_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 571
+#line 599
 		ex de, hl
 		ld bc, 8
 		add hl, bc
@@ -1818,7 +1874,7 @@ CREATE_2x2_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 581
+#line 609
 		ldi
 		ldi
 		ldi
@@ -1827,7 +1883,7 @@ CREATE_2x2_SPRITE:
 		ldi
 		ldi
 		ldi
-#line 582
+#line 610
 		ld hl, 8
 		add hl, de
 		ex de, hl
@@ -1851,7 +1907,7 @@ LOOP:
 		srl c
 		rr d
 		rr e
-#line 603
+#line 631
 		ld (ix+0), c
 		ld (ix+24), d
 		ld (ix+48), e
@@ -1873,7 +1929,7 @@ CREATE_DRAW_OP:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 631
+#line 659
 		ld c, b
 		ld b, 0
 		add hl, bc
@@ -1892,12 +1948,12 @@ CREATE_DRAW_OP:
 		ld h, 0
 		ld d, h
 		ld e, l
-#line 659
+#line 687
 		add hl, hl
 		add hl, hl
-#line 660
+#line 688
 		add hl, de
-#line 665 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 693 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld bc, (CURRENT_DRAW_OPS)
 		add hl, bc
 		pop de
@@ -1922,7 +1978,7 @@ CREATE_DRAW_OP:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 691
+#line 719
 		ld de, (DRAW_OPS_DATA_INDEX)
 		ld iyh, d
 		ld iyl, e
@@ -1930,9 +1986,9 @@ CREATE_DRAW_OP:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 698
+#line 726
 		ld (hl), 1
-#line 704 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 732 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld l, 8
 		ld h, 0
 		add hl, de
@@ -1949,12 +2005,12 @@ CREATE_DRAW_OP:
 		ld h, 0
 		ld d, h
 		ld e, l
-#line 730
+#line 758
 		add hl, hl
 		add hl, hl
-#line 731
+#line 759
 		add hl, de
-#line 738 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 766 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (CURRENT_CLEAR_OPS)
 		add hl, de
 		ld d, ixh
@@ -1963,7 +2019,7 @@ CREATE_DRAW_OP:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 746
+#line 774
 		ex de, hl
 		ld hl, TILE_MAP
 		add hl, bc
@@ -1973,7 +2029,7 @@ CREATE_DRAW_OP:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 758
+#line 786
 		ld bc, (TILE_SET)
 		add hl, bc
 		ex de, hl
@@ -1981,11 +2037,11 @@ CREATE_DRAW_OP:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 764
+#line 792
 		ld (hl), 2
-#line 775 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 803 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
-#line 837 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 865 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld d, iyh
 		ld e, iyl
 		ldi
@@ -1996,8 +2052,8 @@ CREATE_DRAW_OP:
 		ldi
 		ldi
 		ldi
-#line 841
-#line 844 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 869
+#line 872 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ret
 EXISTING_OP:
 		dec a
@@ -2005,40 +2061,40 @@ EXISTING_OP:
 		ld h, 0
 		ld d, h
 		ld e, l
-#line 857
+#line 885
 		add hl, hl
 		add hl, hl
-#line 858
+#line 886
 		add hl, de
-#line 863 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 891 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld bc, (CURRENT_DRAW_OPS)
 		add hl, bc
 		ld c, (hl)
 		inc hl
 		ld b, (hl)
 		inc hl
-#line 869
+#line 897
 		push hl
 		push bc
 		ld e, (hl)
 		inc hl
 		ld d, (hl)
 		inc hl
-#line 874
+#line 902
 		push de
 		ld a, (hl)
 		and 2
 		jp z, REAL_EXISTING_OP
 		ld (hl), 1
-#line 891 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 919 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		pop af
-#line 905 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 933 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		pop bc
 		pop de
 		pop hl
 		push de
 		push af
-#line 914 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 942 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (CURRENT_CLEAR_MAP)
 		add hl, de
 		ld a, (CURRENT_CLEAR_COUNT)
@@ -2050,42 +2106,42 @@ EXISTING_OP:
 		ld h, 0
 		ld d, h
 		ld e, l
-#line 936
+#line 964
 		add hl, hl
 		add hl, hl
-#line 937
+#line 965
 		add hl, de
-#line 942 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 970 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (CURRENT_CLEAR_OPS)
 		add hl, de
 		ld (hl), c
 		inc hl
 		ld (hl), b
 		inc hl
-#line 947
+#line 975
 		pop de
 		ld (hl), e
 		inc hl
 		ld (hl), d
 		inc hl
-#line 952
+#line 980
 		ld (hl), 2
-#line 963 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 991 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
-#line 969 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 997 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (DRAW_OPS_DATA_INDEX)
 		ld (hl), e
 		inc hl
 		ld (hl), d
 		inc hl
-#line 975
+#line 1003
 		ld hl, 8
 		add hl, de
 		ld (DRAW_OPS_DATA_INDEX), hl
-#line 984 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1012 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
 		pop hl
-#line 1040 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1068 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ldi
 		ldi
 		ldi
@@ -2094,8 +2150,8 @@ EXISTING_OP:
 		ldi
 		ldi
 		ldi
-#line 1041
-#line 1044 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1069
+#line 1072 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		ret
 REAL_EXISTING_OP:
 		pop hl
@@ -2103,7 +2159,7 @@ REAL_EXISTING_OP:
 		pop hl
 		pop hl
 		pop hl
-#line 1057 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1085 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
 		ex de, hl
 		ld a, (de)
@@ -2144,7 +2200,7 @@ REAL_EXISTING_OP:
 		ld a, (de)
 		or (hl)
 		ld (hl),  a
-#line 1063
+#line 1091
 		ret
 		ENDP
 		PROC
@@ -2178,7 +2234,7 @@ DRAW_1x1_SPRITE:
 		inc hl
 		ld d, (hl)
 		inc hl
-#line 1110
+#line 1138
 		ld a, b
 		or c
 		and 1
@@ -2244,7 +2300,7 @@ DRAW_1x2_SPRITE:
 		inc hl
 		ld d, (hl)
 		inc hl
-#line 1206
+#line 1234
 		ld a, b
 		or c
 		and 1
@@ -2310,7 +2366,7 @@ DRAW_2x2_SPRITE:
 		inc hl
 		ld d, (hl)
 		inc hl
-#line 1296
+#line 1324
 		ld a, b
 		or c
 		and 1
@@ -2396,7 +2452,7 @@ SET_TILEMAP:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 1411
+#line 1439
 		ret
 		ENDP
 		PROC
@@ -2406,7 +2462,7 @@ SET_TILE:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 1420
+#line 1448
 		add hl, de
 		ex de, hl
 		ld hl, TILE_MAP
@@ -2420,7 +2476,7 @@ SET_TILE:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 1439
+#line 1467
 		ld bc, (TILE_SET)
 		add hl, bc
 		ld a, d
@@ -2469,7 +2525,7 @@ SET_TILE_CHECKED:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 1492
+#line 1520
 		add hl, de
 		push hl
 		ex de, hl
@@ -2484,7 +2540,7 @@ SET_TILE_CHECKED:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 1513
+#line 1541
 		ld bc, (TILE_SET)
 		add hl, bc
 		push hl
@@ -2538,10 +2594,10 @@ REAL_OP:
 		ld h, 0
 		ld d, h
 		ld e, l
-#line 1579
+#line 1607
 		add hl, hl
 		add hl, hl
-#line 1580
+#line 1608
 		add hl, de
 		ld bc, (CURRENT_DRAW_OPS)
 		add hl, bc
@@ -2552,7 +2608,7 @@ REAL_OP:
 		inc hl
 		ld (hl), d
 		inc hl
-#line 1592
+#line 1620
 		ld a, 2
 		ld (hl), a
 		jp END_SET
@@ -2568,7 +2624,7 @@ GET_TILE:
 		add hl, hl
 		add hl, hl
 		add hl, hl
-#line 1611
+#line 1639
 		add hl, de
 		ex de, hl
 		ld hl, TILE_MAP
@@ -2576,9 +2632,9 @@ GET_TILE:
 		ld a, (hl)
 		ret
 		ENDP
-#line 1625 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1653 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 GSPRITES_LIB_END:
-#line 1797 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1881 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 	call _InitGFXLib
 	ld hl, _tileSet.__DATA__
 	call _SetTileset
@@ -2630,23 +2686,23 @@ __LABEL__gameLoop:
 	ld a, 3
 	push af
 	call _ShowIntro
-__LABEL0:
+__LABEL2:
 	ld hl, 32513
 	call _MultiKeys
 	or a
-	jp nz, __LABEL1
+	jp nz, __LABEL3
 	ld hl, 0
 	ld (_counter), hl
 	ld a, (_introFrm)
 	or a
-	jp nz, __LABEL2
+	jp nz, __LABEL4
 	ld a, 1
 	ld (_introFrm), a
-	jp __LABEL3
-__LABEL2:
+	jp __LABEL5
+__LABEL4:
 	xor a
 	ld (_introFrm), a
-__LABEL3:
+__LABEL5:
 	ld a, 41
 	push af
 	ld a, 4
@@ -2677,14 +2733,14 @@ __LABEL3:
 	call _Draw2x2Sprite
 	call _RenderFrame
 	call _PlayMusic
-__LABEL4:
+__LABEL6:
 	ld de, 5
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL4
-	jp __LABEL0
-__LABEL1:
+	jp c, __LABEL6
+	jp __LABEL2
+__LABEL3:
 	call _InitFastRnd
 	xor a
 	ld (_currentLevel), a
@@ -2696,23 +2752,23 @@ __LABEL1:
 	push af
 	push hl
 	call _PrintScore
-__LABEL6:
+__LABEL8:
 	ld a, (_lose)
 	or a
-	jp nz, __LABEL7
+	jp nz, __LABEL9
 	ld hl, _currentLevel
 	inc (hl)
 	ld a, 14
 	ld hl, (_currentLevel - 1)
 	cp h
-	jp nc, __LABEL9
+	jp nc, __LABEL11
 	ld a, 1
 	ld (_currentLevel), a
-__LABEL9:
+__LABEL11:
 	ld a, (_currentLevel)
 	push af
 	call _InitLevel
-__LABEL10:
+__LABEL12:
 	ld hl, 0
 	ld (_counter), hl
 	ld hl, 32513
@@ -2725,12 +2781,12 @@ __LABEL10:
 	call _UpdateWolves
 	call _RenderFrame
 	call _CheckGameStatus
-__LABEL13:
+__LABEL15:
 	ld de, 4
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL13
+	jp c, __LABEL15
 	ld a, (_lose)
 	sub 1
 	sbc a, a
@@ -2741,22 +2797,22 @@ __LABEL13:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL373
+	jr z, __LABEL375
 	ld a, h
-__LABEL373:
+__LABEL375:
 	or a
-	jp nz, __LABEL10
+	jp nz, __LABEL12
 	ld a, (_lose)
 	or a
-	jp nz, __LABEL16
+	jp nz, __LABEL18
 	ld a, (_currentLevel)
 	push af
 	call _DoNextLevel
-__LABEL16:
+__LABEL18:
 	xor a
 	ld (_nextLevel), a
-	jp __LABEL6
-__LABEL7:
+	jp __LABEL8
+__LABEL9:
 	call _GameOver
 	jp __LABEL__gameLoop
 __END_PROGRAM:
@@ -2779,14 +2835,14 @@ _DoPause:
 	ld hl, 1
 	dec hl
 	ld (_counter), hl
-__LABEL17:
+__LABEL19:
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ex de, hl
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL17
+	jp c, __LABEL19
 _DoPause__leave:
 	ld sp, ix
 	pop ix
@@ -3032,9 +3088,9 @@ _InitGFXLib:
 	push ix
 	ld ix, 0
 	add ix, sp
-#line 1632 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1660 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		call INIT_GFX_LIB
-#line 1638 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1666 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _InitGFXLib__leave:
 	ld sp, ix
 	pop ix
@@ -3043,25 +3099,25 @@ _RenderFrame:
 	push ix
 	ld ix, 0
 	add ix, sp
-#line 1652 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1680 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		call RENDER_FRAME
-#line 1658 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1686 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _RenderFrame__leave:
 	ld sp, ix
 	pop ix
 	ret
 _Create2x2Sprite:
-#line 1737 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1765 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		push ix
 		push iy
 		call CREATE_2x2_SPRITE
 		pop iy
 		pop ix
-#line 1747 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1775 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _Create2x2Sprite__leave:
 	ret
 _Draw2x2Sprite:
-#line 1751 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1779 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -3076,25 +3132,25 @@ _Draw2x2Sprite:
 		call DRAW_2x2_SPRITE
 		pop iy
 		pop ix
-#line 1770 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1798 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _Draw2x2Sprite__leave:
 	ret
 _CancelOps:
-#line 1774 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1802 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		xor a
 		ld (CURRENT_DRAW_COUNT), a
 		ld (CURRENT_CLEAR_COUNT), a
-#line 1780 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1808 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _CancelOps__leave:
 	ret
 _SetTileset:
-#line 1786 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1827 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		call SET_TILEMAP
-#line 1790 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1831 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _SetTileset__leave:
 	ret
 _SetTile:
-#line 1794 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1835 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -3105,7 +3161,7 @@ _SetTile:
 		push hl
 		exx
 		call SET_TILE
-#line 1807 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1848 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
 _SetTile__leave:
 	ret
 _PlayMusic:
@@ -3121,7 +3177,7 @@ _PlayMusic:
 	call __ARRAY
 	ld a, (hl)
 	sub 255
-	jp z, __LABEL21
+	jp z, __LABEL23
 	ld a, (_musicPos)
 	ld l, a
 	ld h, 0
@@ -3138,14 +3194,14 @@ _PlayMusic:
 	ld de, 0D723h
 	ld bc, 03D0Ah
 	call BEEP
-	jp __LABEL20
-__LABEL21:
+	jp __LABEL22
+__LABEL23:
 	ld de, 2
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL21
-__LABEL20:
+	jp c, __LABEL23
+__LABEL22:
 	ld hl, _musicPos
 	inc (hl)
 	ld a, 39
@@ -3206,8 +3262,8 @@ _ShowIntro:
 	ld a, 38
 	call _SetTile
 	ld (ix-2), 0
-	jp __LABEL25
-__LABEL28:
+	jp __LABEL27
+__LABEL30:
 	ld a, (ix-2)
 	add a, a
 	inc a
@@ -3224,63 +3280,8 @@ __LABEL28:
 	ld (ix-4), l
 	ld (ix-3), h
 	ld (ix-1), 0
-	jp __LABEL30
-__LABEL33:
-	ld l, (ix-4)
-	ld h, (ix-3)
-	push hl
-	ld a, (ix-1)
-	ld b, a
-	ld hl, 32768
-	or a
-	jr z, __LABEL375
-__LABEL374:
-	srl h
-	rr l
-	djnz __LABEL374
-__LABEL375:
-	ex de, hl
-	pop hl
-	call __BAND16
-	ld a, h
-	or l
-	jp z, __LABEL34
-	ld a, (ix-2)
-	add a, (ix+5)
-	ld l, a
-	ld h, 0
-	push hl
-	ld a, (ix-1)
-	ld l, a
-	push hl
-	ld hl, 38
-	push hl
-	ld a, 47
-	call _SetTile
-__LABEL34:
-	inc (ix-1)
-__LABEL30:
-	ld a, 15
-	cp (ix-1)
-	jp nc, __LABEL33
-	ld a, (ix-2)
-	add a, a
-	add a, 2
-	ld l, a
-	ld h, 0
-	dec hl
-	push hl
-	ld hl, _introScreen
-	call __ARRAY
-	ld e, (hl)
-	inc hl
-	ld d, (hl)
-	ex de, hl
-	ld (ix-4), l
-	ld (ix-3), h
-	ld (ix-1), 0
-	jp __LABEL37
-__LABEL40:
+	jp __LABEL32
+__LABEL35:
 	ld l, (ix-4)
 	ld h, (ix-3)
 	push hl
@@ -3299,7 +3300,62 @@ __LABEL377:
 	call __BAND16
 	ld a, h
 	or l
-	jp z, __LABEL41
+	jp z, __LABEL36
+	ld a, (ix-2)
+	add a, (ix+5)
+	ld l, a
+	ld h, 0
+	push hl
+	ld a, (ix-1)
+	ld l, a
+	push hl
+	ld hl, 38
+	push hl
+	ld a, 47
+	call _SetTile
+__LABEL36:
+	inc (ix-1)
+__LABEL32:
+	ld a, 15
+	cp (ix-1)
+	jp nc, __LABEL35
+	ld a, (ix-2)
+	add a, a
+	add a, 2
+	ld l, a
+	ld h, 0
+	dec hl
+	push hl
+	ld hl, _introScreen
+	call __ARRAY
+	ld e, (hl)
+	inc hl
+	ld d, (hl)
+	ex de, hl
+	ld (ix-4), l
+	ld (ix-3), h
+	ld (ix-1), 0
+	jp __LABEL39
+__LABEL42:
+	ld l, (ix-4)
+	ld h, (ix-3)
+	push hl
+	ld a, (ix-1)
+	ld b, a
+	ld hl, 32768
+	or a
+	jr z, __LABEL379
+__LABEL378:
+	srl h
+	rr l
+	djnz __LABEL378
+__LABEL379:
+	ex de, hl
+	pop hl
+	call __BAND16
+	ld a, h
+	or l
+	jp z, __LABEL43
 	ld a, (ix-2)
 	add a, (ix+5)
 	ld l, a
@@ -3313,39 +3369,39 @@ __LABEL377:
 	push hl
 	ld a, 47
 	call _SetTile
-__LABEL41:
+__LABEL43:
 	inc (ix-1)
-__LABEL37:
+__LABEL39:
 	ld a, 15
 	cp (ix-1)
-	jp nc, __LABEL40
+	jp nc, __LABEL42
 	inc (ix-2)
-__LABEL25:
+__LABEL27:
 	ld a, 15
 	cp (ix-2)
-	jp nc, __LABEL28
+	jp nc, __LABEL30
 	ld a, 23
 	push af
 	xor a
 	call PRINT_AT
 	ld a, 1
 	call BOLD_TMP
-	ld hl, __LABEL44
+	ld hl, __LABEL46
 	xor a
 	call __PRINTSTR
 	ld a, 2
 	call INK_TMP
-	ld hl, __LABEL45
+	ld hl, __LABEL47
 	xor a
 	call __PRINTSTR
 	ld a, 3
 	call INK_TMP
-	ld hl, __LABEL46
+	ld hl, __LABEL48
 	xor a
 	call __PRINTSTR
 	ld a, 1
 	call INK_TMP
-	ld hl, __LABEL47
+	ld hl, __LABEL49
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -3353,7 +3409,7 @@ __LABEL25:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL48
+	ld hl, __LABEL50
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3361,7 +3417,7 @@ __LABEL25:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL49
+	ld hl, __LABEL51
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3369,7 +3425,7 @@ __LABEL25:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL50
+	ld hl, __LABEL52
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3377,7 +3433,7 @@ __LABEL25:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL51
+	ld hl, __LABEL53
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3385,7 +3441,7 @@ __LABEL25:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL52
+	ld hl, __LABEL54
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3411,7 +3467,7 @@ _PadString:
 	ld (ix-1), a
 	sub (ix+9)
 	ccf
-	jp nc, __LABEL54
+	jp nc, __LABEL56
 	ld l, (ix+4)
 	ld h, (ix+5)
 	push hl
@@ -3424,7 +3480,7 @@ _PadString:
 	xor a
 	call __STRSLICE
 	jp _PadString__leave
-__LABEL54:
+__LABEL56:
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ld d, h
@@ -3432,8 +3488,8 @@ __LABEL54:
 	ld bc, -4
 	call __PSTORE_STR
 	ld (ix-2), 1
-	jp __LABEL55
-__LABEL58:
+	jp __LABEL57
+__LABEL60:
 	ld l, (ix+6)
 	ld h, (ix+7)
 	push hl
@@ -3447,12 +3503,12 @@ __LABEL58:
 	ld bc, -4
 	call __PSTORE_STR2
 	inc (ix-2)
-__LABEL55:
+__LABEL57:
 	ld h, (ix-2)
 	ld a, (ix+9)
 	sub (ix-1)
 	cp h
-	jp nc, __LABEL58
+	jp nc, __LABEL60
 	ld l, (ix-4)
 	ld h, (ix-3)
 	call __LOADSTR
@@ -3487,7 +3543,7 @@ _PrintScore:
 	push hl
 	ld a, 5
 	push af
-	ld hl, __LABEL60
+	ld hl, __LABEL62
 	call __LOADSTR
 	push hl
 	ld l, (ix+4)
@@ -3628,7 +3684,7 @@ _CreateBackground:
 	ld bc, -3
 	add hl, bc
 	ex de, hl
-	ld hl, __LABEL378
+	ld hl, __LABEL380
 	ld bc, 1
 	ldir
 	push ix
@@ -3636,15 +3692,15 @@ _CreateBackground:
 	ld bc, -4
 	add hl, bc
 	ex de, hl
-	ld hl, __LABEL379
+	ld hl, __LABEL381
 	ld bc, 1
 	ldir
 	ld (ix-2), 0
-	jp __LABEL61
-__LABEL64:
+	jp __LABEL63
+__LABEL66:
 	ld (ix-1), 0
-	jp __LABEL66
-__LABEL69:
+	jp __LABEL68
+__LABEL71:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3657,21 +3713,21 @@ __LABEL69:
 	xor a
 	call _SetTile
 	inc (ix-1)
-__LABEL66:
+__LABEL68:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL69
+	jp nc, __LABEL71
 	inc (ix-2)
-__LABEL61:
+__LABEL63:
 	ld a, 7
 	cp (ix-2)
-	jp nc, __LABEL64
+	jp nc, __LABEL66
 	ld (ix-2), 8
-	jp __LABEL71
-__LABEL74:
+	jp __LABEL73
+__LABEL76:
 	ld (ix-1), 0
-	jp __LABEL76
-__LABEL79:
+	jp __LABEL78
+__LABEL81:
 	ld a, (ix-1)
 	cp 10
 	sbc a, a
@@ -3680,7 +3736,7 @@ __LABEL79:
 	cp (ix-1)
 	sbc a, a
 	or d
-	jp z, __LABEL81
+	jp z, __LABEL83
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3692,8 +3748,8 @@ __LABEL79:
 	push hl
 	ld a, 27
 	call _SetTile
-	jp __LABEL80
-__LABEL81:
+	jp __LABEL82
+__LABEL83:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3705,33 +3761,33 @@ __LABEL81:
 	push hl
 	xor a
 	call _SetTile
-__LABEL80:
+__LABEL82:
 	inc (ix-1)
-__LABEL76:
+__LABEL78:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL79
+	jp nc, __LABEL81
 	inc (ix-2)
-__LABEL71:
+__LABEL73:
 	ld a, 13
 	cp (ix-2)
-	jp nc, __LABEL74
+	jp nc, __LABEL76
 	ld (ix-1), 0
-	jp __LABEL83
-__LABEL86:
+	jp __LABEL85
+__LABEL88:
 	ld a, (ix-1)
 	ld h, 5
 	call __MODU8_FAST
 	or a
-	jp nz, __LABEL88
+	jp nz, __LABEL90
 	ld a, (ix-4)
 	sub 23
-	jp nz, __LABEL90
+	jp nz, __LABEL92
 	ld (ix-4), 22
-	jp __LABEL91
-__LABEL90:
+	jp __LABEL93
+__LABEL92:
 	ld (ix-4), 23
-__LABEL91:
+__LABEL93:
 	ld a, (ix-4)
 	push af
 	ld a, 25
@@ -3752,8 +3808,8 @@ __LABEL91:
 	push af
 	call _DrawTerrainStack
 	dec (ix-3)
-	jp __LABEL87
-__LABEL88:
+	jp __LABEL89
+__LABEL90:
 	ld a, (ix-4)
 	push af
 	ld a, 24
@@ -3773,12 +3829,12 @@ __LABEL88:
 	sub (ix-1)
 	push af
 	call _DrawTerrainStack
-__LABEL87:
+__LABEL89:
 	inc (ix-1)
-__LABEL83:
+__LABEL85:
 	ld a, 15
 	cp (ix-1)
-	jp nc, __LABEL86
+	jp nc, __LABEL88
 	ld hl, 5
 	push hl
 	ld hl, 15
@@ -3835,8 +3891,8 @@ __LABEL83:
 	push af
 	call _DrawTree
 	ld (ix-2), 8
-	jp __LABEL92
-__LABEL95:
+	jp __LABEL94
+__LABEL97:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3858,16 +3914,16 @@ __LABEL95:
 	ld a, 4
 	call _SetTile
 	inc (ix-2)
-__LABEL92:
+__LABEL94:
 	ld a, 12
 	cp (ix-2)
-	jp nc, __LABEL95
+	jp nc, __LABEL97
 	ld (ix-1), 0
-	jp __LABEL97
-__LABEL100:
+	jp __LABEL99
+__LABEL102:
 	ld (ix-2), 14
-	jp __LABEL102
-__LABEL105:
+	jp __LABEL104
+__LABEL107:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3880,18 +3936,18 @@ __LABEL105:
 	xor a
 	call _SetTile
 	inc (ix-2)
-__LABEL102:
+__LABEL104:
 	ld a, 23
 	cp (ix-2)
-	jp nc, __LABEL105
+	jp nc, __LABEL107
 	inc (ix-1)
-__LABEL97:
+__LABEL99:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL100
+	jp nc, __LABEL102
 	ld (ix-1), 0
-	jp __LABEL107
-__LABEL110:
+	jp __LABEL109
+__LABEL112:
 	ld hl, 13
 	push hl
 	ld a, (ix-1)
@@ -3902,13 +3958,13 @@ __LABEL110:
 	ld a, 3
 	call _SetTile
 	inc (ix-1)
-__LABEL107:
+__LABEL109:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL110
+	jp nc, __LABEL112
 	ld (ix-1), 14
-	jp __LABEL112
-__LABEL115:
+	jp __LABEL114
+__LABEL117:
 	ld hl, 13
 	push hl
 	ld a, (ix-1)
@@ -3919,10 +3975,10 @@ __LABEL115:
 	ld a, 5
 	call _SetTile
 	inc (ix-1)
-__LABEL112:
+__LABEL114:
 	ld a, 17
 	cp (ix-1)
-	jp nc, __LABEL115
+	jp nc, __LABEL117
 	ld a, 19
 	push af
 	ld a, 4
@@ -4381,7 +4437,7 @@ _DrawTerrainStack:
 	cp (ix+5)
 	sbc a, a
 	or d
-	jp z, __LABEL117
+	jp z, __LABEL119
 	ld a, (ix+7)
 	add a, 2
 	ld l, a
@@ -4395,7 +4451,7 @@ _DrawTerrainStack:
 	ld a, 27
 	call _SetTile
 	jp _DrawTerrainStack__leave
-__LABEL117:
+__LABEL119:
 	ld a, (ix+7)
 	add a, 2
 	ld l, a
@@ -4427,8 +4483,8 @@ _UpdateSheeps:
 	push hl
 	inc sp
 	ld (ix-1), 1
-	jp __LABEL119
-__LABEL122:
+	jp __LABEL121
+__LABEL124:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -4443,15 +4499,15 @@ __LABEL122:
 	ld a, (ix-1)
 	push af
 	call _UpdateSheep
-	jp __LABEL123
-__LABEL124:
+	jp __LABEL125
+__LABEL126:
 	jp _UpdateSheeps__leave
-__LABEL123:
+__LABEL125:
 	inc (ix-1)
-__LABEL119:
+__LABEL121:
 	ld a, 8
 	cp (ix-1)
-	jp nc, __LABEL122
+	jp nc, __LABEL124
 _UpdateSheeps__leave:
 	ld sp, ix
 	pop ix
@@ -4466,42 +4522,42 @@ _CanMoveTo:
 	ld hl, 27
 	or a
 	sbc hl, de
-	jp nc, __LABEL127
+	jp nc, __LABEL129
 	ld a, 1
 	jp _CanMoveTo__leave
-__LABEL127:
+__LABEL129:
 	ld l, (ix+6)
 	ld h, (ix+7)
 	ld de, 23
 	or a
 	sbc hl, de
-	jp nc, __LABEL129
+	jp nc, __LABEL131
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ex de, hl
 	ld hl, 21
 	or a
 	sbc hl, de
-	jp nc, __LABEL131
+	jp nc, __LABEL133
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ld de, 39
 	or a
 	sbc hl, de
-	jp nc, __LABEL131
+	jp nc, __LABEL133
 	ld a, 1
 	jp _CanMoveTo__leave
-__LABEL131:
+__LABEL133:
 	xor a
 	jp _CanMoveTo__leave
-__LABEL129:
+__LABEL131:
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ex de, hl
 	ld hl, 27
 	or a
 	sbc hl, de
-	jp nc, __LABEL135
+	jp nc, __LABEL137
 	ld l, (ix+4)
 	ld h, (ix+5)
 	inc hl
@@ -4516,10 +4572,10 @@ __LABEL129:
 	pop hl
 	or a
 	sbc hl, de
-	jp nc, __LABEL135
+	jp nc, __LABEL137
 	ld a, 1
 	jp _CanMoveTo__leave
-__LABEL135:
+__LABEL137:
 	xor a
 _CanMoveTo__leave:
 	ld sp, ix
@@ -4614,11 +4670,11 @@ _UpdateSheep:
 	sbc a, a
 	ld hl, (_spaceDown - 1)
 	or a
-	jr z, __LABEL380
+	jr z, __LABEL382
 	ld a, h
-__LABEL380:
+__LABEL382:
 	or a
-	jp z, __LABEL139
+	jp z, __LABEL141
 	ld h, (ix-7)
 	ld a, (_girlX)
 	sub 3
@@ -4636,11 +4692,11 @@ __LABEL380:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL381
+	jr z, __LABEL383
 	ld a, h
-__LABEL381:
+__LABEL383:
 	or a
-	jp z, __LABEL139
+	jp z, __LABEL141
 	ld a, (ix-8)
 	push af
 	ld a, (_girlY)
@@ -4658,20 +4714,20 @@ __LABEL381:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL382
+	jr z, __LABEL384
 	ld a, h
-__LABEL382:
+__LABEL384:
 	or a
-	jp z, __LABEL139
+	jp z, __LABEL141
 	ld a, (ix+5)
 	ld (_trappedSheep), a
-__LABEL139:
+__LABEL141:
 	ld a, (_trappedSheep)
 	sub (ix+5)
-	jp nz, __LABEL144
+	jp nz, __LABEL146
 	ld a, (_spaceDown)
 	or a
-	jp nz, __LABEL146
+	jp nz, __LABEL148
 	xor a
 	ld (_trappedSheep), a
 	call _FastRnd
@@ -4690,28 +4746,28 @@ __LABEL139:
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL149
+	jp z, __LABEL151
 	dec (ix-3)
-__LABEL149:
+__LABEL151:
 	ld a, (ix-4)
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL151
+	jp z, __LABEL153
 	dec (ix-4)
-__LABEL151:
+__LABEL153:
 	ld a, (ix-8)
 	cp 26
-	jp nc, __LABEL145
+	jp nc, __LABEL147
 	ld hl, (_score)
 	ld de, 10
 	add hl, de
 	ld (_score), hl
 	ld a, 1
 	ld (_updateScore), a
-__LABEL153:
-	jp __LABEL145
-__LABEL146:
+__LABEL155:
+	jp __LABEL147
+__LABEL148:
 	ld a, (_girlX)
 	add a, a
 	ld (ix-1), a
@@ -4722,25 +4778,25 @@ __LABEL146:
 	ld h, a
 	ld a, 85
 	cp h
-	jp nc, __LABEL155
+	jp nc, __LABEL157
 	ld (ix-2), 85
-__LABEL155:
+__LABEL157:
 	ld a, (ix-6)
 	sub 2
-	jp nz, __LABEL156
-	ld (ix-6), 0
-	jp __LABEL157
-__LABEL156:
-	ld (ix-6), 2
-__LABEL157:
-	ld a, (ix-5)
-	or a
 	jp nz, __LABEL158
-	ld (ix-5), 1
+	ld (ix-6), 0
 	jp __LABEL159
 __LABEL158:
-	ld (ix-5), 0
+	ld (ix-6), 2
 __LABEL159:
+	ld a, (ix-5)
+	or a
+	jp nz, __LABEL160
+	ld (ix-5), 1
+	jp __LABEL161
+__LABEL160:
+	ld (ix-5), 0
+__LABEL161:
 	ld a, (ix-5)
 	push af
 	ld hl, 5
@@ -4800,12 +4856,12 @@ __LABEL159:
 	add a, (ix-6)
 	call _Draw2x2Sprite
 	jp _UpdateSheep__leave
-__LABEL147:
-	jp __LABEL145
-__LABEL144:
+__LABEL149:
+	jp __LABEL147
+__LABEL146:
 	call _FastRnd
 	cp 15
-	jp nc, __LABEL161
+	jp nc, __LABEL163
 	call _FastRnd
 	and 7
 	ld h, a
@@ -4822,19 +4878,19 @@ __LABEL144:
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL163
+	jp z, __LABEL165
 	dec (ix-3)
-__LABEL163:
+__LABEL165:
 	ld a, (ix-4)
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL161
+	jp z, __LABEL163
 	dec (ix-4)
-__LABEL161:
+__LABEL163:
 	ld a, (ix-8)
 	cp 27
-	jp nc, __LABEL166
+	jp nc, __LABEL168
 	ld h, (ix-7)
 	ld a, (_girlX)
 	sub 5
@@ -4844,33 +4900,6 @@ __LABEL161:
 	ld a, (ix-7)
 	push af
 	ld a, (_girlX)
-	add a, 5
-	ld h, a
-	pop af
-	cp h
-	sbc a, a
-	ld h, a
-	pop af
-	or a
-	jr z, __LABEL383
-	ld a, h
-__LABEL383:
-	push af
-	ld h, (ix-8)
-	ld a, (_girlY)
-	sub 5
-	cp h
-	sbc a, a
-	ld h, a
-	pop af
-	or a
-	jr z, __LABEL384
-	ld a, h
-__LABEL384:
-	push af
-	ld a, (ix-8)
-	push af
-	ld a, (_girlY)
 	add a, 5
 	ld h, a
 	pop af
@@ -4882,35 +4911,19 @@ __LABEL384:
 	jr z, __LABEL385
 	ld a, h
 __LABEL385:
-	or a
-	jp z, __LABEL145
-	ld (ix-4), 255
-__LABEL169:
-	jp __LABEL145
-__LABEL166:
-	cp 29
-	jp nc, __LABEL170
-	ld (ix-4), 1
-	jp __LABEL145
-__LABEL170:
-	ld h, (ix-7)
-	ld a, (_girlX)
-	sub 5
-	cp h
-	jp nc, __LABEL145
-	ld a, (ix-7)
 	push af
-	ld a, (_girlX)
-	add a, 5
-	ld h, a
-	pop af
-	cp h
-	jp nc, __LABEL145
 	ld h, (ix-8)
 	ld a, (_girlY)
 	sub 5
 	cp h
-	jp nc, __LABEL145
+	sbc a, a
+	ld h, a
+	pop af
+	or a
+	jr z, __LABEL386
+	ld a, h
+__LABEL386:
+	push af
 	ld a, (ix-8)
 	push af
 	ld a, (_girlY)
@@ -4918,16 +4931,59 @@ __LABEL170:
 	ld h, a
 	pop af
 	cp h
-	jp nc, __LABEL145
+	sbc a, a
+	ld h, a
+	pop af
+	or a
+	jr z, __LABEL387
+	ld a, h
+__LABEL387:
+	or a
+	jp z, __LABEL147
+	ld (ix-4), 255
+__LABEL171:
+	jp __LABEL147
+__LABEL168:
+	cp 29
+	jp nc, __LABEL172
+	ld (ix-4), 1
+	jp __LABEL147
+__LABEL172:
+	ld h, (ix-7)
+	ld a, (_girlX)
+	sub 5
+	cp h
+	jp nc, __LABEL147
+	ld a, (ix-7)
+	push af
+	ld a, (_girlX)
+	add a, 5
+	ld h, a
+	pop af
+	cp h
+	jp nc, __LABEL147
+	ld h, (ix-8)
+	ld a, (_girlY)
+	sub 5
+	cp h
+	jp nc, __LABEL147
+	ld a, (ix-8)
+	push af
+	ld a, (_girlY)
+	add a, 5
+	ld h, a
+	pop af
+	cp h
+	jp nc, __LABEL147
 	ld a, (ix-7)
 	ld hl, (_girlX - 1)
 	cp h
-	jp nc, __LABEL180
+	jp nc, __LABEL182
 	ld (ix-3), 254
-	jp __LABEL145
-__LABEL180:
+	jp __LABEL147
+__LABEL182:
 	ld (ix-3), 2
-__LABEL145:
+__LABEL147:
 	ld a, (ix-1)
 	add a, (ix-3)
 	ld (ix-7), a
@@ -4942,7 +4998,7 @@ __LABEL145:
 	cp (ix-7)
 	sbc a, a
 	or d
-	jp z, __LABEL183
+	jp z, __LABEL185
 	ld a, (ix-3)
 	neg
 	ld (ix-3), a
@@ -4950,7 +5006,7 @@ __LABEL145:
 	add a, (ix-3)
 	ld (ix-7), a
 	ld (ix-9), 1
-__LABEL183:
+__LABEL185:
 	ld a, (ix-8)
 	cp 28
 	sbc a, a
@@ -4959,7 +5015,7 @@ __LABEL183:
 	cp (ix-8)
 	sbc a, a
 	or d
-	jp z, __LABEL185
+	jp z, __LABEL187
 	ld a, (ix-4)
 	neg
 	ld (ix-4), a
@@ -4967,7 +5023,7 @@ __LABEL183:
 	add a, (ix-4)
 	ld (ix-8), a
 	ld (ix-10), 1
-__LABEL185:
+__LABEL187:
 	ld a, (ix-2)
 	srl a
 	ld l, a
@@ -4980,10 +5036,10 @@ __LABEL185:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL187
+	jp nz, __LABEL189
 	ld a, (ix-9)
 	or a
-	jp nz, __LABEL187
+	jp nz, __LABEL189
 	ld a, (ix-3)
 	neg
 	ld (ix-3), a
@@ -5002,11 +5058,11 @@ __LABEL185:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL187
+	jp nz, __LABEL189
 	ld (ix-3), 0
 	ld a, (ix-1)
 	ld (ix-7), a
-__LABEL187:
+__LABEL189:
 	ld a, (ix-8)
 	srl a
 	ld l, a
@@ -5019,10 +5075,10 @@ __LABEL187:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL193
+	jp nz, __LABEL195
 	ld a, (ix-10)
 	or a
-	jp nz, __LABEL193
+	jp nz, __LABEL195
 	ld a, (ix-4)
 	neg
 	ld (ix-4), a
@@ -5040,35 +5096,35 @@ __LABEL187:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL193
+	jp nz, __LABEL195
 	ld (ix-4), 0
 	ld a, (ix-2)
 	ld (ix-8), a
-__LABEL193:
+__LABEL195:
 	ld a, (ix-3)
 	ld h, a
 	xor a
 	call __LTI8
 	or a
-	jp z, __LABEL198
+	jp z, __LABEL200
 	ld (ix-6), 0
-	jp __LABEL199
-__LABEL198:
+	jp __LABEL201
+__LABEL200:
 	ld a, (ix-3)
 	ld h, 0
 	call __LTI8
 	or a
-	jp z, __LABEL199
+	jp z, __LABEL201
 	ld (ix-6), 2
-__LABEL199:
+__LABEL201:
 	ld a, (ix-5)
 	or a
-	jp nz, __LABEL202
+	jp nz, __LABEL204
 	ld (ix-5), 1
-	jp __LABEL203
-__LABEL202:
+	jp __LABEL205
+__LABEL204:
 	ld (ix-5), 0
-__LABEL203:
+__LABEL205:
 	ld a, (ix-7)
 	push af
 	ld hl, 1
@@ -5155,14 +5211,14 @@ __LABEL203:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL386
+	jr z, __LABEL388
 	ld a, h
-__LABEL386:
+__LABEL388:
 	or a
-	jp z, __LABEL205
+	jp z, __LABEL207
 	ld a, 1
 	ld (_sheepOnGate), a
-__LABEL205:
+__LABEL207:
 	ld a, (ix-8)
 	push af
 	ld a, (ix-7)
@@ -5259,29 +5315,29 @@ _UpdateGirl:
 	ld hl, 57090
 	call _MultiKeys
 	or a
-	jp z, __LABEL212
+	jp z, __LABEL214
 	ld (ix-1), 255
-	jp __LABEL213
-__LABEL212:
+	jp __LABEL215
+__LABEL214:
 	ld hl, 57089
 	call _MultiKeys
 	or a
-	jp z, __LABEL213
+	jp z, __LABEL215
 	ld (ix-1), 1
-__LABEL213:
+__LABEL215:
 	ld hl, 64257
 	call _MultiKeys
 	or a
-	jp z, __LABEL216
+	jp z, __LABEL218
 	ld (ix-2), 255
-	jp __LABEL217
-__LABEL216:
+	jp __LABEL219
+__LABEL218:
 	ld hl, 64769
 	call _MultiKeys
 	or a
-	jp z, __LABEL217
+	jp z, __LABEL219
 	ld (ix-2), 1
-__LABEL217:
+__LABEL219:
 	ld a, (_girlX)
 	add a, (ix-1)
 	ld (ix-3), a
@@ -5297,11 +5353,11 @@ __LABEL217:
 	call __LTI8
 	pop de
 	or d
-	jp z, __LABEL221
+	jp z, __LABEL223
 	ld (ix-1), 0
 	ld a, (_girlX)
 	ld (ix-3), a
-__LABEL221:
+__LABEL223:
 	ld a, (ix-4)
 	ld h, 14
 	call __LTI8
@@ -5311,10 +5367,10 @@ __LABEL221:
 	call __LTI8
 	pop de
 	or d
-	jp z, __LABEL223
+	jp z, __LABEL225
 	ld a, (_girlY)
 	ld (ix-4), a
-__LABEL223:
+__LABEL225:
 	ld a, (ix-4)
 	ld l, a
 	add a, a
@@ -5329,31 +5385,31 @@ __LABEL223:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL225
+	jp nz, __LABEL227
 	ld a, (_girlX)
 	ld (ix-3), a
 	ld a, (_girlY)
 	ld (ix-4), a
-__LABEL225:
+__LABEL227:
 	ld a, (ix-1)
 	ld (_girlVx), a
 	ld h, a
 	xor a
 	call __LTI8
 	or a
-	jp z, __LABEL226
+	jp z, __LABEL228
 	xor a
 	ld (_girlDir), a
-	jp __LABEL227
-__LABEL226:
+	jp __LABEL229
+__LABEL228:
 	ld a, (ix-1)
 	ld h, 0
 	call __LTI8
 	or a
-	jp z, __LABEL227
+	jp z, __LABEL229
 	ld a, 2
 	ld (_girlDir), a
-__LABEL227:
+__LABEL229:
 	ld a, (ix-3)
 	ld hl, (_girlX - 1)
 	sub h
@@ -5362,22 +5418,22 @@ __LABEL227:
 	ld hl, (_girlY - 1)
 	sub h
 	or d
-	jp z, __LABEL231
+	jp z, __LABEL233
 	ld a, (_girlFrm)
 	or a
-	jp nz, __LABEL232
+	jp nz, __LABEL234
 	ld a, 1
 	ld (_girlFrm), a
-	jp __LABEL233
-__LABEL232:
+	jp __LABEL235
+__LABEL234:
 	xor a
 	ld (_girlFrm), a
-__LABEL233:
+__LABEL235:
 	ld a, (ix-3)
 	ld (_girlX), a
 	ld a, (ix-4)
 	ld (_girlY), a
-__LABEL231:
+__LABEL233:
 	ld a, (_girlY)
 	push af
 	ld a, (_girlX)
@@ -5399,10 +5455,10 @@ _CheckGate:
 	xor a
 	ld hl, (_sheepOnGate - 1)
 	cp h
-	jp nc, __LABEL235
+	jp nc, __LABEL237
 	ld (_sheepOnGate), a
 	jp _CheckGate__leave
-__LABEL235:
+__LABEL237:
 	ld a, (_girlVx)
 	or a
 	jp z, _CheckGate__leave
@@ -5430,10 +5486,10 @@ __LABEL235:
 	ld hl, (_girlVx - 1)
 	call __LTI8
 	or a
-	jp z, __LABEL244
+	jp z, __LABEL246
 	call _OpenGate
 	jp _CheckGate__leave
-__LABEL244:
+__LABEL246:
 	call _CloseGate
 _CheckGate__leave:
 	ld sp, ix
@@ -5447,7 +5503,7 @@ _GetSunY:
 	push hl
 	ld a, (ix+5)
 	cp 16
-	jp nc, __LABEL246
+	jp nc, __LABEL248
 	dec a
 	ld h, 5
 	call __DIVU8_FAST
@@ -5455,15 +5511,15 @@ _GetSunY:
 	ld a, 3
 	sub h
 	ld (ix-1), a
-	jp __LABEL247
-__LABEL246:
+	jp __LABEL249
+__LABEL248:
 	sub 16
 	ld h, 5
 	call __DIVU8_FAST
 	ld (ix-2), a
 	inc a
 	ld (ix-1), a
-__LABEL247:
+__LABEL249:
 	ld a, (ix-1)
 _GetSunY__leave:
 	ld sp, ix
@@ -5481,8 +5537,8 @@ _UpdateWolves:
 	push hl
 	inc sp
 	ld (ix-1), 1
-	jp __LABEL248
-__LABEL251:
+	jp __LABEL250
+__LABEL253:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -5497,15 +5553,15 @@ __LABEL251:
 	ld a, (ix-1)
 	push af
 	call _UpdateWolf
-	jp __LABEL252
-__LABEL253:
+	jp __LABEL254
+__LABEL255:
 	jp _UpdateWolves__leave
-__LABEL252:
+__LABEL254:
 	inc (ix-1)
-__LABEL248:
+__LABEL250:
 	ld a, 3
 	cp (ix-1)
-	jp nc, __LABEL251
+	jp nc, __LABEL253
 _UpdateWolves__leave:
 	ld sp, ix
 	pop ix
@@ -5633,31 +5689,31 @@ _UpdateWolf:
 	ld (ix-4), a
 	ld a, (ix-3)
 	or a
-	jp nz, __LABEL255
+	jp nz, __LABEL257
 	inc (ix-1)
 	ld h, (ix-1)
 	ld a, 58
 	call __LTI8
 	or a
-	jp z, __LABEL256
+	jp z, __LABEL258
 	ld (ix-3), 2
 	ld a, (ix-1)
 	sub 2
 	ld (ix-1), a
-__LABEL258:
-	jp __LABEL256
-__LABEL255:
+__LABEL260:
+	jp __LABEL258
+__LABEL257:
 	dec (ix-1)
 	ld a, (ix-1)
 	ld h, 2
 	call __LTI8
 	or a
-	jp z, __LABEL256
+	jp z, __LABEL258
 	ld (ix-3), 0
 	ld a, (ix-1)
 	add a, 2
 	ld (ix-1), a
-__LABEL256:
+__LABEL258:
 	ld h, (ix-1)
 	ld a, 7
 	call __LTI8
@@ -5668,16 +5724,16 @@ __LABEL256:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL387
+	jr z, __LABEL389
 	ld a, h
-__LABEL387:
+__LABEL389:
 	or a
-	jp z, __LABEL261
+	jp z, __LABEL263
 	ld a, 49
 	sub (ix-1)
 	ld (ix-2), a
-	jp __LABEL262
-__LABEL261:
+	jp __LABEL264
+__LABEL263:
 	ld h, (ix-1)
 	ld a, 39
 	call __LTI8
@@ -5688,23 +5744,23 @@ __LABEL261:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL388
+	jr z, __LABEL390
 	ld a, h
-__LABEL388:
+__LABEL390:
 	or a
-	jp z, __LABEL262
+	jp z, __LABEL264
 	ld a, (ix-1)
 	sub 12
 	ld (ix-2), a
-__LABEL262:
+__LABEL264:
 	ld a, (ix-4)
 	or a
-	jp nz, __LABEL265
+	jp nz, __LABEL267
 	ld (ix-4), 1
-	jp __LABEL266
-__LABEL265:
+	jp __LABEL268
+__LABEL267:
 	ld (ix-4), 0
-__LABEL266:
+__LABEL268:
 	ld a, (ix-2)
 	push af
 	ld a, (ix-1)
@@ -5724,11 +5780,11 @@ __LABEL266:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL389
+	jr z, __LABEL391
 	ld a, h
-__LABEL389:
+__LABEL391:
 	or a
-	jp z, __LABEL268
+	jp z, __LABEL270
 	ld a, 29
 	ld hl, (_girlY - 1)
 	cp h
@@ -5749,9 +5805,9 @@ __LABEL389:
 	cp h
 	sbc a, a
 	or d
-	jp z, __LABEL268
+	jp z, __LABEL270
 	call _FullOpenGate
-__LABEL268:
+__LABEL270:
 	ld a, (ix-1)
 	push af
 	ld hl, 1
@@ -5809,9 +5865,9 @@ __LABEL268:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL390
+	jr z, __LABEL392
 	ld a, h
-__LABEL390:
+__LABEL392:
 	or a
 	jp z, _UpdateWolf__leave
 	ld hl, _wolfIndex
@@ -5847,7 +5903,7 @@ _CheckGameStatus:
 	ld a, 39
 	ld hl, (_loopCount - 1)
 	cp h
-	jp nc, __LABEL274
+	jp nc, __LABEL276
 	xor a
 	ld (_loopCount), a
 	ld hl, _timeCount
@@ -5868,21 +5924,21 @@ _CheckGameStatus:
 	ld a, (_sunX)
 	push af
 	call _DrawSun
-__LABEL274:
+__LABEL276:
 	ld a, (_loopCount)
 	and 15
 	sub 15
-	jp nz, __LABEL276
+	jp nz, __LABEL278
 	ld a, (_cSmoke)
 	or a
-	jp nz, __LABEL277
+	jp nz, __LABEL279
 	ld a, 1
 	ld (_cSmoke), a
-	jp __LABEL278
-__LABEL277:
+	jp __LABEL280
+__LABEL279:
 	xor a
 	ld (_cSmoke), a
-__LABEL278:
+__LABEL280:
 	ld hl, 3
 	push hl
 	ld hl, 16
@@ -5892,17 +5948,17 @@ __LABEL278:
 	ld a, (_cSmoke)
 	add a, 14
 	call _SetTile
-__LABEL276:
+__LABEL278:
 	ld a, (_checkSheeps)
 	or a
-	jp z, __LABEL280
+	jp z, __LABEL282
 	xor a
 	ld (_checkSheeps), a
 	ld a, 1
 	ld (_nextLevel), a
 	ld (ix-1), 1
-	jp __LABEL281
-__LABEL284:
+	jp __LABEL283
+__LABEL286:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -5913,7 +5969,7 @@ __LABEL284:
 	call __ARRAY
 	ld a, (hl)
 	dec a
-	jp nz, __LABEL280
+	jp nz, __LABEL282
 	ld hl, 2
 	push hl
 	ld a, (ix-1)
@@ -5928,21 +5984,21 @@ __LABEL284:
 	ld a, 22
 	call __LTI8
 	or a
-	jp z, __LABEL285
+	jp z, __LABEL287
 	xor a
 	ld (_nextLevel), a
-	jp __LABEL280
-__LABEL289:
-	jp __LABEL285
-__LABEL286:
-	jp __LABEL280
-__LABEL285:
+	jp __LABEL282
+__LABEL291:
+	jp __LABEL287
+__LABEL288:
+	jp __LABEL282
+__LABEL287:
 	inc (ix-1)
-__LABEL281:
+__LABEL283:
 	ld a, 8
 	cp (ix-1)
-	jp nc, __LABEL284
-__LABEL280:
+	jp nc, __LABEL286
+__LABEL282:
 	ld a, (_nextLevel)
 	sub 1
 	sbc a, a
@@ -5954,14 +6010,14 @@ __LABEL280:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL391
+	jr z, __LABEL393
 	ld a, h
-__LABEL391:
+__LABEL393:
 	or a
-	jp z, __LABEL291
+	jp z, __LABEL293
 	ld a, 1
 	ld (_lose), a
-__LABEL291:
+__LABEL293:
 	call _CheckUpdateScore
 _CheckGameStatus__leave:
 	ld sp, ix
@@ -5978,14 +6034,14 @@ _CheckUpdateScore:
 	ld de, (_score)
 	or a
 	sbc hl, de
-	jp nc, __LABEL295
+	jp nc, __LABEL297
 	ld hl, (_score)
 	ld (_hiScore), hl
 	ld a, 11
 	push af
 	push hl
 	call _PrintScore
-__LABEL295:
+__LABEL297:
 	ld a, 25
 	push af
 	ld hl, (_score)
@@ -6017,8 +6073,8 @@ _SpawnSheeps:
 	or a
 	jp z, _SpawnSheeps__leave
 	ld (ix-1), 1
-	jp __LABEL298
-__LABEL301:
+	jp __LABEL300
+__LABEL303:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -6099,10 +6155,10 @@ __LABEL301:
 	call __ARRAY
 	ld (hl), 0
 	inc (ix-1)
-__LABEL298:
+__LABEL300:
 	ld a, (ix+5)
 	cp (ix-1)
-	jp nc, __LABEL301
+	jp nc, __LABEL303
 _SpawnSheeps__leave:
 	ld sp, ix
 	pop ix
@@ -6128,8 +6184,8 @@ _SpawnWolves:
 	ld a, 1
 	ld (_wolves.__DATA__ + 0), a
 	ld (ix-1), 1
-	jp __LABEL305
-__LABEL308:
+	jp __LABEL307
+__LABEL310:
 	ld hl, 1
 	push hl
 	ld a, (ix-1)
@@ -6167,10 +6223,10 @@ __LABEL308:
 	call __ARRAY
 	ld (hl), 0
 	inc (ix-1)
-__LABEL305:
+__LABEL307:
 	ld a, (ix+5)
 	cp (ix-1)
-	jp nc, __LABEL308
+	jp nc, __LABEL310
 	dec a
 	ld (_wolvesToSpawn), a
 	ld a, 1
@@ -6189,18 +6245,18 @@ _UpdateBoy:
 	add ix, sp
 	ld a, (_boyOnScreen)
 	or a
-	jp nz, __LABEL311
+	jp nz, __LABEL313
 	xor a
 	ld hl, (_boyWait - 1)
 	cp h
-	jp nc, __LABEL312
+	jp nc, __LABEL314
 	ld hl, _boyWait
 	dec (hl)
-	jp __LABEL311
-__LABEL312:
+	jp __LABEL313
+__LABEL314:
 	call _FastRnd
 	cp 2
-	jp nc, __LABEL311
+	jp nc, __LABEL313
 	ld a, 1
 	ld (_boyOnScreen), a
 	ld (_boyX), a
@@ -6208,7 +6264,7 @@ __LABEL312:
 	ld (_boyY), a
 	ld a, 255
 	ld (_boyWait), a
-__LABEL311:
+__LABEL313:
 	ld a, (_boyOnScreen)
 	dec a
 	jp nz, _UpdateBoy__leave
@@ -6217,11 +6273,11 @@ __LABEL311:
 	ld a, 57
 	ld hl, (_boyX - 1)
 	cp h
-	jp nc, __LABEL318
+	jp nc, __LABEL320
 	xor a
 	ld (_boyOnScreen), a
 	jp _UpdateBoy__leave
-__LABEL318:
+__LABEL320:
 	ld a, (_girlY)
 	sub 42
 	sub 1
@@ -6237,11 +6293,11 @@ __LABEL318:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL392
+	jr z, __LABEL394
 	ld a, h
-__LABEL392:
+__LABEL394:
 	or a
-	jp z, __LABEL320
+	jp z, __LABEL322
 	call _PlayKiss
 	ld hl, (_score)
 	ld de, 20
@@ -6252,7 +6308,7 @@ __LABEL392:
 	xor a
 	ld (_boyOnScreen), a
 	jp _UpdateBoy__leave
-__LABEL320:
+__LABEL322:
 	ld a, (_boyY)
 	push af
 	ld a, (_boyX)
@@ -6413,19 +6469,8 @@ _InitLevel:
 	call _CreateBackground
 	ld a, (ix+5)
 	dec a
-	jp nz, __LABEL322
-	ld a, 1
-	push af
-	call _SpawnSheeps
-	xor a
-	push af
-	call _SpawnWolves
-	jp _InitLevel__leave
-__LABEL322:
-	ld a, (ix+5)
-	sub 2
 	jp nz, __LABEL324
-	ld a, 2
+	ld a, 1
 	push af
 	call _SpawnSheeps
 	xor a
@@ -6434,9 +6479,9 @@ __LABEL322:
 	jp _InitLevel__leave
 __LABEL324:
 	ld a, (ix+5)
-	sub 3
+	sub 2
 	jp nz, __LABEL326
-	ld a, 3
+	ld a, 2
 	push af
 	call _SpawnSheeps
 	xor a
@@ -6445,30 +6490,41 @@ __LABEL324:
 	jp _InitLevel__leave
 __LABEL326:
 	ld a, (ix+5)
-	sub 4
+	sub 3
 	jp nz, __LABEL328
 	ld a, 3
 	push af
 	call _SpawnSheeps
-	ld a, 1
+	xor a
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL328:
 	ld a, (ix+5)
-	sub 5
+	sub 4
 	jp nz, __LABEL330
-	ld a, 4
+	ld a, 3
 	push af
 	call _SpawnSheeps
-	ld a, 2
+	ld a, 1
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL330:
 	ld a, (ix+5)
-	sub 6
+	sub 5
 	jp nz, __LABEL332
+	ld a, 4
+	push af
+	call _SpawnSheeps
+	ld a, 2
+	push af
+	call _SpawnWolves
+	jp _InitLevel__leave
+__LABEL332:
+	ld a, (ix+5)
+	sub 6
+	jp nz, __LABEL334
 	ld a, 4
 	push af
 	call _SpawnSheeps
@@ -6476,10 +6532,10 @@ __LABEL330:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL332:
+__LABEL334:
 	ld a, (ix+5)
 	sub 7
-	jp nz, __LABEL334
+	jp nz, __LABEL336
 	ld a, 5
 	push af
 	call _SpawnSheeps
@@ -6487,10 +6543,10 @@ __LABEL332:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL334:
+__LABEL336:
 	ld a, (ix+5)
 	sub 8
-	jp nz, __LABEL336
+	jp nz, __LABEL338
 	ld a, 5
 	push af
 	call _SpawnSheeps
@@ -6498,10 +6554,10 @@ __LABEL334:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL336:
+__LABEL338:
 	ld a, (ix+5)
 	sub 9
-	jp nz, __LABEL338
+	jp nz, __LABEL340
 	ld a, 6
 	push af
 	call _SpawnSheeps
@@ -6509,10 +6565,10 @@ __LABEL336:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL338:
+__LABEL340:
 	ld a, (ix+5)
 	sub 10
-	jp nz, __LABEL340
+	jp nz, __LABEL342
 	ld a, 6
 	push af
 	call _SpawnSheeps
@@ -6520,10 +6576,10 @@ __LABEL338:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL340:
+__LABEL342:
 	ld a, (ix+5)
 	sub 11
-	jp nz, __LABEL342
+	jp nz, __LABEL344
 	ld a, 7
 	push af
 	call _SpawnSheeps
@@ -6531,10 +6587,10 @@ __LABEL340:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL342:
+__LABEL344:
 	ld a, (ix+5)
 	sub 12
-	jp nz, __LABEL344
+	jp nz, __LABEL346
 	ld a, 7
 	push af
 	call _SpawnSheeps
@@ -6542,10 +6598,10 @@ __LABEL342:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL344:
+__LABEL346:
 	ld a, (ix+5)
 	sub 13
-	jp nz, __LABEL346
+	jp nz, __LABEL348
 	ld a, 8
 	push af
 	call _SpawnSheeps
@@ -6553,7 +6609,7 @@ __LABEL344:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL346:
+__LABEL348:
 	ld a, (ix+5)
 	sub 14
 	jp nz, _InitLevel__leave
@@ -6595,8 +6651,8 @@ _GameOver:
 	call __BEEPER
 	call _CancelOps
 	ld (ix-1), 59
-	jp __LABEL350
-__LABEL353:
+	jp __LABEL352
+__LABEL355:
 	ld hl, 0
 	ld (_counter), hl
 	ld a, 1
@@ -6610,10 +6666,10 @@ __LABEL353:
 	add a, 6
 	ld (ix-2), a
 	cp 60
-	jp nc, __LABEL356
+	jp nc, __LABEL358
 	ld a, 25
 	cp (ix-2)
-	jp nc, __LABEL357
+	jp nc, __LABEL359
 	ld a, 1
 	push af
 	ld a, (ix-2)
@@ -6624,28 +6680,28 @@ __LABEL353:
 	add a, 5
 	ld (ix-2), a
 	cp 60
-	jp nc, __LABEL360
+	jp nc, __LABEL362
 	ld a, 1
 	push af
 	ld a, (ix-2)
 	push af
 	ld a, 20
 	call _Draw2x2Sprite
-__LABEL360:
+__LABEL362:
 	ld a, (ix-2)
 	add a, 5
 	ld (ix-2), a
 	cp 60
-	jp nc, __LABEL356
+	jp nc, __LABEL358
 	ld a, 1
 	push af
 	ld a, (ix-2)
 	push af
 	ld a, 21
 	call _Draw2x2Sprite
-__LABEL362:
-	jp __LABEL356
-__LABEL357:
+__LABEL364:
+	jp __LABEL358
+__LABEL359:
 	ld a, 1
 	push af
 	ld a, 25
@@ -6664,25 +6720,25 @@ __LABEL357:
 	push af
 	ld a, 21
 	call _Draw2x2Sprite
-__LABEL356:
+__LABEL358:
 	call _RenderFrame
-__LABEL363:
+__LABEL365:
 	ld de, 4
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL363
+	jp c, __LABEL365
 	dec (ix-1)
-__LABEL350:
+__LABEL352:
 	ld a, (ix-1)
 	cp 1
-	jp nc, __LABEL353
-__LABEL365:
+	jp nc, __LABEL355
+__LABEL367:
 	ld de, 100
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL365
+	jp c, __LABEL367
 	call CLS
 	call _CancelOps
 _GameOver__leave:
@@ -6715,16 +6771,16 @@ _DoNextLevel:
 	ld h, 10
 	call __LTI8
 	or a
-	jp z, __LABEL367
-	ld de, __LABEL60
+	jp z, __LABEL369
+	ld de, __LABEL62
 	ld bc, -3
 	call __PSTORE_STR
-	jp __LABEL368
-__LABEL367:
-	ld de, __LABEL369
+	jp __LABEL370
+__LABEL369:
+	ld de, __LABEL371
 	ld bc, -3
 	call __PSTORE_STR
-__LABEL368:
+__LABEL370:
 	ld a, 11
 	push af
 	ld a, 7
@@ -6735,7 +6791,7 @@ __LABEL368:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL370
+	ld hl, __LABEL372
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6749,7 +6805,7 @@ __LABEL368:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL371
+	ld hl, __LABEL373
 	xor a
 	call __PRINTSTR
 	ld l, (ix-3)
@@ -6758,7 +6814,7 @@ __LABEL368:
 	call __PRINTSTR
 	ld a, (ix-1)
 	call __PRINTI8
-	ld hl, __LABEL372
+	ld hl, __LABEL374
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6772,7 +6828,7 @@ __LABEL368:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL370
+	ld hl, __LABEL372
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6843,14 +6899,14 @@ _DoNextLevel__leave:
 	ex (sp), hl
 	exx
 	ret
-__LABEL44:
+__LABEL46:
 	DEFW 0005h
 	DEFB 53h
 	DEFB 48h
 	DEFB 45h
 	DEFB 45h
 	DEFB 50h
-__LABEL45:
+__LABEL47:
 	DEFW 0006h
 	DEFB 20h
 	DEFB 20h
@@ -6858,7 +6914,7 @@ __LABEL45:
 	DEFB 4Fh
 	DEFB 4Ch
 	DEFB 46h
-__LABEL46:
+__LABEL48:
 	DEFW 0006h
 	DEFB 20h
 	DEFB 20h
@@ -6866,7 +6922,7 @@ __LABEL46:
 	DEFB 49h
 	DEFB 52h
 	DEFB 4Ch
-__LABEL47:
+__LABEL49:
 	DEFW 0006h
 	DEFB 20h
 	DEFB 20h
@@ -6874,7 +6930,7 @@ __LABEL47:
 	DEFB 42h
 	DEFB 4Fh
 	DEFB 59h
-__LABEL48:
+__LABEL50:
 	DEFW 0006h
 	DEFB 4Fh
 	DEFB 3Ah
@@ -6882,7 +6938,7 @@ __LABEL48:
 	DEFB 45h
 	DEFB 46h
 	DEFB 54h
-__LABEL49:
+__LABEL51:
 	DEFW 0007h
 	DEFB 50h
 	DEFB 3Ah
@@ -6891,13 +6947,13 @@ __LABEL49:
 	DEFB 47h
 	DEFB 48h
 	DEFB 54h
-__LABEL50:
+__LABEL52:
 	DEFW 0004h
 	DEFB 51h
 	DEFB 3Ah
 	DEFB 55h
 	DEFB 50h
-__LABEL51:
+__LABEL53:
 	DEFW 0006h
 	DEFB 41h
 	DEFB 3Ah
@@ -6905,7 +6961,7 @@ __LABEL51:
 	DEFB 4Fh
 	DEFB 57h
 	DEFB 4Eh
-__LABEL52:
+__LABEL54:
 	DEFW 0006h
 	DEFB 53h
 	DEFB 50h
@@ -6913,12 +6969,12 @@ __LABEL52:
 	DEFB 41h
 	DEFB 43h
 	DEFB 54h
-__LABEL60:
+__LABEL62:
 	DEFW 0001h
 	DEFB 30h
-__LABEL369:
+__LABEL371:
 	DEFW 0000h
-__LABEL370:
+__LABEL372:
 	DEFW 0013h
 	DEFB 23h
 	DEFB 23h
@@ -6939,7 +6995,7 @@ __LABEL370:
 	DEFB 23h
 	DEFB 23h
 	DEFB 23h
-__LABEL371:
+__LABEL373:
 	DEFW 000Eh
 	DEFB 23h
 	DEFB 20h
@@ -6955,7 +7011,7 @@ __LABEL371:
 	DEFB 45h
 	DEFB 4Ch
 	DEFB 20h
-__LABEL372:
+__LABEL374:
 	DEFW 0003h
 	DEFB 20h
 	DEFB 20h
@@ -7128,7 +7184,7 @@ TMP_ARR_PTR:
 
 		ENDP
 
-#line 5543 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5599 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/asc.asm"
 	; Returns the ascii code for the given str
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/free.asm"
@@ -7481,7 +7537,7 @@ __ASC_END:
 
 		ret
 		ENDP
-#line 5544 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5600 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/band16.asm"
 ; vim:ts=4:et:
 	; FASTCALL bitwise and16 version.
@@ -7502,7 +7558,7 @@ __BAND16:
 
 	    ret
 
-#line 5545 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5601 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/beep.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/stackf.asm"
 	; -------------------------------------------------------------
@@ -7576,7 +7632,7 @@ BEEP:	; The beep command, as in BASIC
 
 
 
-#line 5546 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5602 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/beeper.asm"
 ; vim:ts=4:et:sw=4:
 	; This is a fast beep routine, but needs parameters
@@ -7596,7 +7652,7 @@ __BEEPER:
 	    ret
 
 
-#line 5547 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5603 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/bold.asm"
 	; Sets BOLD flag in P_FLAG permanently
 ; Parameter: BOLD flag in bit 0 of A register
@@ -8783,7 +8839,7 @@ BOLD_TMP:
 
 		ENDP
 
-#line 5548 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5604 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/border.asm"
 	; __FASTCALL__ Routine to change de border
 	; Parameter (color) specified in A register
@@ -8792,7 +8848,7 @@ BOLD_TMP:
 
 	; Nothing to do! (Directly from the ZX Spectrum ROM)
 
-#line 5549 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5605 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/div8.asm"
@@ -8883,7 +8939,7 @@ __MODI8_FAST:	; __FASTCALL__ entry
 
 		ret		; a = Modulus
 
-#line 5552 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5608 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/loadstr.asm"
@@ -9113,7 +9169,7 @@ __LOADSTR:		; __FASTCALL__ entry
 			ldir	; Copies string (length number included)
 			pop hl	; Recovers destiny in hl as result
 			ret
-#line 5555 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5611 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lei8.asm"
 __LEI8: ; Signed <= comparison for 8bit int
@@ -9138,7 +9194,7 @@ checkParity:
 	    ret
 	    ENDP
 #line 2 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
-#line 5556 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5612 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/mul8.asm"
 __MUL8:		; Performs 8bit x 8bit multiplication
 		PROC
@@ -9191,7 +9247,7 @@ __MUL8B:
 		ret		; result = HL
 		ENDP
 
-#line 5557 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5613 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/print_eol_attr.asm"
@@ -9204,7 +9260,7 @@ __MUL8B:
 PRINT_EOL_ATTR:
 		call PRINT_EOL
 		jp COPY_ATTR
-#line 5560 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5616 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printi8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printnum.asm"
 
@@ -9279,7 +9335,7 @@ __PRINTU_LOOP:
 
 		ENDP
 
-#line 5561 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5617 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printstr.asm"
 
 
@@ -9337,7 +9393,7 @@ __PRINT_STR:
 
 			ENDP
 
-#line 5562 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5618 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -9654,7 +9710,7 @@ __PSTORE_STR:
 	    add hl, bc
 	    jp __STORE_STR
 
-#line 5563 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5619 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr2.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -9711,7 +9767,7 @@ __PSTORE_STR2:
 	    add hl, bc
 	    jp __STORE_STR2
 
-#line 5564 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5620 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/str.asm"
 	; The STR$( ) BASIC function implementation
 
@@ -9790,7 +9846,7 @@ __STR_END:
 
 		ENDP
 
-#line 5565 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5621 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strcat.asm"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strlen.asm"
@@ -9935,7 +9991,7 @@ __STRCATEND:
 
 			ENDP
 
-#line 5566 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5622 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strslice.asm"
 	; String slicing library
@@ -10044,7 +10100,7 @@ __FREE_ON_EXIT:
 
 		ENDP
 
-#line 5568 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5624 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/u32tofreg.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/neg32.asm"
 __ABS32:
@@ -10166,10 +10222,10 @@ __U32TOFREG_END:
 		ret
 	    ENDP
 
-#line 5569 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 5625 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
 
-__LABEL378:
+__LABEL380:
 	DEFB 08h
-__LABEL379:
+__LABEL381:
 	DEFB 17h
 	END

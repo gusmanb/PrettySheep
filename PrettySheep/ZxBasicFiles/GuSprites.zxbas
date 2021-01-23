@@ -308,9 +308,37 @@ ERASE_MEMORY(SPRITE_BUFFER, SPRITE_BUFFER_SIZE)
 ERASE_MEMORY(CELL_MAP_A, 768)
 ERASE_MEMORY(CELL_MAP_B, 768)
 
+#ifdef ENABLE_TILES
+ERASE_MEMORY(TILE_MAP, 768)
+#endif
+
 ret
 ENDP
 
+PROC
+CLEAR_SCREEN:                      ;TRASHES: HL, A
+
+WRITE_16B_ADDRESS(DRAW_OPS_A, CURRENT_DRAW_OPS, hl)
+WRITE_16B_ADDRESS(DRAW_OPS_B, CURRENT_CLEAR_OPS, hl)
+
+WRITE_16B_ADDRESS(CELL_MAP_A, CURRENT_DRAW_MAP, hl)
+WRITE_16B_ADDRESS(CELL_MAP_B, CURRENT_CLEAR_MAP, hl)
+
+WRITE_16B_ADDRESS(DRAW_OPS_DATA, DRAW_OPS_DATA_INDEX, hl)
+
+xor a
+ld (CURRENT_DRAW_COUNT), a
+ld (CURRENT_CLEAR_COUNT), a
+
+ERASE_MEMORY(CELL_MAP_A, 768)
+ERASE_MEMORY(CELL_MAP_B, 768)
+
+#ifdef ENABLE_TILES
+ERASE_MEMORY(TILE_MAP, 768)
+#endif
+
+ret
+ENDP
 
 PROC
 LOCAL RENDER_LOOP, END_RENDER, RESTORE_STACK
@@ -1776,6 +1804,19 @@ sub fastcall CancelOps()
     xor a
     ld (CURRENT_DRAW_COUNT), a
     ld (CURRENT_CLEAR_COUNT), a
+    end asm
+
+end sub
+
+sub ClearScreen(NewInk as uByte, NewPaper as uByte, NewBright as uByte)
+
+    ink NewInk
+    paper NewPaper
+    bright NewBright
+    cls
+
+    asm
+    call CLEAR_SCREEN
     end asm
 
 end sub
