@@ -1,0 +1,39 @@
+﻿'WARNING!!! Your program must start at $8001 instead of $8000
+Dim intHandlerAddress as uInteger at $FEFF
+Dim counter as uInteger 
+
+sub DoPause(Frames as uInteger)
+
+    counter = 1
+    counter = counter - 1
+    while counter < Frames
+    end while
+
+end sub
+
+sub fastcall InstallHandler()
+
+asm
+
+    ld hl, INT_HANDLER
+    ld (_intHandlerAddress), hl
+    di
+    ld a, $fe
+    ld i, a
+    im 2
+    ei
+    ret
+
+INT_HANDLER:
+
+    push hl
+    ld hl, (_counter)
+    inc hl
+    ld (_counter), hl
+    pop hl
+    ei
+    ret
+
+end asm
+
+end sub

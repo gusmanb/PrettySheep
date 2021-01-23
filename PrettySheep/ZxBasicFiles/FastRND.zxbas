@@ -1,0 +1,53 @@
+﻿
+sub fastcall InitFastRnd()
+
+    asm
+    PROC
+	LOCAL NOT_EMPTY_L, TEST_H, NOT_EMPTY_H, LOAD_SEED
+	ld hl, ($5C78)
+	ld a, l
+	and $FF
+	jp nz, NOT_EMPTY_L
+	ld a, r
+	ld l, a
+	jp TEST_H
+NOT_EMPTY_L:
+	ld a, r
+	xor l
+	ld l, a
+TEST_H:
+	ld h, a
+	and $FF
+	jp nz, NOT_EMPTY_H
+	ld a, r
+	ld h, a
+	jp LOAD_SEED
+NOT_EMPTY_H:
+	ld a, r
+	xor h
+	ld h, a
+LOAD_SEED:    
+    ld      (FAST_RAND + 1),hl
+    ENDP
+    end asm
+
+end sub
+
+function fastcall FastRnd() as uByte
+
+    asm
+
+    FAST_RAND:
+
+    ld hl,$FFFF
+    ld a,r
+    ld d,a
+    ld e,(hl)
+    add hl,de
+    add a,l
+    xor h
+    ld (FAST_RAND + 1),hl
+
+    end asm
+
+end function
