@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <CustomProjectExtensionsPath>$(LocalAppData)\CustomProjectSystems\Spect.Net.CodeDiscover\</CustomProjectExtensionsPath>
+    <ProjectGuid>8ed29301-32da-4e5a-b246-616afe653dfe</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(CustomProjectExtensionsPath)Spect.Net.CodeDiscover.props" />
+  <ItemGroup>
+    <DisassAnn Include="Annotations.disann" />
+    <SpConf Include="Rom\ZxSpectrum.spconf" />
+    <ProjConf Include="Spectrum.projconf" />
+    <Rom Include="Rom\ZxSpectrum128-0.rom" />
+    <DisassAnn Include="Rom\ZxSpectrum128-0.disann" />
+    <Rom Include="Rom\ZxSpectrum128-1.rom" />
+    <DisassAnn Include="Rom\ZxSpectrum128-1.disann" />
+    <Z80Asm Include="Z80CodeFiles\Code.z80asm" />
+    <Z80Asm Include="ZxBasicFiles\mainmusic.z80asm" />
+    <Z80Asm Include="ZxBasicFiles\PrettySheep.zxbas.z80asm">
+      <DependentUpon>PrettySheep.zxbas</DependentUpon>
+    </Z80Asm>
+    <Z80Test Include="Z80UnitTests\UnitTest.z80test" />
+    <Tzx Include="TapeFiles\Welcome.tzx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ZxBasic Include="ZxBasicFiles\BeepFX.zxbas" />
+    <ZxBasic Include="ZxBasicFiles\FastRND.zxbas" />
+    <ZxBasic Include="ZxBasicFiles\GuSprites.zxbas" />
+    <ZxBasic Include="ZxBasicFiles\InterruptInstaller.zxbas" />
+    <ZxBasic Include="ZxBasicFiles\MusicPlayer.zxbas" />
+    <ZxBasic Include="ZxBasicFiles\PrettySheep.zxbas" />
+  </ItemGroup>
+  <Import Project="$(CustomProjectExtensionsPath)Spect.Net.CodeDiscover.targets" />
+</Project>

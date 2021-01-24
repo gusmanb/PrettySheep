@@ -1,0 +1,183 @@
+﻿REM Write your ZX BASIC (Boriel's BASIC) code here
+
+Dim enableMusic as uByte = 0
+
+sub PlayerHolder()
+
+    asm
+
+    jp SKIP_MUSIC
+
+     _enableMusic db 0
+
+    #include "mainmusic.z80asm"     
+
+    SKIP_MUSIC:
+
+    end asm
+
+end sub
+
+
+'Initialize music
+sub InitMaryMusic()
+
+PlayerHolder()
+
+asm
+    
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+
+    exx
+    ex af, af'
+
+    push af
+    push bc
+    push de
+    push hl
+
+
+    ld hl, MARYLAMB_START           ;load your song address
+    xor a                           ;subtrack 0
+    call PLY_AKG_INIT               ;call initialization routine
+
+    pop hl                      ;restore all registers
+    pop de
+    pop bc
+    pop af
+
+    ex af, af'
+    exx
+
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+
+end asm
+
+end sub
+
+sub InitNextlevelMusic()
+
+PlayerHolder()
+
+asm
+    
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+
+    exx
+    ex af, af'
+
+    push af
+    push bc
+    push de
+    push hl
+
+
+    ld hl, NEXTLEVEL_START           ;load your song address
+    xor a                           ;subtrack 0
+    call PLY_AKG_INIT               ;call initialization routine
+
+    pop hl                      ;restore all registers
+    pop de
+    pop bc
+    pop af
+
+    ex af, af'
+    exx
+
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+
+end asm
+
+end sub
+
+sub InitGameoverMusic()
+
+PlayerHolder()
+
+asm
+    
+    push af
+    push bc
+    push de
+    push hl
+    push ix
+    push iy
+
+    exx
+    ex af, af'
+
+    push af
+    push bc
+    push de
+    push hl
+
+
+    ld hl, GAMEOVER_START           ;load your song address
+    xor a                           ;subtrack 0
+    call PLY_AKG_INIT               ;call initialization routine
+
+    pop hl                      ;restore all registers
+    pop de
+    pop bc
+    pop af
+
+    ex af, af'
+    exx
+
+    pop iy
+    pop ix
+    pop hl
+    pop de
+    pop bc
+    pop af
+
+end asm
+
+end sub
+
+'Play loop
+sub PlayMusic()
+
+    asm
+    ld a, 1
+    ld (_enableMusic), a
+    end asm
+
+end sub
+
+'stop music
+sub StopMusic()
+
+asm
+
+    push ix
+    ld a, 0
+    ld (_enableMusic), a
+    di                              ;disable interrupts
+    call PLY_AKG_STOP               ;stop the player
+    ei                              ;enable interrupts
+    pop ix
+
+end asm
+
+end sub

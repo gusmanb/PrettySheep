@@ -1,7 +1,6 @@
 	.zxbasic
 	org 32768
 __START_PROGRAM:
-	ld hl, END
 	di
 	push ix
 	push iy
@@ -27,8 +26,6 @@ ZXBASIC_USER_DATA_LEN EQU ZXBASIC_USER_DATA_END - ZXBASIC_USER_DATA
 	_intHandlerAddress EQU 65279
 _counter:
 	DEFB 00, 00
-_musicPos:
-	DEFB 01h
 _sheepOnGate:
 	DEFB 00h
 _gateX:
@@ -86,7 +83,7 @@ _boyY:
 _boyWait:
 	DEFB 00h
 _sheep:
-	DEFW __LABEL395
+	DEFW __LABEL391
 _sheep.__DATA__.__PTR__:
 	DEFW _sheep.__DATA__
 _sheep.__DATA__:
@@ -218,12 +215,12 @@ _sheep.__DATA__:
 	DEFB 24h
 	DEFB 24h
 	DEFB 4Ch
-__LABEL395:
+__LABEL391:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _wolf:
-	DEFW __LABEL396
+	DEFW __LABEL392
 _wolf.__DATA__.__PTR__:
 	DEFW _wolf.__DATA__
 _wolf.__DATA__:
@@ -355,12 +352,12 @@ _wolf.__DATA__:
 	DEFB 0F0h
 	DEFB 58h
 	DEFB 88h
-__LABEL396:
+__LABEL392:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _girl:
-	DEFW __LABEL397
+	DEFW __LABEL393
 _girl.__DATA__.__PTR__:
 	DEFW _girl.__DATA__
 _girl.__DATA__:
@@ -492,12 +489,12 @@ _girl.__DATA__:
 	DEFB 0F8h
 	DEFB 70h
 	DEFB 10h
-__LABEL397:
+__LABEL393:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _boy:
-	DEFW __LABEL398
+	DEFW __LABEL394
 _boy.__DATA__.__PTR__:
 	DEFW _boy.__DATA__
 _boy.__DATA__:
@@ -629,12 +626,12 @@ _boy.__DATA__:
 	DEFB 0E0h
 	DEFB 70h
 	DEFB 10h
-__LABEL398:
+__LABEL394:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _endSprites:
-	DEFW __LABEL399
+	DEFW __LABEL395
 _endSprites.__DATA__.__PTR__:
 	DEFW _endSprites.__DATA__
 _endSprites.__DATA__:
@@ -798,12 +795,12 @@ _endSprites.__DATA__:
 	DEFB 0E0h
 	DEFB 0C0h
 	DEFB 00h
-__LABEL399:
+__LABEL395:
 	DEFW 0001h
 	DEFW 0020h
 	DEFB 01h
 _tileSet:
-	DEFW __LABEL400
+	DEFW __LABEL396
 _tileSet.__DATA__.__PTR__:
 	DEFW _tileSet.__DATA__
 _tileSet.__DATA__:
@@ -1199,12 +1196,12 @@ _tileSet.__DATA__:
 	DEFB 0C6h
 	DEFB 7Ch
 	DEFB 38h
-__LABEL400:
+__LABEL396:
 	DEFW 0001h
 	DEFW 0008h
 	DEFB 01h
 _introScreen:
-	DEFW __LABEL401
+	DEFW __LABEL397
 _introScreen.__DATA__.__PTR__:
 	DEFW _introScreen.__DATA__
 _introScreen.__DATA__:
@@ -1272,58 +1269,11 @@ _introScreen.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL401:
+__LABEL397:
 	DEFW 0000h
 	DEFB 02h
-_music:
-	DEFW __LABEL402
-_music.__DATA__.__PTR__:
-	DEFW _music.__DATA__
-_music.__DATA__:
-	DEFB 04h
-	DEFB 02h
-	DEFB 00h
-	DEFB 02h
-	DEFB 04h
-	DEFB 04h
-	DEFB 04h
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 02h
-	DEFB 02h
-	DEFB 02h
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 04h
-	DEFB 04h
-	DEFB 04h
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 04h
-	DEFB 02h
-	DEFB 00h
-	DEFB 02h
-	DEFB 04h
-	DEFB 04h
-	DEFB 04h
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 02h
-	DEFB 02h
-	DEFB 04h
-	DEFB 02h
-	DEFB 00h
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 0FFh
-	DEFB 0FFh
-__LABEL402:
-	DEFW 0000h
-	DEFB 01h
 _sheeps:
-	DEFW __LABEL403
+	DEFW __LABEL398
 _sheeps.__DATA__.__PTR__:
 	DEFW _sheeps.__DATA__
 _sheeps.__DATA__:
@@ -1391,12 +1341,12 @@ _sheeps.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL403:
+__LABEL398:
 	DEFW 0001h
 	DEFW 0008h
 	DEFB 01h
 _wolves:
-	DEFW __LABEL404
+	DEFW __LABEL399
 _wolves.__DATA__.__PTR__:
 	DEFW _wolves.__DATA__
 _wolves.__DATA__:
@@ -1415,7 +1365,7 @@ _wolves.__DATA__:
 	DEFB 00h
 	DEFB 00h
 	DEFB 00h
-__LABEL404:
+__LABEL399:
 	DEFW 0001h
 	DEFW 0005h
 	DEFB 01h
@@ -1428,23 +1378,23 @@ __MAIN_PROGRAM__:
 	ld a, 4
 	call PAPER
 	call COPY_ATTR
-	ld a, 4
-	call BORDER
 	call CLS
-#line 29 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 40 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 47 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 52 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 61 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 65 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 75 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 90 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 131 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 136 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 142 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 149 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 157 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
-#line 167 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+	ld a, 4
+	call _FastBorder
+#line 29 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 40 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 47 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 52 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 61 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 65 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 75 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 90 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 131 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 136 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 142 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 149 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 157 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 167 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		SPRITE_1x1_BUFFER_SIZE equ (6 * 8)
 		SPRITE_1x2_BUFFER_SIZE equ (9 * 8)
 		SPRITE_2x2_BUFFER_SIZE equ (15 * 8)
@@ -1456,7 +1406,7 @@ __MAIN_PROGRAM__:
 		TOTAL_2x2_OPS equ (13 * SPRITE_2x2_SHIFTED_SIZE)
 		TOTAL_DRAW_OPS equ ((TOTAL_1x1_OPS + TOTAL_1x2_OPS + TOTAL_2x2_OPS) * 2)
 		DRAW_OP_SIZE equ 5
-#line 188 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 188 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		DRAW_OPS_SIZE equ (TOTAL_DRAW_OPS * DRAW_OP_SIZE)
 		DRAW_OPS_DATA_SIZE equ (TOTAL_DRAW_OPS * 8)
 		SPRITE_BUFFER_SIZE equ ((1 * SPRITE_1x1_BUFFER_SIZE)+(1 * SPRITE_1x2_BUFFER_SIZE)+(21 * SPRITE_2x2_BUFFER_SIZE))
@@ -1492,15 +1442,15 @@ SPRITE_INDEX:
 		defs SPRITE_INDEX_SIZE
 SPRITE_COUNT:
 		defb 0
-#line 257 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 257 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 TILE_SET:
 		defw 0
 TILE_MAP:
 		defs 768
-#line 266 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 266 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		PROC
 INIT_GFX_LIB:
-#line 276 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 276 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld hl, DRAW_OPS_A
 		ld (CURRENT_DRAW_OPS), hl
 #line 278
@@ -1576,7 +1526,7 @@ RESET_GFX_LIB:
 		ld bc, 768 - 1
 		ldir
 #line 313
-#line 314 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 314 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ret
 		ENDP
 		PROC
@@ -1623,15 +1573,15 @@ CLEAR_SCREEN:
 		ld bc, 768 - 1
 		ldir
 #line 338
-#line 339 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 339 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ret
 		ENDP
 		PROC
 		LOCAL RENDER_LOOP, END_RENDER, RESTORE_STACK
 RENDER_FRAME:
-#line 350 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 350 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		halt
-#line 354 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 354 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld a, (CURRENT_DRAW_COUNT)
 		cp 0
 		jp z, END_RENDER
@@ -1650,7 +1600,7 @@ RENDER_LOOP:
 		inc hl
 #line 369
 		inc hl
-#line 373 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 373 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		push hl
 		ld h, b
 		ld l, c
@@ -1954,7 +1904,7 @@ CREATE_DRAW_OP:
 		add hl, hl
 #line 688
 		add hl, de
-#line 693 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 693 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld bc, (CURRENT_DRAW_OPS)
 		add hl, bc
 		pop de
@@ -1989,7 +1939,7 @@ CREATE_DRAW_OP:
 		inc hl
 #line 726
 		ld (hl), 1
-#line 732 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 732 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld l, 8
 		ld h, 0
 		add hl, de
@@ -2011,7 +1961,7 @@ CREATE_DRAW_OP:
 		add hl, hl
 #line 759
 		add hl, de
-#line 766 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 766 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (CURRENT_CLEAR_OPS)
 		add hl, de
 		ld d, ixh
@@ -2040,9 +1990,9 @@ CREATE_DRAW_OP:
 		inc hl
 #line 792
 		ld (hl), 2
-#line 803 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 803 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
-#line 865 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 865 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld d, iyh
 		ld e, iyl
 		ldi
@@ -2054,7 +2004,7 @@ CREATE_DRAW_OP:
 		ldi
 		ldi
 #line 869
-#line 872 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 872 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ret
 EXISTING_OP:
 		dec a
@@ -2067,7 +2017,7 @@ EXISTING_OP:
 		add hl, hl
 #line 886
 		add hl, de
-#line 891 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 891 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld bc, (CURRENT_DRAW_OPS)
 		add hl, bc
 		ld c, (hl)
@@ -2087,15 +2037,15 @@ EXISTING_OP:
 		and 2
 		jp z, REAL_EXISTING_OP
 		ld (hl), 1
-#line 919 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 919 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		pop af
-#line 933 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 933 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		pop bc
 		pop de
 		pop hl
 		push de
 		push af
-#line 942 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 942 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (CURRENT_CLEAR_MAP)
 		add hl, de
 		ld a, (CURRENT_CLEAR_COUNT)
@@ -2112,7 +2062,7 @@ EXISTING_OP:
 		add hl, hl
 #line 965
 		add hl, de
-#line 970 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 970 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (CURRENT_CLEAR_OPS)
 		add hl, de
 		ld (hl), c
@@ -2127,9 +2077,9 @@ EXISTING_OP:
 		inc hl
 #line 980
 		ld (hl), 2
-#line 991 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 991 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
-#line 997 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 997 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ld de, (DRAW_OPS_DATA_INDEX)
 		ld (hl), e
 		inc hl
@@ -2139,10 +2089,10 @@ EXISTING_OP:
 		ld hl, 8
 		add hl, de
 		ld (DRAW_OPS_DATA_INDEX), hl
-#line 1012 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1012 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
 		pop hl
-#line 1068 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1068 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ldi
 		ldi
 		ldi
@@ -2152,7 +2102,7 @@ EXISTING_OP:
 		ldi
 		ldi
 #line 1069
-#line 1072 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1072 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		ret
 REAL_EXISTING_OP:
 		pop hl
@@ -2160,7 +2110,7 @@ REAL_EXISTING_OP:
 		pop hl
 		pop hl
 		pop hl
-#line 1085 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1085 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		pop hl
 		ex de, hl
 		ld a, (de)
@@ -2633,9 +2583,9 @@ GET_TILE:
 		ld a, (hl)
 		ret
 		ENDP
-#line 1653 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1653 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 GSPRITES_LIB_END:
-#line 1881 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1881 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 	call _InitGFXLib
 	ld hl, _tileSet.__DATA__
 	call _SetTileset
@@ -2682,11 +2632,11 @@ GSPRITES_LIB_END:
 	ld hl, (_endSprites.__DATA__) + (128)
 	call _Create2x2Sprite
 __LABEL__gameLoop:
-	ld a, 1
-	ld (_musicPos), a
+	call _InitMaryMusic
 	ld a, 3
 	push af
 	call _ShowIntro
+	call _PlayMusic
 __LABEL2:
 	ld hl, 32513
 	call _MultiKeys
@@ -2733,7 +2683,6 @@ __LABEL5:
 	add a, 13
 	call _Draw2x2Sprite
 	call _RenderFrame
-	call _PlayMusic
 __LABEL6:
 	ld de, 5
 	ld hl, (_counter)
@@ -2798,22 +2747,26 @@ __LABEL15:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL375
+	jr z, __LABEL371
 	ld a, h
-__LABEL375:
+__LABEL371:
 	or a
 	jp nz, __LABEL12
 	ld a, (_lose)
 	or a
 	jp nz, __LABEL18
+	call _StopMusic
 	ld a, (_currentLevel)
 	push af
 	call _DoNextLevel
+	call _InitMaryMusic
+	call _PlayMusic
 __LABEL18:
 	xor a
 	ld (_nextLevel), a
 	jp __LABEL8
 __LABEL9:
+	call _StopMusic
 	call _GameOver
 	jp __LABEL__gameLoop
 __END_PROGRAM:
@@ -2829,6 +2782,5430 @@ __END_PROGRAM:
 	ret
 __CALL_BACK__:
 	DEFW 0
+_PlayerHolder:
+	push ix
+	ld ix, 0
+	add ix, sp
+#line 6 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+		jp SKIP_MUSIC
+		_enableMusic db 0
+#line 1 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/mainmusic.z80asm"
+		MARYLAMB_START
+		PLY_AKG_OPCODE_ADD_HL_BC_MSB db 65
+		PLY_AKG_FULL_INIT_CODE
+		PLY_AKG_OFFSET1B
+		PLY_AKG_USE_HOOKS
+		PLY_AKG_STOP_SOUNDS db 84
+		PLY_AKG_BITFORSOUND
+		PLY_AKG_OFFSET2B db 50
+		db 48
+		PLY_AKG_BITFORNOISE equ $+1
+		dw MARYLAMB_ARPEGGIOTABLE
+		dw MARYLAMB_ARPEGGIOTABLE
+		PLY_AKG_OPCODE_ADD_HL_BC_LSB equ $+1
+		dw MARYLAMB_ARPEGGIOTABLE
+		dw MARYLAMB_EFFECTBLOCKTABLE
+		dw MARYLAMB_SUBSONG0_START
+		MARYLAMB_ARPEGGIOTABLE
+		MARYLAMB_PITCHTABLE
+		MARYLAMB_INSTRUMENTTABLE dw MARYLAMB_EMPTYINSTRUMENT
+		dw MARYLAMB_INSTRUMENT1
+		dw MARYLAMB_INSTRUMENT2
+		dw MARYLAMB_INSTRUMENT3
+		dw MARYLAMB_INSTRUMENT4
+		dw MARYLAMB_INSTRUMENT5
+		dw MARYLAMB_INSTRUMENT6
+		MARYLAMB_EMPTYINSTRUMENT db 0
+		MARYLAMB_EMPTYINSTRUMENT_LOOP db 0
+		db 6
+		MARYLAMB_INSTRUMENT1 db 1
+		db 248
+		db 1
+		db 232
+		PLY_AKG_OPCODE_INC_HL db 1
+		db 216
+		db 1
+		db 192
+		db 1
+		db 168
+		db 1
+		db 6
+		MARYLAMB_INSTRUMENT2
+		PLY_AKG_OPCODE_DEC_HL db 1
+		db 248
+		db 1
+		db 113
+		db 34
+		db 246
+		db 255
+		db 97
+		db 35
+		db 226
+		db 255
+		db 216
+		PLY_AKG_OPCODE_SCF db 1
+		db 80
+		db 208
+		db 1
+		db 200
+		db 1
+		db 192
+		db 1
+		db 184
+		db 1
+		db 176
+		PLY_AKG_OPCODE_SBC_HL_BC_LSB db 1
+		db 168
+		db 1
+		db 160
+		db 1
+		db 144
+		db 1
+		db 136
+		db 1
+		db 6
+		MARYLAMB_INSTRUMENT3 db 1
+		db 248
+		db 1
+		db 113
+		db 32
+		db 150
+		db 0
+		db 105
+		db 32
+		db 44
+		db 1
+		db 97
+		db 32
+		db 144
+		db 1
+		db 89
+		db 32
+		db 244
+		db 1
+		db 81
+		db 32
+		db 88
+		db 2
+		db 6
+		MARYLAMB_INSTRUMENT4 db 1
+		db 121
+		db 32
+		db 244
+		db 1
+		db 113
+		db 32
+		db 38
+		db 2
+		db 105
+		db 32
+		db 88
+		db 2
+		db 97
+		db 32
+		db 138
+		db 2
+		db 89
+		db 32
+		db 188
+		db 2
+		db 81
+		db 32
+		db 238
+		db 2
+		db 73
+		db 32
+		db 32
+		db 3
+		db 65
+		db 32
+		db 82
+		db 3
+		db 57
+		db 32
+		db 132
+		db 3
+		db 6
+		MARYLAMB_INSTRUMENT5 db 1
+		db 249
+		db 113
+		db 32
+		db 50
+		db 0
+		db 105
+		db 32
+		db 100
+		db 0
+		db 97
+		db 32
+		db 150
+		db 0
+		db 89
+		db 32
+		db 200
+		db 0
+		db 81
+		db 32
+		db 250
+		db 0
+		db 73
+		db 32
+		db 44
+		db 1
+		db 65
+		db 32
+		db 94
+		db 1
+		db 57
+		db 32
+		db 144
+		db 1
+		db 6
+		MARYLAMB_INSTRUMENT6 db 5
+		db 249
+		db 241
+		db 233
+		db 225
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		PLY_AKG_OPCODE_OR_A db 217
+		db 217
+		db 217
+		db 201
+		db 193
+		db 185
+		db 177
+		db 169
+		db 161
+		db 153
+		db 145
+		db 137
+		db 6
+		MARYLAMB_EFFECTBLOCKTABLE dw MARYLAMB_EFFECTBLOCK_P4P1
+		PLY_AKG_OPCODE_ADD_A_IMMEDIATE dw MARYLAMB_EFFECTBLOCK_P4P2
+		dw MARYLAMB_EFFECTBLOCK_P4P0
+		dw MARYLAMB_EFFECTBLOCK_P4P4
+		dw MARYLAMB_EFFECTBLOCK_P4P3
+		dw MARYLAMB_EFFECTBLOCK_P4P7
+		dw MARYLAMB_EFFECTBLOCK_P4P8
+		MARYLAMB_EFFECTBLOCK_P4P0 db 4
+		db 0
+		MARYLAMB_EFFECTBLOCK_P4P1 db 4
+		db 1
+		MARYLAMB_EFFECTBLOCK_P4P2
+		PLY_AKG_OPCODE_SUB_IMMEDIATE db 4
+		db 2
+		MARYLAMB_EFFECTBLOCK_P4P3 db 4
+		db 3
+		MARYLAMB_EFFECTBLOCK_P4P4 db 4
+		db 4
+		MARYLAMB_EFFECTBLOCK_P4P7 db 4
+		db 7
+		MARYLAMB_EFFECTBLOCK_P4P8 db 4
+		db 8
+		MARYLAMB_SUBSONG0_START db 2
+		db 0
+		db 1
+		db 0
+		db 21
+		db 6
+		db 33
+		MARYLAMB_SUBSONG0_LINKER
+		MARYLAMB_SUBSONG0_LINKER_LOOP dw MARYLAMB_SUBSONG0_TRACK0
+		dw MARYLAMB_SUBSONG0_TRACK1
+		dw MARYLAMB_SUBSONG0_TRACK2
+		PLY_AKG_OPCODE_SBC_HL_BC_MSB dw MARYLAMB_SUBSONG0_LINKERBLOCK0
+		dw MARYLAMB_SUBSONG0_TRACK3
+		dw MARYLAMB_SUBSONG0_TRACK4
+		dw MARYLAMB_SUBSONG0_TRACK5
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK3
+		dw MARYLAMB_SUBSONG0_TRACK6
+		dw MARYLAMB_SUBSONG0_TRACK7
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK8
+		dw MARYLAMB_SUBSONG0_TRACK9
+		dw MARYLAMB_SUBSONG0_TRACK10
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK12
+		dw MARYLAMB_SUBSONG0_TRACK13
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK14
+		dw MARYLAMB_SUBSONG0_TRACK15
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK16
+		dw MARYLAMB_SUBSONG0_TRACK17
+		dw MARYLAMB_SUBSONG0_TRACK18
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK19
+		dw MARYLAMB_SUBSONG0_TRACK20
+		dw MARYLAMB_SUBSONG0_TRACK21
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK22
+		dw MARYLAMB_SUBSONG0_TRACK23
+		dw MARYLAMB_SUBSONG0_TRACK24
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK25
+		dw MARYLAMB_SUBSONG0_TRACK21
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK26
+		dw MARYLAMB_SUBSONG0_TRACK27
+		dw MARYLAMB_SUBSONG0_TRACK28
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK29
+		dw MARYLAMB_SUBSONG0_TRACK30
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK31
+		dw MARYLAMB_SUBSONG0_TRACK32
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK33
+		dw MARYLAMB_SUBSONG0_TRACK34
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK35
+		dw MARYLAMB_SUBSONG0_TRACK36
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK37
+		dw MARYLAMB_SUBSONG0_TRACK38
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK39
+		dw MARYLAMB_SUBSONG0_TRACK40
+		dw MARYLAMB_SUBSONG0_TRACK41
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK42
+		dw MARYLAMB_SUBSONG0_TRACK43
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK44
+		dw MARYLAMB_SUBSONG0_TRACK45
+		dw MARYLAMB_SUBSONG0_TRACK46
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK4
+		dw MARYLAMB_SUBSONG0_TRACK5
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK11
+		dw MARYLAMB_SUBSONG0_TRACK6
+		dw MARYLAMB_SUBSONG0_TRACK7
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK1
+		dw MARYLAMB_SUBSONG0_TRACK47
+		dw MARYLAMB_SUBSONG0_TRACK9
+		dw MARYLAMB_SUBSONG0_TRACK48
+		dw MARYLAMB_SUBSONG0_LINKERBLOCK2
+		db 0
+		db 0
+		dw MARYLAMB_SUBSONG0_LINKER
+		MARYLAMB_SUBSONG0_LINKERBLOCK0 db 64
+		db 0
+		db 0
+		db 0
+		dw MARYLAMB_SUBSONG0_SPEEDTRACK0
+		dw MARYLAMB_SUBSONG0_EVENTTRACK0
+		MARYLAMB_SUBSONG0_LINKERBLOCK1 db 64
+		db 0
+		db 0
+		db 0
+		dw MARYLAMB_SUBSONG0_SPEEDTRACK1
+		dw MARYLAMB_SUBSONG0_EVENTTRACK0
+		MARYLAMB_SUBSONG0_LINKERBLOCK2 db 32
+		db 0
+		db 0
+		db 0
+		dw MARYLAMB_SUBSONG0_SPEEDTRACK1
+		dw MARYLAMB_SUBSONG0_EVENTTRACK0
+		MARYLAMB_SUBSONG0_TRACK0 db 61
+		db 15
+		db 207
+		db 1
+		db 2
+		db 61
+		db 14
+		db 79
+		db 0
+		db 62
+		db 79
+		db 4
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK1 db 61
+		db 31
+		db 199
+		db 6
+		db 2
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK2 db 61
+		db 17
+		db 216
+		db 6
+		db 0
+		db 60
+		db 26
+		db 60
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 24
+		db 60
+		db 22
+		db 60
+		db 31
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 126
+		db 24
+		db 26
+		db 26
+		db 26
+		db 24
+		db 60
+		db 22
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK3 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK4 db 135
+		db 6
+		db 254
+		db 1
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 126
+		db 63
+		db 32
+		db 62
+		db 63
+		db 28
+		db 2
+		db 60
+		db 2
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 0
+		db 126
+		db 0
+		db 62
+		db 0
+		db 63
+		db 28
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 31
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 5
+		db 62
+		db 5
+		db 62
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK5 db 159
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 31
+		db 31
+		db 26
+		db 27
+		db 31
+		db 60
+		db 31
+		db 31
+		db 34
+		db 60
+		db 34
+		db 60
+		db 36
+		db 37
+		db 36
+		db 34
+		db 24
+		db 126
+		db 31
+		db 62
+		db 36
+		db 62
+		db 31
+		db 126
+		db 36
+		db 126
+		db 24
+		db 60
+		db 26
+		db 60
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 24
+		db 60
+		db 22
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK6 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 7
+		db 60
+		db 2
+		db 126
+		db 2
+		db 60
+		db 2
+		db 60
+		db 9
+		db 60
+		db 9
+		db 60
+		db 12
+		db 60
+		db 12
+		db 60
+		db 0
+		db 126
+		db 0
+		db 62
+		db 0
+		db 7
+		db 60
+		db 7
+		db 60
+		db 12
+		db 60
+		db 10
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK7 db 159
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 41
+		db 41
+		db 41
+		db 41
+		db 24
+		db 26
+		db 26
+		db 26
+		db 24
+		db 60
+		db 25
+		db 60
+		db 26
+		db 126
+		db 36
+		db 62
+		db 30
+		db 36
+		db 60
+		db 21
+		db 60
+		db 21
+		db 60
+		db 24
+		db 126
+		db 46
+		db 60
+		db 43
+		db 41
+		db 38
+		db 36
+		db 38
+		db 41
+		db 38
+		db 60
+		db 36
+		db 34
+		db 31
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK8 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 2
+		db 79
+		db 1
+		db 61
+		db 9
+		db 79
+		db 0
+		db 126
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK9 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 61
+		db 14
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK10 db 147
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 34
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 24
+		db 60
+		db 22
+		db 60
+		db 31
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 126
+		db 24
+		db 26
+		db 26
+		db 26
+		db 24
+		db 60
+		db 22
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK11 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK12 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 60
+		db 7
+		db 60
+		db 11
+		db 60
+		db 11
+		db 11
+		db 12
+		db 12
+		db 12
+		db 60
+		db 13
+		db 60
+		db 14
+		db 60
+		db 12
+		db 60
+		db 12
+		db 62
+		db 12
+		db 62
+		db 7
+		db 60
+		db 7
+		db 60
+		db 10
+		db 60
+		db 11
+		db 60
+		db 12
+		db 60
+		db 0
+		db 60
+		db 4
+		db 60
+		db 0
+		db 60
+		db 5
+		db 60
+		db 0
+		db 60
+		db 6
+		db 60
+		db 0
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK13 db 159
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 60
+		db 41
+		db 41
+		db 24
+		db 26
+		db 26
+		db 26
+		db 24
+		db 60
+		db 22
+		db 60
+		db 24
+		db 126
+		db 31
+		db 62
+		db 36
+		db 62
+		db 31
+		db 126
+		db 36
+		db 126
+		db 24
+		db 60
+		db 26
+		db 60
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 24
+		db 60
+		db 22
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK14 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 7
+		db 60
+		db 2
+		db 126
+		db 2
+		db 62
+		db 0
+		db 9
+		db 60
+		db 9
+		db 60
+		db 12
+		db 13
+		db 14
+		db 60
+		db 0
+		db 126
+		db 0
+		db 62
+		db 0
+		db 7
+		db 60
+		db 7
+		db 60
+		db 12
+		db 60
+		db 10
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK15 db 159
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 19
+		db 60
+		db 43
+		db 126
+		db 41
+		db 126
+		db 43
+		db 60
+		db 22
+		db 60
+		db 25
+		db 60
+		db 26
+		db 126
+		db 36
+		db 62
+		db 30
+		db 36
+		db 60
+		db 21
+		db 60
+		db 21
+		db 60
+		db 24
+		db 126
+		db 46
+		db 60
+		db 43
+		db 41
+		db 38
+		db 36
+		db 38
+		db 60
+		db 43
+		db 60
+		db 36
+		db 34
+		db 31
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK16 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 79
+		db 5
+		db 61
+		db 9
+		db 79
+		db 0
+		db 126
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK17 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 61
+		db 14
+		db 0
+		db 126
+		db 0
+		db 62
+		db 0
+		db 63
+		db 28
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 31
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 60
+		db 4
+		db 4
+		db 5
+		db 60
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK18 db 147
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 34
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 95
+		db 1
+		db 61
+		db 14
+		db 24
+		db 60
+		db 31
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 126
+		db 31
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 36
+		db 126
+		db 19
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK19 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 1
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK20 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 32
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 63
+		db 28
+		db 60
+		db 1
+		db 60
+		db 63
+		db 28
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 6
+		db 62
+		db 6
+		db 7
+		db 60
+		db 8
+		db 60
+		db 9
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 4
+		db 60
+		db 4
+		db 5
+		db 5
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK21 db 159
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 41
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 126
+		db 26
+		db 60
+		db 30
+		db 62
+		db 30
+		db 30
+		db 60
+		db 30
+		db 60
+		db 30
+		db 60
+		db 21
+		db 60
+		db 24
+		db 126
+		db 31
+		db 62
+		db 36
+		db 62
+		db 36
+		db 60
+		db 22
+		db 60
+		db 31
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK22 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 1
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 79
+		db 1
+		db 61
+		db 9
+		db 79
+		db 0
+		db 126
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK23 db 135
+		db 6
+		db 126
+		db 7
+		db 62
+		db 7
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 61
+		db 14
+		db 0
+		db 62
+		db 63
+		db 28
+		db 0
+		db 62
+		db 0
+		db 63
+		db 28
+		db 63
+		db 28
+		db 63
+		db 28
+		db 60
+		db 63
+		db 31
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 62
+		db 4
+		db 62
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK24 db 147
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 254
+		db 31
+		db 61
+		db 14
+		db 24
+		db 60
+		db 31
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 126
+		db 31
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 36
+		db 126
+		db 19
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK25 db 135
+		db 6
+		db 60
+		db 7
+		db 60
+		db 7
+		db 62
+		db 7
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 60
+		db 7
+		db 60
+		db 11
+		db 62
+		db 5
+		db 12
+		db 12
+		db 11
+		db 60
+		db 12
+		db 60
+		db 13
+		db 60
+		db 14
+		db 62
+		db 14
+		db 9
+		db 62
+		db 2
+		db 2
+		db 60
+		db 2
+		db 60
+		db 9
+		db 60
+		db 10
+		db 60
+		db 12
+		db 62
+		db 12
+		db 7
+		db 62
+		db 7
+		db 0
+		db 60
+		db 4
+		db 60
+		db 5
+		db 60
+		db 4
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK26 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 79
+		db 1
+		db 61
+		db 9
+		db 207
+		db 2
+		db 2
+		db 60
+		db 143
+		db 4
+		db 60
+		db 143
+		db 5
+		db 60
+		db 207
+		db 1
+		db 1
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK27 db 135
+		db 6
+		db 126
+		db 7
+		db 62
+		db 7
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 61
+		db 14
+		db 12
+		db 62
+		db 5
+		db 12
+		db 60
+		db 5
+		db 6
+		db 7
+		db 60
+		db 7
+		db 60
+		db 10
+		db 60
+		db 7
+		db 60
+		db 12
+		db 60
+		db 0
+		db 60
+		db 4
+		db 62
+		db 0
+		db 5
+		db 0
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK28 db 147
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 254
+		db 95
+		db 0
+		db 62
+		db 53
+		db 55
+		db 61
+		db 9
+		db 48
+		db 50
+		db 60
+		db 48
+		db 46
+		db 43
+		db 39
+		db 61
+		db 11
+		db 55
+		db 60
+		db 55
+		db 60
+		db 55
+		db 60
+		db 55
+		db 60
+		db 46
+		db 60
+		db 55
+		db 60
+		db 55
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK29 db 135
+		db 6
+		db 62
+		db 0
+		db 7
+		db 62
+		db 0
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 32
+		db 60
+		db 63
+		db 28
+		db 63
+		db 28
+		db 0
+		db 60
+		db 63
+		db 28
+		db 60
+		db 1
+		db 60
+		db 63
+		db 28
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 6
+		db 62
+		db 6
+		db 7
+		db 7
+		db 7
+		db 60
+		db 8
+		db 60
+		db 9
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 62
+		db 4
+		db 5
+		db 0
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK30 db 178
+		db 6
+		db 126
+		db 43
+		db 60
+		db 41
+		db 60
+		db 43
+		db 60
+		db 41
+		db 60
+		db 43
+		db 60
+		db 50
+		db 60
+		db 43
+		db 60
+		db 41
+		db 126
+		db 41
+		db 60
+		db 43
+		db 60
+		db 43
+		db 60
+		db 46
+		db 60
+		db 48
+		db 50
+		db 50
+		db 60
+		db 50
+		db 126
+		db 50
+		db 60
+		db 53
+		db 60
+		db 54
+		db 60
+		db 55
+		db 60
+		db 50
+		db 126
+		db 50
+		db 60
+		db 53
+		db 55
+		db 60
+		db 63
+		db 91
+		db 55
+		db 62
+		db 55
+		db 48
+		db 60
+		db 48
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK31 db 135
+		db 6
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 32
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 63
+		db 28
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 7
+		db 7
+		db 7
+		db 60
+		db 5
+		db 62
+		db 0
+		db 4
+		db 0
+		db 4
+		db 60
+		db 4
+		db 60
+		db 4
+		db 63
+		db 28
+		db 0
+		db 60
+		db 0
+		db 60
+		db 0
+		db 62
+		db 63
+		db 28
+		db 63
+		db 28
+		db 63
+		db 28
+		db 63
+		db 28
+		db 60
+		db 63
+		db 31
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 62
+		db 4
+		db 5
+		db 60
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK32 db 174
+		db 6
+		db 62
+		db 50
+		db 43
+		db 41
+		db 60
+		db 38
+		db 41
+		db 60
+		db 43
+		db 60
+		db 46
+		db 60
+		db 48
+		db 50
+		db 50
+		db 60
+		db 50
+		db 60
+		db 53
+		db 60
+		db 54
+		db 60
+		db 55
+		db 60
+		db 50
+		db 60
+		db 53
+		db 60
+		db 55
+		db 60
+		db 63
+		db 91
+		db 60
+		db 63
+		db 93
+		db 63
+		db 94
+		db 63
+		db 95
+		db 60
+		db 63
+		db 91
+		db 63
+		db 92
+		db 63
+		db 93
+		db 63
+		db 92
+		db 55
+		db 126
+		db 55
+		db 60
+		db 63
+		db 91
+		db 63
+		db 93
+		db 63
+		db 93
+		db 63
+		db 95
+		db 63
+		db 93
+		db 63
+		db 91
+		db 60
+		db 55
+		db 53
+		db 50
+		db 60
+		db 49
+		db 48
+		db 49
+		db 48
+		db 46
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK33 db 135
+		db 6
+		db 62
+		db 7
+		db 7
+		db 60
+		db 7
+		db 63
+		db 28
+		db 7
+		db 60
+		db 7
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 60
+		db 7
+		db 60
+		db 11
+		db 62
+		db 11
+		db 12
+		db 5
+		db 11
+		db 60
+		db 12
+		db 60
+		db 13
+		db 60
+		db 14
+		db 62
+		db 5
+		db 14
+		db 62
+		db 12
+		db 9
+		db 60
+		db 9
+		db 60
+		db 12
+		db 13
+		db 14
+		db 60
+		db 12
+		db 126
+		db 12
+		db 62
+		db 12
+		db 7
+		db 60
+		db 7
+		db 60
+		db 10
+		db 11
+		db 12
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK34 db 174
+		db 6
+		db 126
+		db 43
+		db 41
+		db 60
+		db 38
+		db 41
+		db 60
+		db 43
+		db 60
+		db 46
+		db 60
+		db 48
+		db 50
+		db 50
+		db 55
+		db 60
+		db 50
+		db 53
+		db 50
+		db 60
+		db 63
+		db 90
+		db 55
+		db 63
+		db 90
+		db 55
+		db 53
+		db 55
+		db 50
+		db 60
+		db 55
+		db 63
+		db 91
+		db 55
+		db 60
+		db 50
+		db 50
+		db 50
+		db 60
+		db 55
+		db 53
+		db 49
+		db 60
+		db 53
+		db 48
+		db 46
+		db 60
+		db 43
+		db 50
+		db 48
+		db 60
+		db 49
+		db 48
+		db 46
+		db 60
+		db 43
+		db 49
+		db 43
+		db 60
+		db 48
+		db 46
+		db 43
+		db 41
+		db 38
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK35 db 135
+		db 6
+		db 126
+		db 7
+		db 60
+		db 7
+		db 63
+		db 28
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 32
+		db 60
+		db 63
+		db 28
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 7
+		db 5
+		db 2
+		db 60
+		db 0
+		db 126
+		db 0
+		db 62
+		db 63
+		db 28
+		db 63
+		db 28
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 31
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 62
+		db 4
+		db 5
+		db 60
+		db 4
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK36 db 169
+		db 6
+		db 43
+		db 62
+		db 50
+		db 43
+		db 60
+		db 48
+		db 50
+		db 43
+		db 60
+		db 48
+		db 50
+		db 43
+		db 60
+		db 50
+		db 52
+		db 50
+		db 60
+		db 52
+		db 50
+		db 43
+		db 60
+		db 50
+		db 50
+		db 60
+		db 50
+		db 60
+		db 55
+		db 60
+		db 50
+		db 53
+		db 55
+		db 254
+		db 53
+		db 54
+		db 55
+		db 53
+		db 50
+		db 126
+		db 50
+		db 60
+		db 53
+		db 60
+		db 63
+		db 89
+		db 53
+		db 55
+		db 60
+		db 53
+		db 53
+		db 55
+		db 60
+		db 53
+		db 60
+		db 55
+		db 53
+		db 55
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK37 db 135
+		db 6
+		db 62
+		db 7
+		db 7
+		db 62
+		db 2
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 63
+		db 28
+		db 62
+		db 63
+		db 32
+		db 62
+		db 63
+		db 28
+		db 0
+		db 60
+		db 63
+		db 28
+		db 60
+		db 1
+		db 60
+		db 63
+		db 28
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 9
+		db 60
+		db 9
+		db 60
+		db 12
+		db 60
+		db 13
+		db 60
+		db 14
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 60
+		db 0
+		db 60
+		db 4
+		db 60
+		db 4
+		db 60
+		db 10
+		db 60
+		db 11
+		db 60
+		db 12
+		db 60
+		db 11
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK38 db 61
+		db 7
+		db 181
+		db 6
+		db 50
+		db 48
+		db 50
+		db 48
+		db 46
+		db 60
+		db 43
+		db 46
+		db 48
+		db 60
+		db 50
+		db 46
+		db 126
+		db 46
+		db 48
+		db 50
+		db 60
+		db 50
+		db 55
+		db 60
+		db 50
+		db 63
+		db 91
+		db 55
+		db 53
+		db 55
+		db 55
+		db 55
+		db 60
+		db 50
+		db 53
+		db 50
+		db 50
+		db 60
+		db 48
+		db 46
+		db 43
+		db 41
+		db 50
+		db 60
+		db 46
+		db 60
+		db 43
+		db 41
+		db 38
+		db 41
+		db 60
+		db 41
+		db 38
+		db 36
+		db 34
+		db 60
+		db 41
+		db 43
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK39 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 2
+		db 60
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 2
+		db 79
+		db 0
+		db 61
+		db 9
+		db 79
+		db 1
+		db 126
+		db 79
+		db 2
+		db 62
+		db 79
+		db 6
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK40 db 135
+		db 6
+		db 62
+		db 0
+		db 7
+		db 62
+		db 0
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 61
+		db 14
+		db 0
+		db 126
+		db 0
+		db 62
+		db 63
+		db 28
+		db 63
+		db 28
+		db 60
+		db 63
+		db 28
+		db 60
+		db 63
+		db 31
+		db 60
+		db 63
+		db 28
+		db 60
+		db 0
+		db 63
+		db 28
+		db 0
+		db 60
+		db 4
+		db 62
+		db 4
+		db 5
+		db 0
+		db 4
+		db 60
+		db 5
+		db 60
+		db 5
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK41 db 159
+		db 6
+		db 126
+		db 41
+		db 62
+		db 41
+		db 51
+		db 60
+		db 50
+		db 60
+		db 43
+		db 60
+		db 41
+		db 61
+		db 16
+		db 24
+		db 60
+		db 31
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 46
+		db 126
+		db 31
+		db 60
+		db 31
+		db 62
+		db 31
+		db 62
+		db 36
+		db 126
+		db 19
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK42 db 135
+		db 6
+		db 60
+		db 7
+		db 60
+		db 11
+		db 62
+		db 11
+		db 12
+		db 12
+		db 12
+		db 60
+		db 13
+		db 60
+		db 14
+		db 60
+		db 7
+		db 60
+		db 7
+		db 60
+		db 11
+		db 62
+		db 11
+		db 12
+		db 5
+		db 11
+		db 60
+		db 12
+		db 60
+		db 13
+		db 60
+		db 14
+		db 60
+		db 14
+		db 5
+		db 14
+		db 62
+		db 14
+		db 9
+		db 60
+		db 9
+		db 60
+		db 12
+		db 13
+		db 14
+		db 60
+		db 12
+		db 62
+		db 5
+		db 12
+		db 62
+		db 12
+		db 7
+		db 60
+		db 7
+		db 60
+		db 10
+		db 11
+		db 12
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK43 db 159
+		db 6
+		db 126
+		db 35
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 35
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 62
+		db 41
+		db 62
+		db 31
+		db 126
+		db 31
+		db 126
+		db 26
+		db 60
+		db 36
+		db 62
+		db 30
+		db 36
+		db 60
+		db 45
+		db 60
+		db 36
+		db 60
+		db 21
+		db 60
+		db 24
+		db 60
+		db 36
+		db 60
+		db 31
+		db 62
+		db 36
+		db 62
+		db 36
+		db 60
+		db 22
+		db 60
+		db 31
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK44 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 79
+		db 1
+		db 61
+		db 9
+		db 79
+		db 0
+		db 126
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 2
+		db 0
+		db 60
+		db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 143
+		db 3
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 0
+		db 60
+		db 15
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK45 db 135
+		db 6
+		db 62
+		db 0
+		db 7
+		db 62
+		db 0
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 61
+		db 14
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 60
+		db 7
+		db 126
+		db 7
+		db 60
+		db 7
+		db 60
+		db 2
+		db 60
+		db 2
+		db 60
+		db 5
+		db 60
+		db 6
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK46 db 147
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 254
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 29
+		db 60
+		db 24
+		db 60
+		db 26
+		db 60
+		db 24
+		db 60
+		db 22
+		db 60
+		db 31
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 31
+		db 126
+		db 31
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 126
+		db 24
+		db 26
+		db 26
+		db 26
+		db 24
+		db 60
+		db 22
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK47 db 143
+		db 1
+		db 60
+		db 15
+		db 60
+		db 207
+		db 2
+		db 2
+		db 60
+		db 207
+		db 1
+		db 0
+		db 207
+		db 3
+		db 3
+		db 79
+		db 0
+		db 60
+		db 79
+		db 1
+		db 60
+		db 207
+		db 1
+		db 2
+		db 79
+		db 0
+		db 207
+		db 3
+		db 1
+		db 60
+		db 207
+		db 1
+		db 2
+		db 79
+		db 1
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_TRACK48 db 147
+		db 6
+		db 126
+		db 31
+		db 62
+		db 31
+		db 62
+		db 34
+		db 60
+		db 19
+		db 60
+		db 19
+		db 60
+		db 31
+		db 61
+		db 127
+		MARYLAMB_SUBSONG0_SPEEDTRACK0 db 12
+		db 253
+		MARYLAMB_SUBSONG0_SPEEDTRACK1 db 255
+		MARYLAMB_SUBSONG0_EVENTTRACK0 db 255
+		NEXTLEVEL_START db 65
+		db 84
+		db 50
+		db 48
+		dw NEXTLEVEL_ARPEGGIOTABLE
+		dw NEXTLEVEL_ARPEGGIOTABLE
+		dw NEXTLEVEL_ARPEGGIOTABLE
+		dw NEXTLEVEL_EFFECTBLOCKTABLE
+		dw NEXTLEVEL_SUBSONG0_START
+		NEXTLEVEL_ARPEGGIOTABLE
+		NEXTLEVEL_PITCHTABLE
+		NEXTLEVEL_INSTRUMENTTABLE dw NEXTLEVEL_EMPTYINSTRUMENT
+		dw NEXTLEVEL_INSTRUMENT1
+		dw NEXTLEVEL_INSTRUMENT2
+		NEXTLEVEL_EMPTYINSTRUMENT db 0
+		NEXTLEVEL_EMPTYINSTRUMENT_LOOP db 0
+		db 6
+		NEXTLEVEL_INSTRUMENT1 db 1
+		db 249
+		db 241
+		db 233
+		db 225
+		db 217
+		db 209
+		db 201
+		db 193
+		db 185
+		db 177
+		db 169
+		db 161
+		db 153
+		db 145
+		db 137
+		db 6
+		NEXTLEVEL_INSTRUMENT2 db 5
+		db 249
+		db 241
+		db 233
+		db 225
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 201
+		db 193
+		db 185
+		db 177
+		db 169
+		db 161
+		db 153
+		db 145
+		db 137
+		db 6
+		NEXTLEVEL_EFFECTBLOCKTABLE dw NEXTLEVEL_EFFECTBLOCK_P4P0
+		NEXTLEVEL_EFFECTBLOCK_P4P0 db 4
+		db 0
+		NEXTLEVEL_SUBSONG0_START db 2
+		db 0
+		db 1
+		db 0
+		db 0
+		db 6
+		db 41
+		NEXTLEVEL_SUBSONG0_LINKER
+		NEXTLEVEL_SUBSONG0_LINKER_LOOP dw NEXTLEVEL_SUBSONG0_TRACK0
+		dw NEXTLEVEL_SUBSONG0_TRACK1
+		dw NEXTLEVEL_SUBSONG0_TRACK2
+		dw NEXTLEVEL_SUBSONG0_LINKERBLOCK0
+		db 0
+		db 0
+		dw NEXTLEVEL_SUBSONG0_LINKER
+		NEXTLEVEL_SUBSONG0_LINKERBLOCK0 db 46
+		db 0
+		db 0
+		db 0
+		dw NEXTLEVEL_SUBSONG0_SPEEDTRACK0
+		dw NEXTLEVEL_SUBSONG0_EVENTTRACK0
+		NEXTLEVEL_SUBSONG0_TRACK0 db 227
+		db 1
+		db 0
+		db 60
+		db 35
+		db 35
+		db 35
+		db 60
+		db 36
+		db 60
+		db 38
+		db 60
+		db 40
+		db 60
+		db 42
+		db 60
+		db 43
+		db 60
+		db 45
+		db 60
+		db 47
+		db 60
+		db 48
+		db 60
+		db 50
+		db 60
+		db 43
+		db 47
+		db 50
+		db 60
+		db 55
+		db 61
+		db 127
+		NEXTLEVEL_SUBSONG0_TRACK1 db 211
+		db 2
+		db 0
+		db 60
+		db 31
+		db 60
+		db 19
+		db 60
+		db 31
+		db 60
+		db 21
+		db 60
+		db 33
+		db 60
+		db 23
+		db 60
+		db 35
+		db 60
+		db 24
+		db 126
+		db 26
+		db 126
+		db 19
+		db 61
+		db 127
+		NEXTLEVEL_SUBSONG0_TRACK2 db 61
+		db 127
+		NEXTLEVEL_SUBSONG0_SPEEDTRACK0 db 10
+		db 37
+		db 12
+		db 5
+		db 10
+		db 5
+		db 12
+		db 197
+		NEXTLEVEL_SUBSONG0_EVENTTRACK0 db 255
+		GAMEOVER_START db 65
+		db 84
+		db 50
+		db 48
+		dw GAMEOVER_ARPEGGIOTABLE
+		dw GAMEOVER_ARPEGGIOTABLE
+		dw GAMEOVER_ARPEGGIOTABLE
+		dw GAMEOVER_EFFECTBLOCKTABLE
+		dw GAMEOVER_SUBSONG0_START
+		GAMEOVER_ARPEGGIOTABLE
+		GAMEOVER_PITCHTABLE
+		GAMEOVER_INSTRUMENTTABLE dw GAMEOVER_EMPTYINSTRUMENT
+		dw GAMEOVER_INSTRUMENT1
+		GAMEOVER_EMPTYINSTRUMENT db 0
+		GAMEOVER_EMPTYINSTRUMENT_LOOP db 0
+		db 6
+		GAMEOVER_INSTRUMENT1 db 5
+		db 249
+		db 241
+		db 233
+		db 225
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 217
+		db 201
+		db 193
+		db 185
+		db 177
+		db 169
+		db 161
+		db 153
+		db 145
+		db 137
+		db 6
+		GAMEOVER_EFFECTBLOCKTABLE dw GAMEOVER_EFFECTBLOCK_P4P1
+		GAMEOVER_EFFECTBLOCK_P4P1 db 4
+		db 1
+		GAMEOVER_SUBSONG0_START db 2
+		db 0
+		db 1
+		db 0
+		db 0
+		db 6
+		db 24
+		GAMEOVER_SUBSONG0_LINKER
+		GAMEOVER_SUBSONG0_LINKER_LOOP dw GAMEOVER_SUBSONG0_TRACK0
+		dw GAMEOVER_SUBSONG0_TRACK1
+		dw GAMEOVER_SUBSONG0_TRACK2
+		dw GAMEOVER_SUBSONG0_LINKERBLOCK0
+		db 0
+		db 0
+		dw GAMEOVER_SUBSONG0_LINKER
+		GAMEOVER_SUBSONG0_LINKERBLOCK0 db 45
+		db 0
+		db 0
+		db 0
+		dw GAMEOVER_SUBSONG0_SPEEDTRACK0
+		dw GAMEOVER_SUBSONG0_EVENTTRACK0
+		GAMEOVER_SUBSONG0_TRACK0 db 244
+		db 1
+		db 0
+		db 60
+		db 48
+		db 60
+		db 45
+		db 60
+		db 52
+		db 60
+		db 50
+		db 126
+		db 43
+		db 126
+		db 45
+		db 60
+		db 47
+		db 60
+		db 48
+		db 60
+		db 53
+		db 47
+		db 55
+		db 61
+		db 127
+		GAMEOVER_SUBSONG0_TRACK1 db 240
+		db 1
+		db 0
+		db 60
+		db 45
+		db 60
+		db 41
+		db 60
+		db 48
+		db 60
+		db 47
+		db 126
+		db 40
+		db 126
+		db 41
+		db 60
+		db 43
+		db 60
+		db 45
+		db 60
+		db 48
+		db 60
+		db 40
+		db 61
+		db 127
+		GAMEOVER_SUBSONG0_TRACK2 db 209
+		db 1
+		db 0
+		db 60
+		db 21
+		db 60
+		db 24
+		db 60
+		db 21
+		db 60
+		db 16
+		db 60
+		db 19
+		db 60
+		db 23
+		db 60
+		db 19
+		db 60
+		db 14
+		db 60
+		db 17
+		db 60
+		db 21
+		db 60
+		db 17
+		db 60
+		db 12
+		db 60
+		db 19
+		db 60
+		db 24
+		db 61
+		db 127
+		GAMEOVER_SUBSONG0_SPEEDTRACK0 db 18
+		db 253
+		GAMEOVER_SUBSONG0_EVENTTRACK0 db 255
+		PLY_AKG_START jp PLY_AKG_INIT
+		jp PLY_AKG_PLAY
+		jp PLY_AKG_INITTABLEORA_END
+		PLY_AKG_INIT ld de,4
+		add hl,de
+		ld de,PLY_AKG_ARPEGGIOSTABLE+1
+		ldi
+		ldi
+		ld de,PLY_AKG_PITCHESTABLE+1
+		ldi
+		ldi
+		ld de,PLY_AKG_INSTRUMENTSTABLE+1
+		ldi
+		ldi
+		ld c,(hl)
+		inc hl
+		ld b,(hl)
+		inc hl
+		ld (PLY_AKG_CHANNEL_READEFFECTS_EFFECTBLOCKS1+1),bc
+		ld (PLY_AKG_CHANNEL_READEFFECTS_EFFECTBLOCKS2+1),bc
+		add a,a
+		ld e,a
+		ld d,0
+		add hl,de
+		ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		ld de,5
+		add hl,de
+		ld de,PLY_AKG_CHANNEL3_READCELLEND+1
+		ldi
+		ld de,PLY_AKG_CHANNEL1_NOTE+1
+		ldi
+		ld (PLY_AKG_READLINKER+1),hl
+		ld hl,PLY_AKG_INITTABLE0
+		ld bc,3584
+		call PLY_AKG_INIT_READWORDSANDFILL
+		inc c
+		ld hl,PLY_AKG_INITTABLE0_END
+		ld b,3
+		call PLY_AKG_INIT_READWORDSANDFILL
+		ld hl,PLY_AKG_INITTABLE1_END
+		ld bc,3511
+		call PLY_AKG_INIT_READWORDSANDFILL
+		ld a,255
+		ld (PLY_AKG_PSGREG13_OLDVALUE+1),a
+		ld hl,(PLY_AKG_INSTRUMENTSTABLE+1)
+		ld e,(hl)
+		inc hl
+		ld d,(hl)
+		ex de,hl
+		inc hl
+		ld (PLY_AKG_ENDWITHOUTLOOP+1),hl
+		ld (PLY_AKG_CHANNEL1_PTINSTRUMENT+1),hl
+		ld (PLY_AKG_CHANNEL2_PTINSTRUMENT+1),hl
+		ld (PLY_AKG_CHANNEL3_PTINSTRUMENT+1),hl
+		ret
+		PLY_AKG_INIT_READWORDSANDFILL_LOOP ld e,(hl)
+		inc hl
+		ld d,(hl)
+		inc hl
+		ld a,c
+		ld (de),a
+		PLY_AKG_INIT_READWORDSANDFILL djnz PLY_AKG_INIT_READWORDSANDFILL_LOOP
+		ret
+		PLY_AKG_INITTABLE0 dw PLY_AKG_CHANNEL1_INVERTEDVOLUMEINTEGERANDDECIMAL+1
+		dw PLY_AKG_CHANNEL1_INVERTEDVOLUMEINTEGER
+		dw PLY_AKG_CHANNEL2_INVERTEDVOLUMEINTEGERANDDECIMAL+1
+		dw PLY_AKG_CHANNEL2_INVERTEDVOLUMEINTEGER
+		dw PLY_AKG_CHANNEL3_INVERTEDVOLUMEINTEGERANDDECIMAL+1
+		dw PLY_AKG_CHANNEL3_INVERTEDVOLUMEINTEGER
+		dw PLY_AKG_CHANNEL1_PITCHTABLE_END+1
+		dw PLY_AKG_CHANNEL1_PITCHTABLE_END+2
+		dw PLY_AKG_CHANNEL2_PITCHTABLE_END+1
+		dw PLY_AKG_CHANNEL2_PITCHTABLE_END+2
+		dw PLY_AKG_CHANNEL3_PITCHTABLE_END+1
+		dw PLY_AKG_CHANNEL3_PITCHTABLE_END+2
+		dw PLY_AKG_RETRIG+1
+		PLY_AKG_INITTABLE0_END
+		PLY_AKG_INITTABLE1 dw PLY_AKG_PATTERNDECREASINGHEIGHT+1
+		dw PLY_AKG_TICKDECREASINGCOUNTER+1
+		PLY_AKG_INITTABLE1_END
+		PLY_AKG_INITTABLEORA dw PLY_AKG_CHANNEL1_ISVOLUMESLIDE
+		dw PLY_AKG_CHANNEL2_ISVOLUMESLIDE
+		dw PLY_AKG_CHANNEL3_ISVOLUMESLIDE
+		dw PLY_AKG_CHANNEL1_ISARPEGGIOTABLE
+		dw PLY_AKG_CHANNEL2_ISARPEGGIOTABLE
+		dw PLY_AKG_CHANNEL3_ISARPEGGIOTABLE
+		dw PLY_AKG_CHANNEL1_ISPITCHTABLE
+		dw PLY_AKG_CHANNEL2_ISPITCHTABLE
+		dw PLY_AKG_CHANNEL3_ISPITCHTABLE
+		dw PLY_AKG_CHANNEL1_ISPITCH
+		dw PLY_AKG_CHANNEL2_ISPITCH
+		dw PLY_AKG_CHANNEL3_ISPITCH
+		PLY_AKG_INITTABLEORA_END
+		PLY_AKG_STOP ld (PLY_AKG_PSGREG13_END+1),sp
+		xor a
+		ld l,a
+		ld h,a
+		ld (PLY_AKG_PSGREG8),a
+		ld (PLY_AKG_PSGREG9),hl
+		ld a,63
+		jp PLY_AKG_SENDPSGREGISTERS
+		PLY_AKG_PLAY ld (PLY_AKG_PSGREG13_END+1),sp
+		xor a
+		ld (PLY_AKG_EVENT),a
+		PLY_AKG_TICKDECREASINGCOUNTER ld a,1
+		dec a
+		jp nz,PLY_AKG_SETSPEEDBEFOREPLAYSTREAMS
+		PLY_AKG_PATTERNDECREASINGHEIGHT ld a,1
+		dec a
+		jr nz,PLY_AKG_SETCURRENTLINEBEFOREREADLINE
+		PLY_AKG_READLINKER
+		PLY_AKG_READLINKER_PTLINKER ld sp,0
+		pop hl
+		ld a,l
+		or h
+		jr nz,PLY_AKG_READLINKER_NOLOOP
+		pop hl
+		ld sp,hl
+		pop hl
+		PLY_AKG_READLINKER_NOLOOP ld (PLY_AKG_CHANNEL1_READTRACK+1),hl
+		pop hl
+		ld (PLY_AKG_CHANNEL2_READTRACK+1),hl
+		pop hl
+		ld (PLY_AKG_CHANNEL3_READTRACK+1),hl
+		pop hl
+		ld (PLY_AKG_READLINKER+1),sp
+		ld sp,hl
+		pop hl
+		ld c,l
+		ld a,h
+		ld (PLY_AKG_CHANNEL1_AFTERNOTEKNOWN+1),a
+		pop hl
+		ld a,l
+		ld (PLY_AKG_CHANNEL2_AFTERNOTEKNOWN+1),a
+		ld a,h
+		ld (PLY_AKG_CHANNEL3_AFTERNOTEKNOWN+1),a
+		pop hl
+		ld (PLY_AKG_SPEEDTRACK_PTTRACK+1),hl
+		pop hl
+		ld (PLY_AKG_EVENTTRACK_PTTRACK+1),hl
+		xor a
+		ld (PLY_AKG_READLINE+1),a
+		ld (PLY_AKG_SPEEDTRACK_END+1),a
+		ld (PLY_AKG_EVENTTRACK_END+1),a
+		ld (PLY_AKG_CHANNEL1_READCELLEND+1),a
+		ld (PLY_AKG_CHANNEL2_READCELLEND+1),a
+		ld a,c
+		PLY_AKG_SETCURRENTLINEBEFOREREADLINE ld (PLY_AKG_PATTERNDECREASINGHEIGHT+1),a
+		PLY_AKG_READLINE
+		PLY_AKG_SPEEDTRACK_WAITCOUNTER ld a,0
+		sub 1
+		jr nc,PLY_AKG_SPEEDTRACK_MUSTWAIT
+		PLY_AKG_SPEEDTRACK_PTTRACK ld hl,0
+		ld a,(hl)
+		inc hl
+		srl a
+		jr c,PLY_AKG_SPEEDTRACK_STOREPOINTERANDWAITCOUNTER
+		jr nz,PLY_AKG_SPEEDTRACK_NORMALVALUE
+		ld a,(hl)
+		inc hl
+		PLY_AKG_SPEEDTRACK_NORMALVALUE ld (PLY_AKG_CHANNEL3_READCELLEND+1),a
+		xor a
+		PLY_AKG_SPEEDTRACK_STOREPOINTERANDWAITCOUNTER ld (PLY_AKG_SPEEDTRACK_PTTRACK+1),hl
+		PLY_AKG_SPEEDTRACK_MUSTWAIT ld (PLY_AKG_READLINE+1),a
+		PLY_AKG_SPEEDTRACK_END
+		PLY_AKG_EVENTTRACK_WAITCOUNTER ld a,0
+		sub 1
+		jr nc,PLY_AKG_EVENTTRACK_MUSTWAIT
+		PLY_AKG_EVENTTRACK_PTTRACK ld hl,0
+		ld a,(hl)
+		inc hl
+		srl a
+		jr c,PLY_AKG_EVENTTRACK_STOREPOINTERANDWAITCOUNTER
+		jr nz,PLY_AKG_EVENTTRACK_NORMALVALUE
+		ld a,(hl)
+		inc hl
+		PLY_AKG_EVENTTRACK_NORMALVALUE ld (PLY_AKG_EVENT),a
+		xor a
+		PLY_AKG_EVENTTRACK_STOREPOINTERANDWAITCOUNTER ld (PLY_AKG_EVENTTRACK_PTTRACK+1),hl
+		PLY_AKG_EVENTTRACK_MUSTWAIT ld (PLY_AKG_SPEEDTRACK_END+1),a
+		PLY_AKG_EVENTTRACK_END
+		PLY_AKG_CHANNEL1_WAITCOUNTER ld a,0
+		sub 1
+		jr c,PLY_AKG_CHANNEL1_READTRACK
+		ld (PLY_AKG_EVENTTRACK_END+1),a
+		jp PLY_AKG_CHANNEL1_READCELLEND
+		PLY_AKG_CHANNEL1_READTRACK
+		PLY_AKG_CHANNEL1_PTTRACK ld hl,0
+		ld c,(hl)
+		inc hl
+		ld a,c
+		and 63
+		cp 60
+		jr c,PLY_AKG_CHANNEL1_NOTE
+		sub 60
+		jp z,PLY_AKG_CHANNEL1_MAYBEEFFECTS
+		dec a
+		jr z,PLY_AKG_CHANNEL1_WAIT
+		dec a
+		jr z,PLY_AKG_CHANNEL1_SMALLWAIT
+		ld a,(hl)
+		inc hl
+		jr PLY_AKG_CHANNEL1_AFTERNOTEKNOWN
+		PLY_AKG_CHANNEL1_SMALLWAIT ld a,c
+		rlca
+		rlca
+		and 3
+		inc a
+		ld (PLY_AKG_EVENTTRACK_END+1),a
+		jr PLY_AKG_CHANNEL1_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL1_WAIT ld a,(hl)
+		ld (PLY_AKG_EVENTTRACK_END+1),a
+		inc hl
+		jr PLY_AKG_CHANNEL1_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL1_SAMEINSTRUMENT
+		PLY_AKG_CHANNEL1_PTBASEINSTRUMENT ld de,0
+		ld (PLY_AKG_CHANNEL1_PTINSTRUMENT+1),de
+		jr PLY_AKG_CHANNEL1_AFTERINSTRUMENT
+		PLY_AKG_CHANNEL1_NOTE
+		PLY_AKG_BASENOTEINDEX add a,0
+		PLY_AKG_CHANNEL1_AFTERNOTEKNOWN
+		PLY_AKG_CHANNEL1_TRANSPOSITION add a,0
+		ld (PLY_AKG_CHANNEL1_TRACKNOTE+1),a
+		rl c
+		jr nc,PLY_AKG_CHANNEL1_SAMEINSTRUMENT
+		ld a,(hl)
+		inc hl
+		exx
+		ld l,a
+		ld h,0
+		add hl,hl
+		PLY_AKG_INSTRUMENTSTABLE ld de,0
+		add hl,de
+		ld sp,hl
+		pop hl
+		ld a,(hl)
+		inc hl
+		ld (PLY_AKG_CHANNEL1_INSTRUMENTORIGINALSPEED+1),a
+		ld (PLY_AKG_CHANNEL1_PTINSTRUMENT+1),hl
+		ld (PLY_AKG_CHANNEL1_SAMEINSTRUMENT+1),hl
+		exx
+		PLY_AKG_CHANNEL1_AFTERINSTRUMENT ex de,hl
+		xor a
+		ld l,a
+		ld h,a
+		ld (PLY_AKG_CHANNEL1_PITCHTABLE_END+1),hl
+		ld (PLY_AKG_CHANNEL1_ARPEGGIOTABLECURRENTSTEP+1),a
+		ld (PLY_AKG_CHANNEL1_PITCHTABLECURRENTSTEP+1),a
+		ld (PLY_AKG_CHANNEL1_INSTRUMENTSTEP+2),a
+		PLY_AKG_CHANNEL1_INSTRUMENTORIGINALSPEED ld a,0
+		ld (PLY_AKG_CHANNEL1_INSTRUMENTSPEED+1),a
+		ld a,183
+		ld (PLY_AKG_CHANNEL1_ISPITCH),a
+		ld a,(PLY_AKG_CHANNEL1_ARPEGGIOBASESPEED)
+		ld (PLY_AKG_CHANNEL1_ARPEGGIOTABLESPEED),a
+		ld a,(PLY_AKG_CHANNEL1_PITCHBASESPEED)
+		ld (PLY_AKG_CHANNEL1_PITCHTABLESPEED),a
+		ld hl,(PLY_AKG_CHANNEL1_ARPEGGIOTABLEBASE)
+		ld (PLY_AKG_CHANNEL1_ARPEGGIOTABLE+1),hl
+		ld hl,(PLY_AKG_CHANNEL1_PITCHTABLEBASE)
+		ld (PLY_AKG_CHANNEL1_PITCHTABLE+1),hl
+		ex de,hl
+		rl c
+		jp c,PLY_AKG_CHANNEL1_READEFFECTS
+		PLY_AKG_CHANNEL1_BEFOREEND_STORECELLPOINTER ld (PLY_AKG_CHANNEL1_READTRACK+1),hl
+		PLY_AKG_CHANNEL1_READCELLEND
+		PLY_AKG_CHANNEL2_WAITCOUNTER ld a,0
+		sub 1
+		jr c,PLY_AKG_CHANNEL2_READTRACK
+		ld (PLY_AKG_CHANNEL1_READCELLEND+1),a
+		jp PLY_AKG_CHANNEL2_READCELLEND
+		PLY_AKG_CHANNEL2_READTRACK
+		PLY_AKG_CHANNEL2_PTTRACK ld hl,0
+		ld c,(hl)
+		inc hl
+		ld a,c
+		and 63
+		cp 60
+		jr c,PLY_AKG_CHANNEL2_NOTE
+		sub 60
+		jp z,PLY_AKG_CHANNEL1_READEFFECTSEND
+		dec a
+		jr z,PLY_AKG_CHANNEL2_WAIT
+		dec a
+		jr z,PLY_AKG_CHANNEL2_SMALLWAIT
+		ld a,(hl)
+		inc hl
+		jr PLY_AKG_CHANNEL2_AFTERNOTEKNOWN
+		PLY_AKG_CHANNEL2_SMALLWAIT ld a,c
+		rlca
+		rlca
+		and 3
+		inc a
+		ld (PLY_AKG_CHANNEL1_READCELLEND+1),a
+		jr PLY_AKG_CHANNEL2_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL2_WAIT ld a,(hl)
+		ld (PLY_AKG_CHANNEL1_READCELLEND+1),a
+		inc hl
+		jr PLY_AKG_CHANNEL2_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL2_SAMEINSTRUMENT
+		PLY_AKG_CHANNEL2_PTBASEINSTRUMENT ld de,0
+		ld (PLY_AKG_CHANNEL2_PTINSTRUMENT+1),de
+		jr PLY_AKG_CHANNEL2_AFTERINSTRUMENT
+		PLY_AKG_CHANNEL2_NOTE ld b,a
+		ld a,(PLY_AKG_CHANNEL1_NOTE+1)
+		add a,b
+		PLY_AKG_CHANNEL2_AFTERNOTEKNOWN
+		PLY_AKG_CHANNEL2_TRANSPOSITION add a,0
+		ld (PLY_AKG_CHANNEL2_TRACKNOTE+1),a
+		rl c
+		jr nc,PLY_AKG_CHANNEL2_SAMEINSTRUMENT
+		ld a,(hl)
+		inc hl
+		exx
+		ld e,a
+		ld d,0
+		ld hl,(PLY_AKG_INSTRUMENTSTABLE+1)
+		add hl,de
+		add hl,de
+		ld sp,hl
+		pop hl
+		ld a,(hl)
+		inc hl
+		ld (PLY_AKG_CHANNEL2_INSTRUMENTORIGINALSPEED+1),a
+		ld (PLY_AKG_CHANNEL2_PTINSTRUMENT+1),hl
+		ld (PLY_AKG_CHANNEL2_SAMEINSTRUMENT+1),hl
+		exx
+		PLY_AKG_CHANNEL2_AFTERINSTRUMENT ex de,hl
+		xor a
+		ld l,a
+		ld h,a
+		ld (PLY_AKG_CHANNEL2_PITCHTABLE_END+1),hl
+		ld (PLY_AKG_CHANNEL2_ARPEGGIOTABLECURRENTSTEP+1),a
+		ld (PLY_AKG_CHANNEL2_PITCHTABLECURRENTSTEP+1),a
+		ld (PLY_AKG_CHANNEL2_INSTRUMENTSTEP+2),a
+		PLY_AKG_CHANNEL2_INSTRUMENTORIGINALSPEED ld a,0
+		ld (PLY_AKG_CHANNEL2_INSTRUMENTSPEED+1),a
+		ld a,183
+		ld (PLY_AKG_CHANNEL2_ISPITCH),a
+		ld a,(PLY_AKG_CHANNEL2_ARPEGGIOBASESPEED)
+		ld (PLY_AKG_CHANNEL2_ARPEGGIOTABLESPEED),a
+		ld a,(PLY_AKG_CHANNEL2_PITCHBASESPEED)
+		ld (PLY_AKG_CHANNEL2_PITCHTABLESPEED),a
+		ld hl,(PLY_AKG_CHANNEL2_ARPEGGIOTABLEBASE)
+		ld (PLY_AKG_CHANNEL2_ARPEGGIOTABLE+1),hl
+		ld hl,(PLY_AKG_CHANNEL2_PITCHTABLEBASE)
+		ld (PLY_AKG_CHANNEL2_PITCHTABLE+1),hl
+		ex de,hl
+		rl c
+		jp c,PLY_AKG_CHANNEL2_READEFFECTS
+		PLY_AKG_CHANNEL2_BEFOREEND_STORECELLPOINTER ld (PLY_AKG_CHANNEL2_READTRACK+1),hl
+		PLY_AKG_CHANNEL2_READCELLEND
+		PLY_AKG_CHANNEL3_WAITCOUNTER ld a,0
+		sub 1
+		jr c,PLY_AKG_CHANNEL3_READTRACK
+		ld (PLY_AKG_CHANNEL2_READCELLEND+1),a
+		jp PLY_AKG_CHANNEL3_READCELLEND
+		PLY_AKG_CHANNEL3_READTRACK
+		PLY_AKG_CHANNEL3_PTTRACK ld hl,0
+		ld c,(hl)
+		inc hl
+		ld a,c
+		and 63
+		cp 60
+		jr c,PLY_AKG_CHANNEL3_NOTE
+		sub 60
+		jp z,PLY_AKG_CHANNEL2_READEFFECTSEND
+		dec a
+		jr z,PLY_AKG_CHANNEL3_WAIT
+		dec a
+		jr z,PLY_AKG_CHANNEL3_SMALLWAIT
+		ld a,(hl)
+		inc hl
+		jr PLY_AKG_CHANNEL3_AFTERNOTEKNOWN
+		PLY_AKG_CHANNEL3_SMALLWAIT ld a,c
+		rlca
+		rlca
+		and 3
+		inc a
+		ld (PLY_AKG_CHANNEL2_READCELLEND+1),a
+		jr PLY_AKG_CHANNEL3_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL3_WAIT ld a,(hl)
+		ld (PLY_AKG_CHANNEL2_READCELLEND+1),a
+		inc hl
+		jr PLY_AKG_CHANNEL3_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL3_SAMEINSTRUMENT
+		PLY_AKG_CHANNEL3_PTBASEINSTRUMENT ld de,0
+		ld (PLY_AKG_CHANNEL3_PTINSTRUMENT+1),de
+		jr PLY_AKG_CHANNEL3_AFTERINSTRUMENT
+		PLY_AKG_CHANNEL3_NOTE ld b,a
+		ld a,(PLY_AKG_CHANNEL1_NOTE+1)
+		add a,b
+		PLY_AKG_CHANNEL3_AFTERNOTEKNOWN
+		PLY_AKG_CHANNEL3_TRANSPOSITION add a,0
+		ld (PLY_AKG_CHANNEL3_TRACKNOTE+1),a
+		rl c
+		jr nc,PLY_AKG_CHANNEL3_SAMEINSTRUMENT
+		ld a,(hl)
+		inc hl
+		exx
+		ld e,a
+		ld d,0
+		ld hl,(PLY_AKG_INSTRUMENTSTABLE+1)
+		add hl,de
+		add hl,de
+		ld sp,hl
+		pop hl
+		ld a,(hl)
+		inc hl
+		ld (PLY_AKG_CHANNEL3_INSTRUMENTORIGINALSPEED+1),a
+		ld (PLY_AKG_CHANNEL3_PTINSTRUMENT+1),hl
+		ld (PLY_AKG_CHANNEL3_SAMEINSTRUMENT+1),hl
+		exx
+		PLY_AKG_CHANNEL3_AFTERINSTRUMENT ex de,hl
+		xor a
+		ld l,a
+		ld h,a
+		ld (PLY_AKG_CHANNEL3_PITCHTABLE_END+1),hl
+		ld (PLY_AKG_CHANNEL3_ARPEGGIOTABLECURRENTSTEP+1),a
+		ld (PLY_AKG_CHANNEL3_PITCHTABLECURRENTSTEP+1),a
+		ld (PLY_AKG_CHANNEL3_INSTRUMENTSTEP+2),a
+		PLY_AKG_CHANNEL3_INSTRUMENTORIGINALSPEED ld a,0
+		ld (PLY_AKG_CHANNEL3_INSTRUMENTSPEED+1),a
+		ld a,183
+		ld (PLY_AKG_CHANNEL3_ISPITCH),a
+		ld a,(PLY_AKG_CHANNEL3_ARPEGGIOBASESPEED)
+		ld (PLY_AKG_CHANNEL3_ARPEGGIOTABLESPEED),a
+		ld a,(PLY_AKG_CHANNEL3_PITCHBASESPEED)
+		ld (PLY_AKG_CHANNEL3_PITCHTABLESPEED),a
+		ld hl,(PLY_AKG_CHANNEL3_ARPEGGIOTABLEBASE)
+		ld (PLY_AKG_CHANNEL3_ARPEGGIOTABLE+1),hl
+		ld hl,(PLY_AKG_CHANNEL3_PITCHTABLEBASE)
+		ld (PLY_AKG_CHANNEL3_PITCHTABLE+1),hl
+		ex de,hl
+		rl c
+		jp c,PLY_AKG_CHANNEL3_READEFFECTS
+		PLY_AKG_CHANNEL3_BEFOREEND_STORECELLPOINTER ld (PLY_AKG_CHANNEL3_READTRACK+1),hl
+		PLY_AKG_CHANNEL3_READCELLEND
+		PLY_AKG_CURRENTSPEED ld a,0
+		PLY_AKG_SETSPEEDBEFOREPLAYSTREAMS ld (PLY_AKG_TICKDECREASINGCOUNTER+1),a
+		PLY_AKG_CHANNEL1_INVERTEDVOLUMEINTEGER equ $+2
+		PLY_AKG_CHANNEL1_INVERTEDVOLUMEINTEGERANDDECIMAL ld hl,0
+		PLY_AKG_CHANNEL1_ISVOLUMESLIDE or a
+		jr nc,PLY_AKG_CHANNEL1_VOLUMESLIDE_END
+		PLY_AKG_CHANNEL1_VOLUMESLIDEVALUE ld de,0
+		add hl,de
+		bit 7,h
+		jr z,PLY_AKG_CHANNEL1_VOLUMENOTOVERFLOW
+		ld h,0
+		jr PLY_AKG_CHANNEL1_VOLUMESETAGAIN
+		PLY_AKG_CHANNEL1_VOLUMENOTOVERFLOW ld a,h
+		cp 16
+		jr c,PLY_AKG_CHANNEL1_VOLUMESETAGAIN
+		ld h,15
+		PLY_AKG_CHANNEL1_VOLUMESETAGAIN ld (PLY_AKG_CHANNEL1_INVERTEDVOLUMEINTEGERANDDECIMAL+1),hl
+		PLY_AKG_CHANNEL1_VOLUMESLIDE_END ld a,h
+		ld (PLY_AKG_CHANNEL1_GENERATEDCURRENTINVERTEDVOLUME+1),a
+		ld c,0
+		PLY_AKG_CHANNEL1_ISARPEGGIOTABLE or a
+		jr nc,PLY_AKG_CHANNEL1_ARPEGGIOTABLE_END
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLE ld hl,0
+		ld a,(hl)
+		cp 128
+		jr nz,PLY_AKG_CHANNEL1_ARPEGGIOTABLE_AFTERLOOPTEST
+		inc hl
+		ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		ld a,(hl)
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLE_AFTERLOOPTEST ld c,a
+		ld a,(PLY_AKG_CHANNEL1_ARPEGGIOTABLESPEED)
+		ld d,a
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLECURRENTSTEP ld a,0
+		inc a
+		cp d
+		jr c,PLY_AKG_CHANNEL1_ARPEGGIOTABLE_BEFOREEND_SAVESTEP
+		inc hl
+		ld (PLY_AKG_CHANNEL1_ARPEGGIOTABLE+1),hl
+		xor a
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLE_BEFOREEND_SAVESTEP ld (PLY_AKG_CHANNEL1_ARPEGGIOTABLECURRENTSTEP+1),a
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLE_END ld de,0
+		PLY_AKG_CHANNEL1_ISPITCHTABLE or a
+		jr nc,PLY_AKG_CHANNEL1_PITCHTABLE_END
+		PLY_AKG_CHANNEL1_PITCHTABLE ld sp,0
+		pop de
+		pop hl
+		ld a,(PLY_AKG_CHANNEL1_PITCHTABLESPEED)
+		ld b,a
+		PLY_AKG_CHANNEL1_PITCHTABLECURRENTSTEP ld a,0
+		inc a
+		cp b
+		jr c,PLY_AKG_CHANNEL1_PITCHTABLE_BEFOREEND_SAVESTEP
+		ld (PLY_AKG_CHANNEL1_PITCHTABLE+1),hl
+		xor a
+		PLY_AKG_CHANNEL1_PITCHTABLE_BEFOREEND_SAVESTEP ld (PLY_AKG_CHANNEL1_PITCHTABLECURRENTSTEP+1),a
+		PLY_AKG_CHANNEL1_PITCHTABLE_END
+		PLY_AKG_CHANNEL1_PITCH ld hl,0
+		PLY_AKG_CHANNEL1_ISPITCH or a
+		jr nc,PLY_AKG_CHANNEL1_PITCH_END
+		ld ixl,c
+		PLY_AKG_CHANNEL1_PITCHTRACK ld bc,0
+		or a
+		PLY_AKG_CHANNEL1_PITCHTRACKADDORSBC_16BITS nop
+		add hl,bc
+		PLY_AKG_CHANNEL1_PITCHTRACKDECIMALCOUNTER ld a,0
+		PLY_AKG_CHANNEL1_PITCHTRACKDECIMALVALUE equ $+1
+		PLY_AKG_CHANNEL1_PITCHTRACKDECIMALINSTR add a,0
+		ld (PLY_AKG_CHANNEL1_PITCHTRACKDECIMALCOUNTER+1),a
+		jr nc,PLY_AKG_CHANNEL1_PITCHNOCARRY
+		PLY_AKG_CHANNEL1_PITCHTRACKINTEGERADDORSUB inc hl
+		PLY_AKG_CHANNEL1_PITCHNOCARRY ld (PLY_AKG_CHANNEL1_PITCHTABLE_END+1),hl
+		PLY_AKG_CHANNEL1_SOUNDSTREAM_RELATIVEMODIFIERADDRESS
+		PLY_AKG_CHANNEL1_GLIDEDIRECTION ld a,0
+		or a
+		jr z,PLY_AKG_CHANNEL1_GLIDE_END
+		ld (PLY_AKG_CHANNEL1_AFTERARPEGGIOPITCHVARIABLES+1),hl
+		ld c,l
+		ld b,h
+		ex af,af'
+		ld a,(PLY_AKG_CHANNEL1_TRACKNOTE+1)
+		add a,a
+		ld l,a
+		ex af,af'
+		ld h,0
+		ld sp,PLY_AKG_PERIODTABLE
+		add hl,sp
+		ld sp,hl
+		pop hl
+		dec sp
+		dec sp
+		add hl,bc
+		PLY_AKG_CHANNEL1_GLIDETOREACH ld bc,0
+		rra
+		jr nc,PLY_AKG_CHANNEL1_GLIDEDOWNCHECK
+		or a
+		sbc hl,bc
+		jr nc,PLY_AKG_CHANNEL1_AFTERARPEGGIOPITCHVARIABLES
+		jr PLY_AKG_CHANNEL1_GLIDEOVER
+		PLY_AKG_CHANNEL1_GLIDEDOWNCHECK sbc hl,bc
+		jr c,PLY_AKG_CHANNEL1_AFTERARPEGGIOPITCHVARIABLES
+		PLY_AKG_CHANNEL1_GLIDEOVER ld l,c
+		ld h,b
+		pop bc
+		or a
+		sbc hl,bc
+		ld (PLY_AKG_CHANNEL1_PITCHTABLE_END+1),hl
+		ld a,183
+		ld (PLY_AKG_CHANNEL1_ISPITCH),a
+		jr PLY_AKG_CHANNEL1_GLIDE_END
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLESPEED db 0
+		PLY_AKG_CHANNEL1_ARPEGGIOBASESPEED db 0
+		PLY_AKG_CHANNEL1_ARPEGGIOTABLEBASE db 0
+		db 0
+		PLY_AKG_CHANNEL1_PITCHTABLESPEED db 0
+		PLY_AKG_CHANNEL1_PITCHBASESPEED db 0
+		PLY_AKG_CHANNEL1_PITCHTABLEBASE db 0
+		db 0
+		PLY_AKG_CHANNEL1_AFTERARPEGGIOPITCHVARIABLES
+		PLY_AKG_CHANNEL1_GLIDE_BEFOREEND
+		PLY_AKG_CHANNEL1_GLIDE_SAVEHL ld hl,0
+		PLY_AKG_CHANNEL1_GLIDE_END ld c,ixl
+		PLY_AKG_CHANNEL1_PITCH_END add hl,de
+		ld (PLY_AKG_CHANNEL1_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS+1),hl
+		ld a,c
+		ld (PLY_AKG_CHANNEL1_GENERATEDCURRENTARPNOTE+1),a
+		PLY_AKG_CHANNEL2_INVERTEDVOLUMEINTEGER equ $+2
+		PLY_AKG_CHANNEL2_INVERTEDVOLUMEINTEGERANDDECIMAL ld hl,0
+		PLY_AKG_CHANNEL2_ISVOLUMESLIDE or a
+		jr nc,PLY_AKG_CHANNEL2_VOLUMESLIDE_END
+		PLY_AKG_CHANNEL2_VOLUMESLIDEVALUE ld de,0
+		add hl,de
+		bit 7,h
+		jr z,PLY_AKG_CHANNEL2_VOLUMENOTOVERFLOW
+		ld h,0
+		jr PLY_AKG_CHANNEL2_VOLUMESETAGAIN
+		PLY_AKG_CHANNEL2_VOLUMENOTOVERFLOW ld a,h
+		cp 16
+		jr c,PLY_AKG_CHANNEL2_VOLUMESETAGAIN
+		ld h,15
+		PLY_AKG_CHANNEL2_VOLUMESETAGAIN ld (PLY_AKG_CHANNEL2_INVERTEDVOLUMEINTEGERANDDECIMAL+1),hl
+		PLY_AKG_CHANNEL2_VOLUMESLIDE_END ld a,h
+		ld (PLY_AKG_CHANNEL2_GENERATEDCURRENTINVERTEDVOLUME+1),a
+		ld c,0
+		PLY_AKG_CHANNEL2_ISARPEGGIOTABLE or a
+		jr nc,PLY_AKG_CHANNEL2_ARPEGGIOTABLE_END
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLE ld hl,0
+		ld a,(hl)
+		cp 128
+		jr nz,PLY_AKG_CHANNEL2_ARPEGGIOTABLE_AFTERLOOPTEST
+		inc hl
+		ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		ld a,(hl)
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLE_AFTERLOOPTEST ld c,a
+		ld a,(PLY_AKG_CHANNEL2_ARPEGGIOTABLESPEED)
+		ld d,a
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLECURRENTSTEP ld a,0
+		inc a
+		cp d
+		jr c,PLY_AKG_CHANNEL2_ARPEGGIOTABLE_BEFOREEND_SAVESTEP
+		inc hl
+		ld (PLY_AKG_CHANNEL2_ARPEGGIOTABLE+1),hl
+		xor a
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLE_BEFOREEND_SAVESTEP ld (PLY_AKG_CHANNEL2_ARPEGGIOTABLECURRENTSTEP+1),a
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLE_END ld de,0
+		PLY_AKG_CHANNEL2_ISPITCHTABLE or a
+		jr nc,PLY_AKG_CHANNEL2_PITCHTABLE_END
+		PLY_AKG_CHANNEL2_PITCHTABLE ld sp,0
+		pop de
+		pop hl
+		ld a,(PLY_AKG_CHANNEL2_PITCHTABLESPEED)
+		ld b,a
+		PLY_AKG_CHANNEL2_PITCHTABLECURRENTSTEP ld a,0
+		inc a
+		cp b
+		jr c,PLY_AKG_CHANNEL2_PITCHTABLE_BEFOREEND_SAVESTEP
+		ld (PLY_AKG_CHANNEL2_PITCHTABLE+1),hl
+		xor a
+		PLY_AKG_CHANNEL2_PITCHTABLE_BEFOREEND_SAVESTEP ld (PLY_AKG_CHANNEL2_PITCHTABLECURRENTSTEP+1),a
+		PLY_AKG_CHANNEL2_PITCHTABLE_END
+		PLY_AKG_CHANNEL2_PITCH ld hl,0
+		PLY_AKG_CHANNEL2_ISPITCH or a
+		jr nc,PLY_AKG_CHANNEL2_PITCH_END
+		ld ixl,c
+		PLY_AKG_CHANNEL2_PITCHTRACK ld bc,0
+		or a
+		PLY_AKG_CHANNEL2_PITCHTRACKADDORSBC_16BITS nop
+		add hl,bc
+		PLY_AKG_CHANNEL2_PITCHTRACKDECIMALCOUNTER ld a,0
+		PLY_AKG_CHANNEL2_PITCHTRACKDECIMALVALUE equ $+1
+		PLY_AKG_CHANNEL2_PITCHTRACKDECIMALINSTR add a,0
+		ld (PLY_AKG_CHANNEL2_PITCHTRACKDECIMALCOUNTER+1),a
+		jr nc,PLY_AKG_CHANNEL2_PITCHNOCARRY
+		PLY_AKG_CHANNEL2_PITCHTRACKINTEGERADDORSUB inc hl
+		PLY_AKG_CHANNEL2_PITCHNOCARRY ld (PLY_AKG_CHANNEL2_PITCHTABLE_END+1),hl
+		PLY_AKG_CHANNEL2_SOUNDSTREAM_RELATIVEMODIFIERADDRESS
+		PLY_AKG_CHANNEL2_GLIDEDIRECTION ld a,0
+		or a
+		jr z,PLY_AKG_CHANNEL2_GLIDE_END
+		ld (PLY_AKG_CHANNEL2_AFTERARPEGGIOPITCHVARIABLES+1),hl
+		ld c,l
+		ld b,h
+		ex af,af'
+		ld a,(PLY_AKG_CHANNEL2_TRACKNOTE+1)
+		add a,a
+		ld l,a
+		ex af,af'
+		ld h,0
+		ld sp,PLY_AKG_PERIODTABLE
+		add hl,sp
+		ld sp,hl
+		pop hl
+		dec sp
+		dec sp
+		add hl,bc
+		PLY_AKG_CHANNEL2_GLIDETOREACH ld bc,0
+		rra
+		jr nc,PLY_AKG_CHANNEL2_GLIDEDOWNCHECK
+		or a
+		sbc hl,bc
+		jr nc,PLY_AKG_CHANNEL2_AFTERARPEGGIOPITCHVARIABLES
+		jr PLY_AKG_CHANNEL2_GLIDEOVER
+		PLY_AKG_CHANNEL2_GLIDEDOWNCHECK sbc hl,bc
+		jr c,PLY_AKG_CHANNEL2_AFTERARPEGGIOPITCHVARIABLES
+		PLY_AKG_CHANNEL2_GLIDEOVER ld l,c
+		ld h,b
+		pop bc
+		or a
+		sbc hl,bc
+		ld (PLY_AKG_CHANNEL2_PITCHTABLE_END+1),hl
+		ld a,183
+		ld (PLY_AKG_CHANNEL2_ISPITCH),a
+		jr PLY_AKG_CHANNEL2_GLIDE_END
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLESPEED db 0
+		PLY_AKG_CHANNEL2_ARPEGGIOBASESPEED db 0
+		PLY_AKG_CHANNEL2_ARPEGGIOTABLEBASE db 0
+		db 0
+		PLY_AKG_CHANNEL2_PITCHTABLESPEED db 0
+		PLY_AKG_CHANNEL2_PITCHBASESPEED db 0
+		PLY_AKG_CHANNEL2_PITCHTABLEBASE db 0
+		db 0
+		PLY_AKG_CHANNEL2_AFTERARPEGGIOPITCHVARIABLES
+		PLY_AKG_CHANNEL2_GLIDE_BEFOREEND
+		PLY_AKG_CHANNEL2_GLIDE_SAVEHL ld hl,0
+		PLY_AKG_CHANNEL2_GLIDE_END ld c,ixl
+		PLY_AKG_CHANNEL2_PITCH_END add hl,de
+		ld (PLY_AKG_CHANNEL2_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS+1),hl
+		ld a,c
+		ld (PLY_AKG_CHANNEL2_GENERATEDCURRENTARPNOTE+1),a
+		PLY_AKG_CHANNEL3_INVERTEDVOLUMEINTEGER equ $+2
+		PLY_AKG_CHANNEL3_INVERTEDVOLUMEINTEGERANDDECIMAL ld hl,0
+		PLY_AKG_CHANNEL3_ISVOLUMESLIDE or a
+		jr nc,PLY_AKG_CHANNEL3_VOLUMESLIDE_END
+		PLY_AKG_CHANNEL3_VOLUMESLIDEVALUE ld de,0
+		add hl,de
+		bit 7,h
+		jr z,PLY_AKG_CHANNEL3_VOLUMENOTOVERFLOW
+		ld h,0
+		jr PLY_AKG_CHANNEL3_VOLUMESETAGAIN
+		PLY_AKG_CHANNEL3_VOLUMENOTOVERFLOW ld a,h
+		cp 16
+		jr c,PLY_AKG_CHANNEL3_VOLUMESETAGAIN
+		ld h,15
+		PLY_AKG_CHANNEL3_VOLUMESETAGAIN ld (PLY_AKG_CHANNEL3_INVERTEDVOLUMEINTEGERANDDECIMAL+1),hl
+		PLY_AKG_CHANNEL3_VOLUMESLIDE_END ld a,h
+		ld (PLY_AKG_CHANNEL3_GENERATEDCURRENTINVERTEDVOLUME+1),a
+		ld c,0
+		PLY_AKG_CHANNEL3_ISARPEGGIOTABLE or a
+		jr nc,PLY_AKG_CHANNEL3_ARPEGGIOTABLE_END
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLE ld hl,0
+		ld a,(hl)
+		cp 128
+		jr nz,PLY_AKG_CHANNEL3_ARPEGGIOTABLE_AFTERLOOPTEST
+		inc hl
+		ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		ld a,(hl)
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLE_AFTERLOOPTEST ld c,a
+		ld a,(PLY_AKG_CHANNEL3_ARPEGGIOTABLESPEED)
+		ld d,a
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLECURRENTSTEP ld a,0
+		inc a
+		cp d
+		jr c,PLY_AKG_CHANNEL3_ARPEGGIOTABLE_BEFOREEND_SAVESTEP
+		inc hl
+		ld (PLY_AKG_CHANNEL3_ARPEGGIOTABLE+1),hl
+		xor a
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLE_BEFOREEND_SAVESTEP ld (PLY_AKG_CHANNEL3_ARPEGGIOTABLECURRENTSTEP+1),a
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLE_END ld de,0
+		PLY_AKG_CHANNEL3_ISPITCHTABLE or a
+		jr nc,PLY_AKG_CHANNEL3_PITCHTABLE_END
+		PLY_AKG_CHANNEL3_PITCHTABLE ld sp,0
+		pop de
+		pop hl
+		ld a,(PLY_AKG_CHANNEL3_PITCHTABLESPEED)
+		ld b,a
+		PLY_AKG_CHANNEL3_PITCHTABLECURRENTSTEP ld a,0
+		inc a
+		cp b
+		jr c,PLY_AKG_CHANNEL3_PITCHTABLE_BEFOREEND_SAVESTEP
+		ld (PLY_AKG_CHANNEL3_PITCHTABLE+1),hl
+		xor a
+		PLY_AKG_CHANNEL3_PITCHTABLE_BEFOREEND_SAVESTEP ld (PLY_AKG_CHANNEL3_PITCHTABLECURRENTSTEP+1),a
+		PLY_AKG_CHANNEL3_PITCHTABLE_END
+		PLY_AKG_CHANNEL3_PITCH ld hl,0
+		PLY_AKG_CHANNEL3_ISPITCH or a
+		jr nc,PLY_AKG_CHANNEL3_PITCH_END
+		ld ixl,c
+		PLY_AKG_CHANNEL3_PITCHTRACK ld bc,0
+		or a
+		PLY_AKG_CHANNEL3_PITCHTRACKADDORSBC_16BITS nop
+		add hl,bc
+		PLY_AKG_CHANNEL3_PITCHTRACKDECIMALCOUNTER ld a,0
+		PLY_AKG_CHANNEL3_PITCHTRACKDECIMALVALUE equ $+1
+		PLY_AKG_CHANNEL3_PITCHTRACKDECIMALINSTR add a,0
+		ld (PLY_AKG_CHANNEL3_PITCHTRACKDECIMALCOUNTER+1),a
+		jr nc,PLY_AKG_CHANNEL3_PITCHNOCARRY
+		PLY_AKG_CHANNEL3_PITCHTRACKINTEGERADDORSUB inc hl
+		PLY_AKG_CHANNEL3_PITCHNOCARRY ld (PLY_AKG_CHANNEL3_PITCHTABLE_END+1),hl
+		PLY_AKG_CHANNEL3_SOUNDSTREAM_RELATIVEMODIFIERADDRESS
+		PLY_AKG_CHANNEL3_GLIDEDIRECTION ld a,0
+		or a
+		jr z,PLY_AKG_CHANNEL3_GLIDE_END
+		ld (PLY_AKG_CHANNEL3_AFTERARPEGGIOPITCHVARIABLES+1),hl
+		ld c,l
+		ld b,h
+		ex af,af'
+		ld a,(PLY_AKG_CHANNEL3_TRACKNOTE+1)
+		add a,a
+		ld l,a
+		ex af,af'
+		ld h,0
+		ld sp,PLY_AKG_PERIODTABLE
+		add hl,sp
+		ld sp,hl
+		pop hl
+		dec sp
+		dec sp
+		add hl,bc
+		PLY_AKG_CHANNEL3_GLIDETOREACH ld bc,0
+		rra
+		jr nc,PLY_AKG_CHANNEL3_GLIDEDOWNCHECK
+		or a
+		sbc hl,bc
+		jr nc,PLY_AKG_CHANNEL3_AFTERARPEGGIOPITCHVARIABLES
+		jr PLY_AKG_CHANNEL3_GLIDEOVER
+		PLY_AKG_CHANNEL3_GLIDEDOWNCHECK sbc hl,bc
+		jr c,PLY_AKG_CHANNEL3_AFTERARPEGGIOPITCHVARIABLES
+		PLY_AKG_CHANNEL3_GLIDEOVER ld l,c
+		ld h,b
+		pop bc
+		or a
+		sbc hl,bc
+		ld (PLY_AKG_CHANNEL3_PITCHTABLE_END+1),hl
+		ld a,183
+		ld (PLY_AKG_CHANNEL3_ISPITCH),a
+		jr PLY_AKG_CHANNEL3_GLIDE_END
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLESPEED db 0
+		PLY_AKG_CHANNEL3_ARPEGGIOBASESPEED db 0
+		PLY_AKG_CHANNEL3_ARPEGGIOTABLEBASE db 0
+		db 0
+		PLY_AKG_CHANNEL3_PITCHTABLESPEED db 0
+		PLY_AKG_CHANNEL3_PITCHBASESPEED db 0
+		PLY_AKG_CHANNEL3_PITCHTABLEBASE db 0
+		db 0
+		PLY_AKG_CHANNEL3_AFTERARPEGGIOPITCHVARIABLES
+		PLY_AKG_CHANNEL3_GLIDE_BEFOREEND
+		PLY_AKG_CHANNEL3_GLIDE_SAVEHL ld hl,0
+		PLY_AKG_CHANNEL3_GLIDE_END ld c,ixl
+		PLY_AKG_CHANNEL3_PITCH_END add hl,de
+		ld (PLY_AKG_CHANNEL3_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS+1),hl
+		ld a,c
+		ld (PLY_AKG_CHANNEL3_GENERATEDCURRENTARPNOTE+1),a
+		ld sp,(PLY_AKG_PSGREG13_END+1)
+		PLY_AKG_CHANNEL1_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS
+		PLY_AKG_CHANNEL1_GENERATEDCURRENTPITCH ld hl,0
+		PLY_AKG_CHANNEL1_TRACKNOTE ld a,0
+		PLY_AKG_CHANNEL1_GENERATEDCURRENTARPNOTE add a,0
+		ld e,a
+		ld d,0
+		exx
+		PLY_AKG_CHANNEL1_INSTRUMENTSTEP ld iyl,0
+		PLY_AKG_CHANNEL1_PTINSTRUMENT ld hl,0
+		PLY_AKG_CHANNEL1_GENERATEDCURRENTINVERTEDVOLUME ld de,57359
+		call PLY_AKG_READINSTRUMENTCELL
+		ld a,iyl
+		inc a
+		PLY_AKG_CHANNEL1_INSTRUMENTSPEED cp 0
+		jr c,PLY_AKG_CHANNEL1_SETINSTRUMENTSTEP
+		ld (PLY_AKG_CHANNEL1_PTINSTRUMENT+1),hl
+		xor a
+		PLY_AKG_CHANNEL1_SETINSTRUMENTSTEP ld (PLY_AKG_CHANNEL1_INSTRUMENTSTEP+2),a
+		ld a,e
+		ld (PLY_AKG_PSGREG8),a
+		rr d
+		exx
+		ld (PLY_AKG_PSGREG01_INSTR+1),hl
+		PLY_AKG_CHANNEL2_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS
+		PLY_AKG_CHANNEL2_GENERATEDCURRENTPITCH ld hl,0
+		PLY_AKG_CHANNEL2_TRACKNOTE ld a,0
+		PLY_AKG_CHANNEL2_GENERATEDCURRENTARPNOTE add a,0
+		ld e,a
+		ld d,0
+		exx
+		PLY_AKG_CHANNEL2_INSTRUMENTSTEP ld iyl,0
+		PLY_AKG_CHANNEL2_PTINSTRUMENT ld hl,0
+		PLY_AKG_CHANNEL2_GENERATEDCURRENTINVERTEDVOLUME ld e,15
+		nop
+		call PLY_AKG_READINSTRUMENTCELL
+		ld a,iyl
+		inc a
+		PLY_AKG_CHANNEL2_INSTRUMENTSPEED cp 0
+		jr c,PLY_AKG_CHANNEL2_SETINSTRUMENTSTEP
+		ld (PLY_AKG_CHANNEL2_PTINSTRUMENT+1),hl
+		xor a
+		PLY_AKG_CHANNEL2_SETINSTRUMENTSTEP ld (PLY_AKG_CHANNEL2_INSTRUMENTSTEP+2),a
+		ld a,e
+		ld (PLY_AKG_PSGREG9),a
+		rr d
+		exx
+		ld (PLY_AKG_PSGREG23_INSTR+1),hl
+		PLY_AKG_CHANNEL3_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS
+		PLY_AKG_CHANNEL3_GENERATEDCURRENTPITCH ld hl,0
+		PLY_AKG_CHANNEL3_TRACKNOTE ld a,0
+		PLY_AKG_CHANNEL3_GENERATEDCURRENTARPNOTE add a,0
+		ld e,a
+		ld d,0
+		exx
+		PLY_AKG_CHANNEL3_INSTRUMENTSTEP ld iyl,0
+		PLY_AKG_CHANNEL3_PTINSTRUMENT ld hl,0
+		PLY_AKG_CHANNEL3_GENERATEDCURRENTINVERTEDVOLUME ld e,15
+		nop
+		call PLY_AKG_READINSTRUMENTCELL
+		ld a,iyl
+		inc a
+		PLY_AKG_CHANNEL3_INSTRUMENTSPEED cp 0
+		jr c,PLY_AKG_CHANNEL3_SETINSTRUMENTSTEP
+		ld (PLY_AKG_CHANNEL3_PTINSTRUMENT+1),hl
+		xor a
+		PLY_AKG_CHANNEL3_SETINSTRUMENTSTEP ld (PLY_AKG_CHANNEL3_INSTRUMENTSTEP+2),a
+		ld a,e
+		ld (PLY_AKG_PSGREG10),a
+		ld a,d
+		exx
+		ld (PLY_AKG_PSGREG45_INSTR+1),hl
+		PLY_AKG_SENDPSGREGISTERS ex af,af'
+		ld de,49151
+		ld bc,65533
+		ld a,1
+		PLY_AKG_PSGREG01_INSTR ld hl,0
+		out (c),0
+		ld b,d
+		out (c),l
+		ld b,e
+		out (c),a
+		ld b,d
+		out (c),h
+		ld b,e
+		PLY_AKG_PSGREG23_INSTR ld hl,0
+		inc a
+		out (c),a
+		ld b,d
+		out (c),l
+		ld b,e
+		inc a
+		out (c),a
+		ld b,d
+		out (c),h
+		ld b,e
+		PLY_AKG_PSGREG45_INSTR ld hl,0
+		inc a
+		out (c),a
+		ld b,d
+		out (c),l
+		ld b,e
+		inc a
+		out (c),a
+		ld b,d
+		out (c),h
+		ld b,e
+		PLY_AKG_PSGREG6 equ $+1
+		PLY_AKG_PSGREG8 equ $+2
+		PLY_AKG_PSGREG6_8_INSTR ld hl,0
+		inc a
+		out (c),a
+		ld b,d
+		out (c),l
+		ld b,e
+		inc a
+		out (c),a
+		ld b,d
+		ex af,af'
+		out (c),a
+		ex af,af'
+		ld b,e
+		inc a
+		out (c),a
+		ld b,d
+		out (c),h
+		ld b,e
+		PLY_AKG_PSGREG9 equ $+1
+		PLY_AKG_PSGREG10 equ $+2
+		PLY_AKG_PSGREG9_10_INSTR ld hl,0
+		inc a
+		out (c),a
+		ld b,d
+		out (c),l
+		ld b,e
+		inc a
+		out (c),a
+		ld b,d
+		out (c),h
+		ld b,e
+		PLY_AKG_PSGHARDWAREPERIOD_INSTR ld hl,0
+		inc a
+		out (c),a
+		ld b,d
+		out (c),l
+		ld b,e
+		inc a
+		out (c),a
+		ld b,d
+		out (c),h
+		ld b,e
+		inc a
+		out (c),a
+		PLY_AKG_PSGREG13_OLDVALUE ld a,255
+		PLY_AKG_RETRIG or 0
+		PLY_AKG_PSGREG13_INSTR ld l,0
+		cp l
+		jr z,PLY_AKG_PSGREG13_END
+		ld a,l
+		ld (PLY_AKG_PSGREG13_OLDVALUE+1),a
+		ld b,d
+		out (c),a
+		xor a
+		ld (PLY_AKG_RETRIG+1),a
+		PLY_AKG_PSGREG13_END
+		PLY_AKG_SAVESP ld sp,0
+		ret
+		PLY_AKG_CHANNEL1_MAYBEEFFECTS ld (PLY_AKG_EVENTTRACK_END+1),a
+		bit 6,c
+		jp z,PLY_AKG_CHANNEL1_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL1_READEFFECTS ld iy,PLY_AKG_CHANNEL1_SOUNDSTREAM_RELATIVEMODIFIERADDRESS
+		ld ix,PLY_AKG_CHANNEL1_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS
+		ld de,PLY_AKG_CHANNEL1_BEFOREEND_STORECELLPOINTER
+		jr PLY_AKG_CHANNEL3_READEFFECTSEND
+		PLY_AKG_CHANNEL1_READEFFECTSEND
+		PLY_AKG_CHANNEL2_MAYBEEFFECTS ld (PLY_AKG_CHANNEL1_READCELLEND+1),a
+		bit 6,c
+		jp z,PLY_AKG_CHANNEL2_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL2_READEFFECTS ld iy,PLY_AKG_CHANNEL2_SOUNDSTREAM_RELATIVEMODIFIERADDRESS
+		ld ix,PLY_AKG_CHANNEL2_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS
+		ld de,PLY_AKG_CHANNEL2_BEFOREEND_STORECELLPOINTER
+		jr PLY_AKG_CHANNEL3_READEFFECTSEND
+		PLY_AKG_CHANNEL2_READEFFECTSEND
+		PLY_AKG_CHANNEL3_MAYBEEFFECTS ld (PLY_AKG_CHANNEL2_READCELLEND+1),a
+		bit 6,c
+		jp z,PLY_AKG_CHANNEL3_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL3_READEFFECTS ld iy,PLY_AKG_CHANNEL3_SOUNDSTREAM_RELATIVEMODIFIERADDRESS
+		ld ix,PLY_AKG_CHANNEL3_PLAYINSTRUMENT_RELATIVEMODIFIERADDRESS
+		ld de,PLY_AKG_CHANNEL3_BEFOREEND_STORECELLPOINTER
+		PLY_AKG_CHANNEL3_READEFFECTSEND
+		PLY_AKG_CHANNEL_READEFFECTS ld (PLY_AKG_CHANNEL_READEFFECTS_ENDJUMP+1),de
+		ex de,hl
+		ld a,(de)
+		inc de
+		sla a
+		jr c,PLY_AKG_CHANNEL_READEFFECTS_RELATIVEADDRESS
+		exx
+		ld l,a
+		ld h,0
+		PLY_AKG_CHANNEL_READEFFECTS_EFFECTBLOCKS1 ld de,0
+		add hl,de
+		ld e,(hl)
+		inc hl
+		ld d,(hl)
+		PLY_AKG_CHANNEL_RE_EFFECTADDRESSKNOWN ld a,(de)
+		inc de
+		ld (PLY_AKG_CHANNEL_RE_EFFECTRETURN+1),a
+		and 254
+		ld l,a
+		ld h,0
+		ld sp,PLY_AKG_EFFECTTABLE
+		add hl,sp
+		ld sp,hl
+		ret
+		PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_CHANNEL_RE_READNEXTEFFECTINBLOCK ld a,0
+		rra
+		jr c,PLY_AKG_CHANNEL_RE_EFFECTADDRESSKNOWN
+		exx
+		ex de,hl
+		PLY_AKG_CHANNEL_READEFFECTS_ENDJUMP jp 0
+		PLY_AKG_CHANNEL_READEFFECTS_RELATIVEADDRESS srl a
+		exx
+		ld h,a
+		exx
+		ld a,(de)
+		inc de
+		exx
+		ld l,a
+		PLY_AKG_CHANNEL_READEFFECTS_EFFECTBLOCKS2 ld de,0
+		add hl,de
+		jr PLY_AKG_CHANNEL_RE_EFFECTADDRESSKNOWN
+		PLY_AKG_READINSTRUMENTCELL ld a,(hl)
+		inc hl
+		ld b,a
+		rra
+		jp c,PLY_AKG_S_OR_H_OR_SAH_OR_ENDWITHLOOP
+		rra
+		jr c,PLY_AKG_STH_OR_ENDWITHOUTLOOP
+		rra
+		jr c,PLY_AKG_HARDTOSOFT
+		PLY_AKG_NOSOFTNOHARD and 15
+		sub e
+		jr nc,PLY_AKG_NOSOFTNOHARD+6
+		xor a
+		ld e,a
+		rl b
+		jr nc,PLY_AKG_NSNH_NONOISE
+		ld a,(hl)
+		inc hl
+		ld (PLY_AKG_PSGREG6),a
+		set 2,d
+		res 5,d
+		ret
+		PLY_AKG_NSNH_NONOISE set 2,d
+		ret
+		PLY_AKG_SOFT and 15
+		sub e
+		jr nc,PLY_AKG_SOFTONLY_HARDONLY_TESTSIMPLE_COMMON-1
+		xor a
+		ld e,a
+		PLY_AKG_SOFTONLY_HARDONLY_TESTSIMPLE_COMMON rl b
+		jr nc,PLY_AKG_S_NOTSIMPLE
+		ld c,0
+		jr PLY_AKG_S_AFTERSIMPLETEST
+		PLY_AKG_S_NOTSIMPLE ld b,(hl)
+		ld c,b
+		inc hl
+		PLY_AKG_S_AFTERSIMPLETEST call PLY_AKG_S_OR_H_CHECKIFSIMPLEFIRST_CALCULATEPERIOD
+		ld a,c
+		and 31
+		ret z
+		ld (PLY_AKG_PSGREG6),a
+		res 5,d
+		ret
+		PLY_AKG_HARDTOSOFT call PLY_AKG_STOH_HTOS_SANDH_COMMON
+		ld (PLY_AKG_HS_JUMPRATIO+1),a
+		ld a,b
+		exx
+		ld (PLY_AKG_PSGHARDWAREPERIOD_INSTR+1),hl
+		PLY_AKG_HS_JUMPRATIO jr PLY_AKG_HS_JUMPRATIO+2
+		sla l
+		rl h
+		sla l
+		rl h
+		sla l
+		rl h
+		sla l
+		rl h
+		sla l
+		rl h
+		sla l
+		rl h
+		sla l
+		rl h
+		rla
+		jr nc,PLY_AKG_SH_NOSOFTWAREPITCHSHIFT
+		exx
+		ld a,(hl)
+		inc hl
+		exx
+		add a,l
+		ld l,a
+		exx
+		ld a,(hl)
+		inc hl
+		exx
+		adc a,h
+		ld h,a
+		PLY_AKG_SH_NOSOFTWAREPITCHSHIFT exx
+		ret
+		PLY_AKG_ENDWITHOUTLOOP
+		PLY_AKG_EMPTYINSTRUMENTDATAPT ld hl,0
+		inc hl
+		xor a
+		ld b,a
+		jr PLY_AKG_NOSOFTNOHARD
+		PLY_AKG_STH_OR_ENDWITHOUTLOOP rra
+		jr c,PLY_AKG_ENDWITHOUTLOOP
+		call PLY_AKG_STOH_HTOS_SANDH_COMMON
+		ld (PLY_AKG_SH_JUMPRATIO+1),a
+		ld a,b
+		exx
+		ld e,l
+		ld d,h
+		PLY_AKG_SH_JUMPRATIO jr PLY_AKG_SH_JUMPRATIO+2
+		srl h
+		rr l
+		srl h
+		rr l
+		srl h
+		rr l
+		srl h
+		rr l
+		srl h
+		rr l
+		srl h
+		rr l
+		srl h
+		rr l
+		jr nc,PLY_AKG_SH_JUMPRATIOEND
+		inc hl
+		PLY_AKG_SH_JUMPRATIOEND rla
+		jr nc,PLY_AKG_SH_NOHARDWAREPITCHSHIFT
+		exx
+		ld a,(hl)
+		inc hl
+		exx
+		add a,l
+		ld l,a
+		exx
+		ld a,(hl)
+		inc hl
+		exx
+		adc a,h
+		ld h,a
+		PLY_AKG_SH_NOHARDWAREPITCHSHIFT ld (PLY_AKG_PSGHARDWAREPERIOD_INSTR+1),hl
+		ex de,hl
+		exx
+		ret
+		PLY_AKG_S_OR_H_OR_SAH_OR_ENDWITHLOOP rra
+		jr c,PLY_AKG_H_OR_ENDWITHLOOP
+		rra
+		jp nc,PLY_AKG_SOFT
+		exx
+		push hl
+		push de
+		exx
+		call PLY_AKG_STOH_HTOS_SANDH_COMMON
+		exx
+		ld (PLY_AKG_PSGHARDWAREPERIOD_INSTR+1),hl
+		pop de
+		pop hl
+		exx
+		rl b
+		jp PLY_AKG_S_OR_H_CHECKIFSIMPLEFIRST_CALCULATEPERIOD
+		PLY_AKG_H_OR_ENDWITHLOOP rra
+		jr c,PLY_AKG_ENDWITHLOOP
+		ld e,16
+		rra
+		jr nc,PLY_AKG_H_AFTERRETRIG
+		ld c,a
+		ld a,iyl
+		or a
+		jr nz,PLY_AKG_H_RETRIGEND
+		ld a,e
+		ld (PLY_AKG_RETRIG+1),a
+		PLY_AKG_H_RETRIGEND ld a,c
+		PLY_AKG_H_AFTERRETRIG and 7
+		add a,8
+		ld (PLY_AKG_PSGREG13_INSTR+1),a
+		call PLY_AKG_SOFTONLY_HARDONLY_TESTSIMPLE_COMMON
+		exx
+		ld (PLY_AKG_PSGHARDWAREPERIOD_INSTR+1),hl
+		exx
+		set 2,d
+		ret
+		PLY_AKG_ENDWITHLOOP ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		jp PLY_AKG_READINSTRUMENTCELL
+		PLY_AKG_S_OR_H_CHECKIFSIMPLEFIRST_CALCULATEPERIOD jr nc,PLY_AKG_S_OR_H_NEXTBYTE
+		exx
+		ex de,hl
+		add hl,hl
+		ld bc,PLY_AKG_PERIODTABLE
+		add hl,bc
+		ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		add hl,de
+		exx
+		rl b
+		rl b
+		rl b
+		ret
+		PLY_AKG_S_OR_H_NEXTBYTE rl b
+		jr c,PLY_AKG_S_OR_H_FORCEDPERIOD
+		rl b
+		jr nc,PLY_AKG_S_OR_H_AFTERARPEGGIO
+		ld a,(hl)
+		inc hl
+		exx
+		add a,e
+		ld e,a
+		exx
+		PLY_AKG_S_OR_H_AFTERARPEGGIO rl b
+		jr nc,PLY_AKG_S_OR_H_AFTERPITCH
+		ld a,(hl)
+		inc hl
+		exx
+		add a,l
+		ld l,a
+		exx
+		ld a,(hl)
+		inc hl
+		exx
+		adc a,h
+		ld h,a
+		exx
+		PLY_AKG_S_OR_H_AFTERPITCH exx
+		ex de,hl
+		add hl,hl
+		ld bc,PLY_AKG_PERIODTABLE
+		add hl,bc
+		ld a,(hl)
+		inc hl
+		ld h,(hl)
+		ld l,a
+		add hl,de
+		exx
+		ret
+		PLY_AKG_S_OR_H_FORCEDPERIOD ld a,(hl)
+		inc hl
+		exx
+		ld l,a
+		exx
+		ld a,(hl)
+		inc hl
+		exx
+		ld h,a
+		exx
+		rl b
+		rl b
+		ret
+		PLY_AKG_STOH_HTOS_SANDH_COMMON ld e,16
+		rra
+		jr nc,PLY_AKG_SHOHS_AFTERRETRIG
+		ld c,a
+		ld a,iyl
+		or a
+		jr nz,PLY_AKG_SHOHS_RETRIGEND
+		dec a
+		ld (PLY_AKG_RETRIG+1),a
+		PLY_AKG_SHOHS_RETRIGEND ld a,c
+		PLY_AKG_SHOHS_AFTERRETRIG and 7
+		add a,8
+		ld (PLY_AKG_PSGREG13_INSTR+1),a
+		rl b
+		jr nc,PLY_AKG_SHOHS_AFTERNOISE
+		ld a,(hl)
+		inc hl
+		ld (PLY_AKG_PSGREG6),a
+		res 5,d
+		PLY_AKG_SHOHS_AFTERNOISE ld c,(hl)
+		ld b,c
+		inc hl
+		rl b
+		call PLY_AKG_S_OR_H_CHECKIFSIMPLEFIRST_CALCULATEPERIOD
+		ld a,c
+		rla
+		rla
+		and 28
+		ret
+		PLY_AKG_EFFECTTABLE dw PLY_AKG_EFFECT_RESETFULLVOLUME
+		dw PLY_AKG_EFFECT_RESET
+		dw PLY_AKG_EFFECT_VOLUME
+		dw PLY_AKG_EFFECT_ARPEGGIOTABLE
+		dw PLY_AKG_EFFECT_ARPEGGIOTABLESTOP
+		dw PLY_AKG_EFFECT_PITCHTABLE
+		dw PLY_AKG_EFFECT_PITCHTABLESTOP
+		dw PLY_AKG_EFFECT_VOLUMESLIDE
+		dw PLY_AKG_EFFECT_VOLUMESLIDESTOP
+		dw PLY_AKG_EFFECT_PITCHUP
+		dw PLY_AKG_EFFECT_PITCHDOWN
+		dw PLY_AKG_EFFECT_PITCHSTOP
+		dw PLY_AKG_EFFECT_GLIDEWITHNOTE
+		dw PLY_AKG_EFFECT_GLIDE_READSPEED
+		dw PLY_AKG_EFFECT_LEGATO
+		dw PLY_AKG_EFFECT_FORCEINSTRUMENTSPEED
+		dw PLY_AKG_EFFECT_FORCEARPEGGIOSPEED
+		dw PLY_AKG_EFFECT_FORCEPITCHSPEED
+		PLY_AKG_EFFECT_RESETFULLVOLUME xor a
+		jr PLY_AKG_EFFECT_RESETVOLUME_AFTERREADING
+		PLY_AKG_EFFECT_RESET ld a,(de)
+		inc de
+		PLY_AKG_EFFECT_RESETVOLUME_AFTERREADING ld (iy-123),a
+		xor a
+		ld (iy-26),a
+		ld (iy-25),a
+		ld a,183
+		ld (iy-24),a
+		ld (iy-52),a
+		ld (iy-91),a
+		ld (iy-122),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_VOLUME ld a,(de)
+		inc de
+		ld (iy-123),a
+		ld (iy-122),183
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_ARPEGGIOTABLE ld a,(de)
+		inc de
+		ld l,a
+		ld h,0
+		add hl,hl
+		PLY_AKG_ARPEGGIOSTABLE ld bc,0
+		add hl,bc
+		ld c,(hl)
+		inc hl
+		ld b,(hl)
+		inc hl
+		ld a,(bc)
+		inc bc
+		ld (iy+61),a
+		ld (iy+62),a
+		ld (iy-87),c
+		ld (iy-86),b
+		ld (iy+63),c
+		ld (iy+64),b
+		ld (iy-91),55
+		xor a
+		ld (iy-68),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_ARPEGGIOTABLESTOP ld (iy-91),183
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_PITCHTABLE ld a,(de)
+		inc de
+		ld l,a
+		ld h,0
+		add hl,hl
+		PLY_AKG_PITCHESTABLE ld bc,0
+		add hl,bc
+		ld c,(hl)
+		inc hl
+		ld b,(hl)
+		inc hl
+		ld a,(bc)
+		inc bc
+		ld (iy+65),a
+		ld (iy+66),a
+		ld (iy-48),c
+		ld (iy-47),b
+		ld (iy+67),c
+		ld (iy+68),b
+		ld (iy-52),55
+		xor a
+		ld (iy-39),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_PITCHTABLESTOP ld (iy-52),183
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_VOLUMESLIDE ld a,(de)
+		inc de
+		ld (iy-118),a
+		ld a,(de)
+		inc de
+		ld (iy-117),a
+		ld (iy-122),55
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_VOLUMESLIDESTOP ld (iy-122),183
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_PITCHDOWN ld (iy-15),0
+		ld (iy-14),9
+		ld (iy-11),198
+		ld (iy-4),35
+		PLY_AKG_EFFECT_PITCHUPDOWN_COMMON ld (iy-24),55
+		ld (iy+1),0
+		ld a,(de)
+		inc de
+		ld (iy-10),a
+		ld a,(de)
+		inc de
+		ld (iy-18),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_PITCHUP ld (iy-15),237
+		ld (iy-14),66
+		ld (iy-11),214
+		ld (iy-4),43
+		jr PLY_AKG_EFFECT_PITCHUPDOWN_COMMON
+		PLY_AKG_EFFECT_PITCHSTOP ld (iy-24),183
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_GLIDEWITHNOTE ld a,(de)
+		inc de
+		ld (PLY_AKG_EFFECT_GLIDEWITHNOTESAVEDE+1),de
+		add a,a
+		ld l,a
+		ld h,0
+		ld bc,PLY_AKG_PERIODTABLE
+		add hl,bc
+		ld sp,hl
+		pop de
+		ld (iy+29),e
+		ld (iy+30),d
+		ld a,(ix+4)
+		add a,a
+		ld l,a
+		ld h,0
+		add hl,bc
+		ld sp,hl
+		pop hl
+		ld c,(iy-26)
+		ld b,(iy-25)
+		add hl,bc
+		or a
+		sbc hl,de
+		PLY_AKG_EFFECT_GLIDEWITHNOTESAVEDE ld de,0
+		jr c,PLY_AKG_EFFECT_GLIDE_PITCHDOWN
+		ld (iy+1),1
+		ld (iy-15),237
+		ld (iy-14),66
+		ld (iy-11),214
+		ld (iy-4),43
+		PLY_AKG_EFFECT_GLIDE_READSPEED
+		PLY_AKG_EFFECT_GLIDESPEED ld a,(de)
+		inc de
+		ld (iy-10),a
+		ld a,(de)
+		inc de
+		ld (iy-18),a
+		ld a,55
+		ld (iy-24),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_GLIDE_PITCHDOWN ld (iy+1),2
+		ld (iy-15),0
+		ld (iy-14),9
+		ld (iy-11),198
+		ld (iy-4),35
+		jr PLY_AKG_EFFECT_GLIDE_READSPEED
+		PLY_AKG_EFFECT_LEGATO ld a,(de)
+		inc de
+		ld (ix+4),a
+		ld a,183
+		ld (iy-24),a
+		xor a
+		ld (iy-26),a
+		ld (iy-25),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_FORCEINSTRUMENTSPEED ld a,(de)
+		inc de
+		ld (ix+27),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_FORCEARPEGGIOSPEED ld a,(de)
+		inc de
+		ld (iy+61),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EFFECT_FORCEPITCHSPEED ld a,(de)
+		inc de
+		ld (iy+65),a
+		jp PLY_AKG_CHANNEL_RE_EFFECTRETURN
+		PLY_AKG_EVENT db 0
+		PLY_AKG_PERIODTABLE dw 6778
+		dw 6398
+		dw 6039
+		dw 5700
+		dw 5380
+		dw 5078
+		dw 4793
+		dw 4524
+		dw 4270
+		dw 4030
+		dw 3804
+		dw 3591
+		dw 3389
+		dw 3199
+		dw 3019
+		dw 2850
+		dw 2690
+		dw 2539
+		dw 2397
+		dw 2262
+		dw 2135
+		dw 2015
+		dw 1902
+		dw 1795
+		dw 1695
+		dw 1599
+		dw 1510
+		dw 1425
+		dw 1345
+		dw 1270
+		dw 1198
+		dw 1131
+		dw 1068
+		dw 1008
+		dw 951
+		dw 898
+		dw 847
+		dw 800
+		dw 755
+		dw 712
+		dw 673
+		dw 635
+		dw 599
+		dw 566
+		dw 534
+		dw 504
+		dw 476
+		dw 449
+		dw 424
+		dw 400
+		dw 377
+		dw 356
+		dw 336
+		dw 317
+		dw 300
+		dw 283
+		dw 267
+		dw 252
+		dw 238
+		dw 224
+		dw 212
+		dw 200
+		dw 189
+		dw 178
+		dw 168
+		dw 159
+		dw 150
+		dw 141
+		dw 133
+		dw 126
+		dw 119
+		dw 112
+		dw 106
+		dw 100
+		dw 94
+		dw 89
+		dw 84
+		dw 79
+		dw 75
+		dw 71
+		dw 67
+		dw 63
+		dw 59
+		dw 56
+		dw 53
+		dw 50
+		dw 47
+		dw 45
+		dw 42
+		dw 40
+		dw 37
+		dw 35
+		dw 33
+		dw 31
+		dw 30
+		dw 28
+		dw 26
+		dw 25
+		dw 24
+		dw 22
+		dw 21
+		dw 20
+		dw 19
+		dw 18
+		dw 17
+		dw 16
+		dw 15
+		dw 14
+		dw 13
+		dw 12
+		dw 12
+		dw 11
+		dw 11
+		dw 10
+		dw 9
+		dw 9
+		dw 8
+		dw 8
+		dw 7
+		dw 7
+		dw 7
+		dw 6
+		dw 6
+		dw 6
+		dw 5
+		dw 5
+		dw 5
+		dw 4
+#line 14 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+SKIP_MUSIC:
+#line 5285 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+_PlayerHolder__leave:
+	ld sp, ix
+	pop ix
+	ret
+_InitMaryMusic:
+	push ix
+	ld ix, 0
+	add ix, sp
+	call _PlayerHolder
+#line 26 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+		push af
+		push bc
+		push de
+		push hl
+		push ix
+		push iy
+		exx
+		ex af, af'
+		push af
+		push bc
+		push de
+		push hl
+		ld hl, MARYLAMB_START
+		xor a
+		call PLY_AKG_INIT
+		pop hl
+		pop de
+		pop bc
+		pop af
+		ex af, af'
+		exx
+		pop iy
+		pop ix
+		pop hl
+		pop de
+		pop bc
+		pop af
+#line 65 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+_InitMaryMusic__leave:
+	ld sp, ix
+	pop ix
+	ret
+_InitNextlevelMusic:
+	push ix
+	ld ix, 0
+	add ix, sp
+	call _PlayerHolder
+#line 71 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+		push af
+		push bc
+		push de
+		push hl
+		push ix
+		push iy
+		exx
+		ex af, af'
+		push af
+		push bc
+		push de
+		push hl
+		ld hl, NEXTLEVEL_START
+		xor a
+		call PLY_AKG_INIT
+		pop hl
+		pop de
+		pop bc
+		pop af
+		ex af, af'
+		exx
+		pop iy
+		pop ix
+		pop hl
+		pop de
+		pop bc
+		pop af
+#line 110 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+_InitNextlevelMusic__leave:
+	ld sp, ix
+	pop ix
+	ret
+_InitGameoverMusic:
+	push ix
+	ld ix, 0
+	add ix, sp
+	call _PlayerHolder
+#line 116 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+		push af
+		push bc
+		push de
+		push hl
+		push ix
+		push iy
+		exx
+		ex af, af'
+		push af
+		push bc
+		push de
+		push hl
+		ld hl, GAMEOVER_START
+		xor a
+		call PLY_AKG_INIT
+		pop hl
+		pop de
+		pop bc
+		pop af
+		ex af, af'
+		exx
+		pop iy
+		pop ix
+		pop hl
+		pop de
+		pop bc
+		pop af
+#line 155 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+_InitGameoverMusic__leave:
+	ld sp, ix
+	pop ix
+	ret
+_PlayMusic:
+	push ix
+	ld ix, 0
+	add ix, sp
+#line 160 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+		ld a, 1
+		ld (_enableMusic), a
+#line 165 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+_PlayMusic__leave:
+	ld sp, ix
+	pop ix
+	ret
+_StopMusic:
+	push ix
+	ld ix, 0
+	add ix, sp
+#line 170 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+		push ix
+		ld a, 0
+		ld (_enableMusic), a
+		di
+		call PLY_AKG_STOP
+		ei
+		pop ix
+#line 182 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+_StopMusic__leave:
+	ld sp, ix
+	pop ix
+	ret
 _DoPause:
 	push ix
 	ld ix, 0
@@ -2853,7 +8230,7 @@ _DoPause__leave:
 	exx
 	ret
 _InstallHandler:
-#line 15 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/InterruptInstaller.zxbas"
+#line 16 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/InterruptInstaller.zxbas"
 		ld hl, INT_HANDLER
 		ld (_intHandlerAddress), hl
 		di
@@ -2863,14 +8240,41 @@ _InstallHandler:
 		ei
 		ret
 INT_HANDLER:
+		push af
 		push hl
 		ld hl, (_counter)
 		inc hl
 		ld (_counter), hl
+		ld a, (_enableMusic)
+		and a
+		jp z, INT_NO_MUSIC
+		push bc
+		push de
+		push ix
+		push iy
+		exx
+		ex af, af'
+		push af
+		push bc
+		push de
+		push hl
+		call PLY_AKG_PLAY
 		pop hl
+		pop de
+		pop bc
+		pop af
+		ex af, af'
+		exx
+		pop iy
+		pop ix
+		pop de
+		pop bc
+INT_NO_MUSIC:
+		pop hl
+		pop af
 		ei
 		ret
-#line 38 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/InterruptInstaller.zxbas"
+#line 83 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/InterruptInstaller.zxbas"
 _InstallHandler__leave:
 	ret
 _MultiKeys:
@@ -2883,7 +8287,7 @@ _MultiKeys:
 _MultiKeys__leave:
 	ret
 _InitFastRnd:
-#line 3 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/FastRND.zxbas"
+#line 3 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
 		PROC
 		LOCAL NOT_EMPTY_L, TEST_H, NOT_EMPTY_H, LOAD_SEED
 		ld hl, ($5C78)
@@ -2911,11 +8315,11 @@ NOT_EMPTY_H:
 LOAD_SEED:
 		ld      (FAST_RAND + 1),hl
 		ENDP
-#line 33 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/FastRND.zxbas"
+#line 33 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
 _InitFastRnd__leave:
 	ret
 _FastRnd:
-#line 37 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/FastRND.zxbas"
+#line 37 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
 FAST_RAND:
 		ld hl,$FFFF
 		ld a,r
@@ -2925,11 +8329,11 @@ FAST_RAND:
 		add a,l
 		xor h
 		ld (FAST_RAND + 1),hl
-#line 52 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/FastRND.zxbas"
+#line 52 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
 _FastRnd__leave:
 	ret
 _PlayFX:
-#line 2 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/BeepFX.zxbas"
+#line 2 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/BeepFX.zxbas"
 play:
 		ld hl,sfxData
 		di
@@ -3082,16 +8486,16 @@ SoundEffect0Data:
 		defb 1
 		defw 10,500,550,122,2688
 		defb 0
-#line 197 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/BeepFX.zxbas"
+#line 197 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/BeepFX.zxbas"
 _PlayFX__leave:
 	ret
 _InitGFXLib:
 	push ix
 	ld ix, 0
 	add ix, sp
-#line 1660 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1660 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		call INIT_GFX_LIB
-#line 1666 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1666 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _InitGFXLib__leave:
 	ld sp, ix
 	pop ix
@@ -3100,25 +8504,25 @@ _RenderFrame:
 	push ix
 	ld ix, 0
 	add ix, sp
-#line 1680 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1680 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		call RENDER_FRAME
-#line 1686 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1686 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _RenderFrame__leave:
 	ld sp, ix
 	pop ix
 	ret
 _Create2x2Sprite:
-#line 1765 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1765 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		push ix
 		push iy
 		call CREATE_2x2_SPRITE
 		pop iy
 		pop ix
-#line 1775 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1775 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _Create2x2Sprite__leave:
 	ret
 _Draw2x2Sprite:
-#line 1779 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1779 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -3133,25 +8537,25 @@ _Draw2x2Sprite:
 		call DRAW_2x2_SPRITE
 		pop iy
 		pop ix
-#line 1798 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1798 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _Draw2x2Sprite__leave:
 	ret
 _CancelOps:
-#line 1802 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1802 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		xor a
 		ld (CURRENT_DRAW_COUNT), a
 		ld (CURRENT_CLEAR_COUNT), a
-#line 1808 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1808 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _CancelOps__leave:
 	ret
 _SetTileset:
-#line 1827 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1827 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		call SET_TILEMAP
-#line 1831 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1831 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _SetTileset__leave:
 	ret
 _SetTile:
-#line 1835 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1835 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -3162,58 +8566,8 @@ _SetTile:
 		push hl
 		exx
 		call SET_TILE
-#line 1848 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep/ZxBasicFiles/GuSprites.zxbas"
+#line 1848 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _SetTile__leave:
-	ret
-_PlayMusic:
-	push ix
-	ld ix, 0
-	add ix, sp
-	ld a, (_musicPos)
-	ld l, a
-	ld h, 0
-	dec hl
-	push hl
-	ld hl, _music
-	call __ARRAY
-	ld a, (hl)
-	sub 255
-	jp z, __LABEL23
-	ld a, (_musicPos)
-	ld l, a
-	ld h, 0
-	dec hl
-	push hl
-	ld hl, _music
-	call __ARRAY
-	ld a, (hl)
-	call __U8TOFREG
-	push bc
-	push de
-	push af
-	ld a, 07Dh
-	ld de, 0D723h
-	ld bc, 03D0Ah
-	call BEEP
-	jp __LABEL22
-__LABEL23:
-	ld de, 2
-	ld hl, (_counter)
-	or a
-	sbc hl, de
-	jp c, __LABEL23
-__LABEL22:
-	ld hl, _musicPos
-	inc (hl)
-	ld a, 39
-	ld hl, (_musicPos - 1)
-	cp h
-	jp nc, _PlayMusic__leave
-	ld a, 1
-	ld (_musicPos), a
-_PlayMusic__leave:
-	ld sp, ix
-	pop ix
 	ret
 _ShowIntro:
 	push ix
@@ -3263,8 +8617,8 @@ _ShowIntro:
 	ld a, 38
 	call _SetTile
 	ld (ix-2), 0
-	jp __LABEL27
-__LABEL30:
+	jp __LABEL21
+__LABEL24:
 	ld a, (ix-2)
 	add a, a
 	inc a
@@ -3281,8 +8635,8 @@ __LABEL30:
 	ld (ix-4), l
 	ld (ix-3), h
 	ld (ix-1), 0
-	jp __LABEL32
-__LABEL35:
+	jp __LABEL26
+__LABEL29:
 	ld l, (ix-4)
 	ld h, (ix-3)
 	push hl
@@ -3290,18 +8644,18 @@ __LABEL35:
 	ld b, a
 	ld hl, 32768
 	or a
-	jr z, __LABEL377
-__LABEL376:
+	jr z, __LABEL373
+__LABEL372:
 	srl h
 	rr l
-	djnz __LABEL376
-__LABEL377:
+	djnz __LABEL372
+__LABEL373:
 	ex de, hl
 	pop hl
 	call __BAND16
 	ld a, h
 	or l
-	jp z, __LABEL36
+	jp z, __LABEL30
 	ld a, (ix-2)
 	add a, (ix+5)
 	ld l, a
@@ -3314,12 +8668,12 @@ __LABEL377:
 	push hl
 	ld a, 47
 	call _SetTile
-__LABEL36:
+__LABEL30:
 	inc (ix-1)
-__LABEL32:
+__LABEL26:
 	ld a, 15
 	cp (ix-1)
-	jp nc, __LABEL35
+	jp nc, __LABEL29
 	ld a, (ix-2)
 	add a, a
 	add a, 2
@@ -3336,8 +8690,8 @@ __LABEL32:
 	ld (ix-4), l
 	ld (ix-3), h
 	ld (ix-1), 0
-	jp __LABEL39
-__LABEL42:
+	jp __LABEL33
+__LABEL36:
 	ld l, (ix-4)
 	ld h, (ix-3)
 	push hl
@@ -3345,18 +8699,18 @@ __LABEL42:
 	ld b, a
 	ld hl, 32768
 	or a
-	jr z, __LABEL379
-__LABEL378:
+	jr z, __LABEL375
+__LABEL374:
 	srl h
 	rr l
-	djnz __LABEL378
-__LABEL379:
+	djnz __LABEL374
+__LABEL375:
 	ex de, hl
 	pop hl
 	call __BAND16
 	ld a, h
 	or l
-	jp z, __LABEL43
+	jp z, __LABEL37
 	ld a, (ix-2)
 	add a, (ix+5)
 	ld l, a
@@ -3370,39 +8724,39 @@ __LABEL379:
 	push hl
 	ld a, 47
 	call _SetTile
-__LABEL43:
+__LABEL37:
 	inc (ix-1)
-__LABEL39:
+__LABEL33:
 	ld a, 15
 	cp (ix-1)
-	jp nc, __LABEL42
+	jp nc, __LABEL36
 	inc (ix-2)
-__LABEL27:
+__LABEL21:
 	ld a, 15
 	cp (ix-2)
-	jp nc, __LABEL30
+	jp nc, __LABEL24
 	ld a, 23
 	push af
 	xor a
 	call PRINT_AT
 	ld a, 1
 	call BOLD_TMP
-	ld hl, __LABEL46
+	ld hl, __LABEL40
 	xor a
 	call __PRINTSTR
 	ld a, 2
 	call INK_TMP
-	ld hl, __LABEL47
+	ld hl, __LABEL41
 	xor a
 	call __PRINTSTR
 	ld a, 3
 	call INK_TMP
-	ld hl, __LABEL48
+	ld hl, __LABEL42
 	xor a
 	call __PRINTSTR
 	ld a, 1
 	call INK_TMP
-	ld hl, __LABEL49
+	ld hl, __LABEL43
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -3410,7 +8764,7 @@ __LABEL27:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL50
+	ld hl, __LABEL44
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3418,7 +8772,7 @@ __LABEL27:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL51
+	ld hl, __LABEL45
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3426,7 +8780,7 @@ __LABEL27:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL52
+	ld hl, __LABEL46
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3434,7 +8788,7 @@ __LABEL27:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL53
+	ld hl, __LABEL47
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3442,7 +8796,7 @@ __LABEL27:
 	push af
 	ld a, 24
 	call PRINT_AT
-	ld hl, __LABEL54
+	ld hl, __LABEL48
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL
@@ -3468,7 +8822,7 @@ _PadString:
 	ld (ix-1), a
 	sub (ix+9)
 	ccf
-	jp nc, __LABEL56
+	jp nc, __LABEL50
 	ld l, (ix+4)
 	ld h, (ix+5)
 	push hl
@@ -3481,7 +8835,7 @@ _PadString:
 	xor a
 	call __STRSLICE
 	jp _PadString__leave
-__LABEL56:
+__LABEL50:
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ld d, h
@@ -3489,8 +8843,8 @@ __LABEL56:
 	ld bc, -4
 	call __PSTORE_STR
 	ld (ix-2), 1
-	jp __LABEL57
-__LABEL60:
+	jp __LABEL51
+__LABEL54:
 	ld l, (ix+6)
 	ld h, (ix+7)
 	push hl
@@ -3504,12 +8858,12 @@ __LABEL60:
 	ld bc, -4
 	call __PSTORE_STR2
 	inc (ix-2)
-__LABEL57:
+__LABEL51:
 	ld h, (ix-2)
 	ld a, (ix+9)
 	sub (ix-1)
 	cp h
-	jp nc, __LABEL60
+	jp nc, __LABEL54
 	ld l, (ix-4)
 	ld h, (ix-3)
 	call __LOADSTR
@@ -3544,7 +8898,7 @@ _PrintScore:
 	push hl
 	ld a, 5
 	push af
-	ld hl, __LABEL62
+	ld hl, __LABEL56
 	call __LOADSTR
 	push hl
 	ld l, (ix+4)
@@ -3685,7 +9039,7 @@ _CreateBackground:
 	ld bc, -3
 	add hl, bc
 	ex de, hl
-	ld hl, __LABEL380
+	ld hl, __LABEL376
 	ld bc, 1
 	ldir
 	push ix
@@ -3693,15 +9047,15 @@ _CreateBackground:
 	ld bc, -4
 	add hl, bc
 	ex de, hl
-	ld hl, __LABEL381
+	ld hl, __LABEL377
 	ld bc, 1
 	ldir
 	ld (ix-2), 0
-	jp __LABEL63
-__LABEL66:
+	jp __LABEL57
+__LABEL60:
 	ld (ix-1), 0
-	jp __LABEL68
-__LABEL71:
+	jp __LABEL62
+__LABEL65:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3714,21 +9068,21 @@ __LABEL71:
 	xor a
 	call _SetTile
 	inc (ix-1)
-__LABEL68:
+__LABEL62:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL71
+	jp nc, __LABEL65
 	inc (ix-2)
-__LABEL63:
+__LABEL57:
 	ld a, 7
 	cp (ix-2)
-	jp nc, __LABEL66
+	jp nc, __LABEL60
 	ld (ix-2), 8
-	jp __LABEL73
-__LABEL76:
+	jp __LABEL67
+__LABEL70:
 	ld (ix-1), 0
-	jp __LABEL78
-__LABEL81:
+	jp __LABEL72
+__LABEL75:
 	ld a, (ix-1)
 	cp 10
 	sbc a, a
@@ -3737,7 +9091,7 @@ __LABEL81:
 	cp (ix-1)
 	sbc a, a
 	or d
-	jp z, __LABEL83
+	jp z, __LABEL77
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3749,8 +9103,8 @@ __LABEL81:
 	push hl
 	ld a, 27
 	call _SetTile
-	jp __LABEL82
-__LABEL83:
+	jp __LABEL76
+__LABEL77:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3762,33 +9116,33 @@ __LABEL83:
 	push hl
 	xor a
 	call _SetTile
-__LABEL82:
+__LABEL76:
 	inc (ix-1)
-__LABEL78:
+__LABEL72:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL81
+	jp nc, __LABEL75
 	inc (ix-2)
-__LABEL73:
+__LABEL67:
 	ld a, 13
 	cp (ix-2)
-	jp nc, __LABEL76
+	jp nc, __LABEL70
 	ld (ix-1), 0
-	jp __LABEL85
-__LABEL88:
+	jp __LABEL79
+__LABEL82:
 	ld a, (ix-1)
 	ld h, 5
 	call __MODU8_FAST
 	or a
-	jp nz, __LABEL90
+	jp nz, __LABEL84
 	ld a, (ix-4)
 	sub 23
-	jp nz, __LABEL92
+	jp nz, __LABEL86
 	ld (ix-4), 22
-	jp __LABEL93
-__LABEL92:
+	jp __LABEL87
+__LABEL86:
 	ld (ix-4), 23
-__LABEL93:
+__LABEL87:
 	ld a, (ix-4)
 	push af
 	ld a, 25
@@ -3809,8 +9163,8 @@ __LABEL93:
 	push af
 	call _DrawTerrainStack
 	dec (ix-3)
-	jp __LABEL89
-__LABEL90:
+	jp __LABEL83
+__LABEL84:
 	ld a, (ix-4)
 	push af
 	ld a, 24
@@ -3830,12 +9184,12 @@ __LABEL90:
 	sub (ix-1)
 	push af
 	call _DrawTerrainStack
-__LABEL89:
+__LABEL83:
 	inc (ix-1)
-__LABEL85:
+__LABEL79:
 	ld a, 15
 	cp (ix-1)
-	jp nc, __LABEL88
+	jp nc, __LABEL82
 	ld hl, 5
 	push hl
 	ld hl, 15
@@ -3892,8 +9246,8 @@ __LABEL85:
 	push af
 	call _DrawTree
 	ld (ix-2), 8
-	jp __LABEL94
-__LABEL97:
+	jp __LABEL88
+__LABEL91:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3915,16 +9269,16 @@ __LABEL97:
 	ld a, 4
 	call _SetTile
 	inc (ix-2)
-__LABEL94:
+__LABEL88:
 	ld a, 12
 	cp (ix-2)
-	jp nc, __LABEL97
+	jp nc, __LABEL91
 	ld (ix-1), 0
-	jp __LABEL99
-__LABEL102:
+	jp __LABEL93
+__LABEL96:
 	ld (ix-2), 14
-	jp __LABEL104
-__LABEL107:
+	jp __LABEL98
+__LABEL101:
 	ld a, (ix-2)
 	ld l, a
 	ld h, 0
@@ -3937,18 +9291,18 @@ __LABEL107:
 	xor a
 	call _SetTile
 	inc (ix-2)
-__LABEL104:
+__LABEL98:
 	ld a, 23
 	cp (ix-2)
-	jp nc, __LABEL107
+	jp nc, __LABEL101
 	inc (ix-1)
-__LABEL99:
+__LABEL93:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL102
+	jp nc, __LABEL96
 	ld (ix-1), 0
-	jp __LABEL109
-__LABEL112:
+	jp __LABEL103
+__LABEL106:
 	ld hl, 13
 	push hl
 	ld a, (ix-1)
@@ -3959,13 +9313,13 @@ __LABEL112:
 	ld a, 3
 	call _SetTile
 	inc (ix-1)
-__LABEL109:
+__LABEL103:
 	ld a, 31
 	cp (ix-1)
-	jp nc, __LABEL112
+	jp nc, __LABEL106
 	ld (ix-1), 14
-	jp __LABEL114
-__LABEL117:
+	jp __LABEL108
+__LABEL111:
 	ld hl, 13
 	push hl
 	ld a, (ix-1)
@@ -3976,10 +9330,10 @@ __LABEL117:
 	ld a, 5
 	call _SetTile
 	inc (ix-1)
-__LABEL114:
+__LABEL108:
 	ld a, 17
 	cp (ix-1)
-	jp nc, __LABEL117
+	jp nc, __LABEL111
 	ld a, 19
 	push af
 	ld a, 4
@@ -4438,7 +9792,7 @@ _DrawTerrainStack:
 	cp (ix+5)
 	sbc a, a
 	or d
-	jp z, __LABEL119
+	jp z, __LABEL113
 	ld a, (ix+7)
 	add a, 2
 	ld l, a
@@ -4452,7 +9806,7 @@ _DrawTerrainStack:
 	ld a, 27
 	call _SetTile
 	jp _DrawTerrainStack__leave
-__LABEL119:
+__LABEL113:
 	ld a, (ix+7)
 	add a, 2
 	ld l, a
@@ -4484,8 +9838,8 @@ _UpdateSheeps:
 	push hl
 	inc sp
 	ld (ix-1), 1
-	jp __LABEL121
-__LABEL124:
+	jp __LABEL115
+__LABEL118:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -4500,15 +9854,15 @@ __LABEL124:
 	ld a, (ix-1)
 	push af
 	call _UpdateSheep
-	jp __LABEL125
-__LABEL126:
+	jp __LABEL119
+__LABEL120:
 	jp _UpdateSheeps__leave
-__LABEL125:
+__LABEL119:
 	inc (ix-1)
-__LABEL121:
+__LABEL115:
 	ld a, 8
 	cp (ix-1)
-	jp nc, __LABEL124
+	jp nc, __LABEL118
 _UpdateSheeps__leave:
 	ld sp, ix
 	pop ix
@@ -4523,42 +9877,42 @@ _CanMoveTo:
 	ld hl, 27
 	or a
 	sbc hl, de
-	jp nc, __LABEL129
+	jp nc, __LABEL123
 	ld a, 1
 	jp _CanMoveTo__leave
-__LABEL129:
+__LABEL123:
 	ld l, (ix+6)
 	ld h, (ix+7)
 	ld de, 23
 	or a
 	sbc hl, de
-	jp nc, __LABEL131
+	jp nc, __LABEL125
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ex de, hl
 	ld hl, 21
 	or a
 	sbc hl, de
-	jp nc, __LABEL133
+	jp nc, __LABEL127
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ld de, 39
 	or a
 	sbc hl, de
-	jp nc, __LABEL133
+	jp nc, __LABEL127
 	ld a, 1
 	jp _CanMoveTo__leave
-__LABEL133:
+__LABEL127:
 	xor a
 	jp _CanMoveTo__leave
-__LABEL131:
+__LABEL125:
 	ld l, (ix+4)
 	ld h, (ix+5)
 	ex de, hl
 	ld hl, 27
 	or a
 	sbc hl, de
-	jp nc, __LABEL137
+	jp nc, __LABEL131
 	ld l, (ix+4)
 	ld h, (ix+5)
 	inc hl
@@ -4573,10 +9927,10 @@ __LABEL131:
 	pop hl
 	or a
 	sbc hl, de
-	jp nc, __LABEL137
+	jp nc, __LABEL131
 	ld a, 1
 	jp _CanMoveTo__leave
-__LABEL137:
+__LABEL131:
 	xor a
 _CanMoveTo__leave:
 	ld sp, ix
@@ -4671,11 +10025,11 @@ _UpdateSheep:
 	sbc a, a
 	ld hl, (_spaceDown - 1)
 	or a
-	jr z, __LABEL382
+	jr z, __LABEL378
 	ld a, h
-__LABEL382:
+__LABEL378:
 	or a
-	jp z, __LABEL141
+	jp z, __LABEL135
 	ld h, (ix-7)
 	ld a, (_girlX)
 	sub 3
@@ -4693,11 +10047,11 @@ __LABEL382:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL383
+	jr z, __LABEL379
 	ld a, h
-__LABEL383:
+__LABEL379:
 	or a
-	jp z, __LABEL141
+	jp z, __LABEL135
 	ld a, (ix-8)
 	push af
 	ld a, (_girlY)
@@ -4715,20 +10069,20 @@ __LABEL383:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL384
+	jr z, __LABEL380
 	ld a, h
-__LABEL384:
+__LABEL380:
 	or a
-	jp z, __LABEL141
+	jp z, __LABEL135
 	ld a, (ix+5)
 	ld (_trappedSheep), a
-__LABEL141:
+__LABEL135:
 	ld a, (_trappedSheep)
 	sub (ix+5)
-	jp nz, __LABEL146
+	jp nz, __LABEL140
 	ld a, (_spaceDown)
 	or a
-	jp nz, __LABEL148
+	jp nz, __LABEL142
 	xor a
 	ld (_trappedSheep), a
 	call _FastRnd
@@ -4747,28 +10101,28 @@ __LABEL141:
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL151
+	jp z, __LABEL145
 	dec (ix-3)
-__LABEL151:
+__LABEL145:
 	ld a, (ix-4)
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL153
+	jp z, __LABEL147
 	dec (ix-4)
-__LABEL153:
+__LABEL147:
 	ld a, (ix-8)
 	cp 26
-	jp nc, __LABEL147
+	jp nc, __LABEL141
 	ld hl, (_score)
 	ld de, 10
 	add hl, de
 	ld (_score), hl
 	ld a, 1
 	ld (_updateScore), a
-__LABEL155:
-	jp __LABEL147
-__LABEL148:
+__LABEL149:
+	jp __LABEL141
+__LABEL142:
 	ld a, (_girlX)
 	add a, a
 	ld (ix-1), a
@@ -4779,25 +10133,25 @@ __LABEL148:
 	ld h, a
 	ld a, 85
 	cp h
-	jp nc, __LABEL157
+	jp nc, __LABEL151
 	ld (ix-2), 85
-__LABEL157:
+__LABEL151:
 	ld a, (ix-6)
 	sub 2
-	jp nz, __LABEL158
+	jp nz, __LABEL152
 	ld (ix-6), 0
-	jp __LABEL159
-__LABEL158:
+	jp __LABEL153
+__LABEL152:
 	ld (ix-6), 2
-__LABEL159:
+__LABEL153:
 	ld a, (ix-5)
 	or a
-	jp nz, __LABEL160
+	jp nz, __LABEL154
 	ld (ix-5), 1
-	jp __LABEL161
-__LABEL160:
+	jp __LABEL155
+__LABEL154:
 	ld (ix-5), 0
-__LABEL161:
+__LABEL155:
 	ld a, (ix-5)
 	push af
 	ld hl, 5
@@ -4857,12 +10211,12 @@ __LABEL161:
 	add a, (ix-6)
 	call _Draw2x2Sprite
 	jp _UpdateSheep__leave
-__LABEL149:
-	jp __LABEL147
-__LABEL146:
+__LABEL143:
+	jp __LABEL141
+__LABEL140:
 	call _FastRnd
 	cp 15
-	jp nc, __LABEL163
+	jp nc, __LABEL157
 	call _FastRnd
 	and 7
 	ld h, a
@@ -4879,19 +10233,19 @@ __LABEL146:
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL165
+	jp z, __LABEL159
 	dec (ix-3)
-__LABEL165:
+__LABEL159:
 	ld a, (ix-4)
 	ld h, 1
 	call __LTI8
 	or a
-	jp z, __LABEL163
+	jp z, __LABEL157
 	dec (ix-4)
-__LABEL163:
+__LABEL157:
 	ld a, (ix-8)
 	cp 27
-	jp nc, __LABEL168
+	jp nc, __LABEL162
 	ld h, (ix-7)
 	ld a, (_girlX)
 	sub 5
@@ -4909,9 +10263,9 @@ __LABEL163:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL385
+	jr z, __LABEL381
 	ld a, h
-__LABEL385:
+__LABEL381:
 	push af
 	ld h, (ix-8)
 	ld a, (_girlY)
@@ -4921,9 +10275,9 @@ __LABEL385:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL386
+	jr z, __LABEL382
 	ld a, h
-__LABEL386:
+__LABEL382:
 	push af
 	ld a, (ix-8)
 	push af
@@ -4936,25 +10290,25 @@ __LABEL386:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL387
+	jr z, __LABEL383
 	ld a, h
-__LABEL387:
+__LABEL383:
 	or a
-	jp z, __LABEL147
+	jp z, __LABEL141
 	ld (ix-4), 255
-__LABEL171:
-	jp __LABEL147
-__LABEL168:
+__LABEL165:
+	jp __LABEL141
+__LABEL162:
 	cp 29
-	jp nc, __LABEL172
+	jp nc, __LABEL166
 	ld (ix-4), 1
-	jp __LABEL147
-__LABEL172:
+	jp __LABEL141
+__LABEL166:
 	ld h, (ix-7)
 	ld a, (_girlX)
 	sub 5
 	cp h
-	jp nc, __LABEL147
+	jp nc, __LABEL141
 	ld a, (ix-7)
 	push af
 	ld a, (_girlX)
@@ -4962,12 +10316,12 @@ __LABEL172:
 	ld h, a
 	pop af
 	cp h
-	jp nc, __LABEL147
+	jp nc, __LABEL141
 	ld h, (ix-8)
 	ld a, (_girlY)
 	sub 5
 	cp h
-	jp nc, __LABEL147
+	jp nc, __LABEL141
 	ld a, (ix-8)
 	push af
 	ld a, (_girlY)
@@ -4975,16 +10329,16 @@ __LABEL172:
 	ld h, a
 	pop af
 	cp h
-	jp nc, __LABEL147
+	jp nc, __LABEL141
 	ld a, (ix-7)
 	ld hl, (_girlX - 1)
 	cp h
-	jp nc, __LABEL182
+	jp nc, __LABEL176
 	ld (ix-3), 254
-	jp __LABEL147
-__LABEL182:
+	jp __LABEL141
+__LABEL176:
 	ld (ix-3), 2
-__LABEL147:
+__LABEL141:
 	ld a, (ix-1)
 	add a, (ix-3)
 	ld (ix-7), a
@@ -4999,7 +10353,7 @@ __LABEL147:
 	cp (ix-7)
 	sbc a, a
 	or d
-	jp z, __LABEL185
+	jp z, __LABEL179
 	ld a, (ix-3)
 	neg
 	ld (ix-3), a
@@ -5007,7 +10361,7 @@ __LABEL147:
 	add a, (ix-3)
 	ld (ix-7), a
 	ld (ix-9), 1
-__LABEL185:
+__LABEL179:
 	ld a, (ix-8)
 	cp 28
 	sbc a, a
@@ -5016,7 +10370,7 @@ __LABEL185:
 	cp (ix-8)
 	sbc a, a
 	or d
-	jp z, __LABEL187
+	jp z, __LABEL181
 	ld a, (ix-4)
 	neg
 	ld (ix-4), a
@@ -5024,7 +10378,7 @@ __LABEL185:
 	add a, (ix-4)
 	ld (ix-8), a
 	ld (ix-10), 1
-__LABEL187:
+__LABEL181:
 	ld a, (ix-2)
 	srl a
 	ld l, a
@@ -5037,10 +10391,10 @@ __LABEL187:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL189
+	jp nz, __LABEL183
 	ld a, (ix-9)
 	or a
-	jp nz, __LABEL189
+	jp nz, __LABEL183
 	ld a, (ix-3)
 	neg
 	ld (ix-3), a
@@ -5059,11 +10413,11 @@ __LABEL187:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL189
+	jp nz, __LABEL183
 	ld (ix-3), 0
 	ld a, (ix-1)
 	ld (ix-7), a
-__LABEL189:
+__LABEL183:
 	ld a, (ix-8)
 	srl a
 	ld l, a
@@ -5076,10 +10430,10 @@ __LABEL189:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL195
+	jp nz, __LABEL189
 	ld a, (ix-10)
 	or a
-	jp nz, __LABEL195
+	jp nz, __LABEL189
 	ld a, (ix-4)
 	neg
 	ld (ix-4), a
@@ -5097,35 +10451,35 @@ __LABEL189:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL195
+	jp nz, __LABEL189
 	ld (ix-4), 0
 	ld a, (ix-2)
 	ld (ix-8), a
-__LABEL195:
+__LABEL189:
 	ld a, (ix-3)
 	ld h, a
 	xor a
 	call __LTI8
 	or a
-	jp z, __LABEL200
+	jp z, __LABEL194
 	ld (ix-6), 0
-	jp __LABEL201
-__LABEL200:
+	jp __LABEL195
+__LABEL194:
 	ld a, (ix-3)
 	ld h, 0
 	call __LTI8
 	or a
-	jp z, __LABEL201
+	jp z, __LABEL195
 	ld (ix-6), 2
-__LABEL201:
+__LABEL195:
 	ld a, (ix-5)
 	or a
-	jp nz, __LABEL204
+	jp nz, __LABEL198
 	ld (ix-5), 1
-	jp __LABEL205
-__LABEL204:
+	jp __LABEL199
+__LABEL198:
 	ld (ix-5), 0
-__LABEL205:
+__LABEL199:
 	ld a, (ix-7)
 	push af
 	ld hl, 1
@@ -5212,14 +10566,14 @@ __LABEL205:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL388
+	jr z, __LABEL384
 	ld a, h
-__LABEL388:
+__LABEL384:
 	or a
-	jp z, __LABEL207
+	jp z, __LABEL201
 	ld a, 1
 	ld (_sheepOnGate), a
-__LABEL207:
+__LABEL201:
 	ld a, (ix-8)
 	push af
 	ld a, (ix-7)
@@ -5316,29 +10670,29 @@ _UpdateGirl:
 	ld hl, 57090
 	call _MultiKeys
 	or a
-	jp z, __LABEL214
+	jp z, __LABEL208
 	ld (ix-1), 255
-	jp __LABEL215
-__LABEL214:
+	jp __LABEL209
+__LABEL208:
 	ld hl, 57089
 	call _MultiKeys
 	or a
-	jp z, __LABEL215
+	jp z, __LABEL209
 	ld (ix-1), 1
-__LABEL215:
+__LABEL209:
 	ld hl, 64257
 	call _MultiKeys
 	or a
-	jp z, __LABEL218
+	jp z, __LABEL212
 	ld (ix-2), 255
-	jp __LABEL219
-__LABEL218:
+	jp __LABEL213
+__LABEL212:
 	ld hl, 64769
 	call _MultiKeys
 	or a
-	jp z, __LABEL219
+	jp z, __LABEL213
 	ld (ix-2), 1
-__LABEL219:
+__LABEL213:
 	ld a, (_girlX)
 	add a, (ix-1)
 	ld (ix-3), a
@@ -5354,11 +10708,11 @@ __LABEL219:
 	call __LTI8
 	pop de
 	or d
-	jp z, __LABEL223
+	jp z, __LABEL217
 	ld (ix-1), 0
 	ld a, (_girlX)
 	ld (ix-3), a
-__LABEL223:
+__LABEL217:
 	ld a, (ix-4)
 	ld h, 14
 	call __LTI8
@@ -5368,10 +10722,10 @@ __LABEL223:
 	call __LTI8
 	pop de
 	or d
-	jp z, __LABEL225
+	jp z, __LABEL219
 	ld a, (_girlY)
 	ld (ix-4), a
-__LABEL225:
+__LABEL219:
 	ld a, (ix-4)
 	ld l, a
 	add a, a
@@ -5386,31 +10740,31 @@ __LABEL225:
 	push hl
 	call _CanMoveTo
 	or a
-	jp nz, __LABEL227
+	jp nz, __LABEL221
 	ld a, (_girlX)
 	ld (ix-3), a
 	ld a, (_girlY)
 	ld (ix-4), a
-__LABEL227:
+__LABEL221:
 	ld a, (ix-1)
 	ld (_girlVx), a
 	ld h, a
 	xor a
 	call __LTI8
 	or a
-	jp z, __LABEL228
+	jp z, __LABEL222
 	xor a
 	ld (_girlDir), a
-	jp __LABEL229
-__LABEL228:
+	jp __LABEL223
+__LABEL222:
 	ld a, (ix-1)
 	ld h, 0
 	call __LTI8
 	or a
-	jp z, __LABEL229
+	jp z, __LABEL223
 	ld a, 2
 	ld (_girlDir), a
-__LABEL229:
+__LABEL223:
 	ld a, (ix-3)
 	ld hl, (_girlX - 1)
 	sub h
@@ -5419,22 +10773,22 @@ __LABEL229:
 	ld hl, (_girlY - 1)
 	sub h
 	or d
-	jp z, __LABEL233
+	jp z, __LABEL227
 	ld a, (_girlFrm)
 	or a
-	jp nz, __LABEL234
+	jp nz, __LABEL228
 	ld a, 1
 	ld (_girlFrm), a
-	jp __LABEL235
-__LABEL234:
+	jp __LABEL229
+__LABEL228:
 	xor a
 	ld (_girlFrm), a
-__LABEL235:
+__LABEL229:
 	ld a, (ix-3)
 	ld (_girlX), a
 	ld a, (ix-4)
 	ld (_girlY), a
-__LABEL233:
+__LABEL227:
 	ld a, (_girlY)
 	push af
 	ld a, (_girlX)
@@ -5456,10 +10810,10 @@ _CheckGate:
 	xor a
 	ld hl, (_sheepOnGate - 1)
 	cp h
-	jp nc, __LABEL237
+	jp nc, __LABEL231
 	ld (_sheepOnGate), a
 	jp _CheckGate__leave
-__LABEL237:
+__LABEL231:
 	ld a, (_girlVx)
 	or a
 	jp z, _CheckGate__leave
@@ -5487,10 +10841,10 @@ __LABEL237:
 	ld hl, (_girlVx - 1)
 	call __LTI8
 	or a
-	jp z, __LABEL246
+	jp z, __LABEL240
 	call _OpenGate
 	jp _CheckGate__leave
-__LABEL246:
+__LABEL240:
 	call _CloseGate
 _CheckGate__leave:
 	ld sp, ix
@@ -5504,7 +10858,7 @@ _GetSunY:
 	push hl
 	ld a, (ix+5)
 	cp 16
-	jp nc, __LABEL248
+	jp nc, __LABEL242
 	dec a
 	ld h, 5
 	call __DIVU8_FAST
@@ -5512,15 +10866,15 @@ _GetSunY:
 	ld a, 3
 	sub h
 	ld (ix-1), a
-	jp __LABEL249
-__LABEL248:
+	jp __LABEL243
+__LABEL242:
 	sub 16
 	ld h, 5
 	call __DIVU8_FAST
 	ld (ix-2), a
 	inc a
 	ld (ix-1), a
-__LABEL249:
+__LABEL243:
 	ld a, (ix-1)
 _GetSunY__leave:
 	ld sp, ix
@@ -5538,8 +10892,8 @@ _UpdateWolves:
 	push hl
 	inc sp
 	ld (ix-1), 1
-	jp __LABEL250
-__LABEL253:
+	jp __LABEL244
+__LABEL247:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -5554,15 +10908,15 @@ __LABEL253:
 	ld a, (ix-1)
 	push af
 	call _UpdateWolf
-	jp __LABEL254
-__LABEL255:
+	jp __LABEL248
+__LABEL249:
 	jp _UpdateWolves__leave
-__LABEL254:
+__LABEL248:
 	inc (ix-1)
-__LABEL250:
+__LABEL244:
 	ld a, 3
 	cp (ix-1)
-	jp nc, __LABEL253
+	jp nc, __LABEL247
 _UpdateWolves__leave:
 	ld sp, ix
 	pop ix
@@ -5690,31 +11044,31 @@ _UpdateWolf:
 	ld (ix-4), a
 	ld a, (ix-3)
 	or a
-	jp nz, __LABEL257
+	jp nz, __LABEL251
 	inc (ix-1)
 	ld h, (ix-1)
 	ld a, 58
 	call __LTI8
 	or a
-	jp z, __LABEL258
+	jp z, __LABEL252
 	ld (ix-3), 2
 	ld a, (ix-1)
 	sub 2
 	ld (ix-1), a
-__LABEL260:
-	jp __LABEL258
-__LABEL257:
+__LABEL254:
+	jp __LABEL252
+__LABEL251:
 	dec (ix-1)
 	ld a, (ix-1)
 	ld h, 2
 	call __LTI8
 	or a
-	jp z, __LABEL258
+	jp z, __LABEL252
 	ld (ix-3), 0
 	ld a, (ix-1)
 	add a, 2
 	ld (ix-1), a
-__LABEL258:
+__LABEL252:
 	ld h, (ix-1)
 	ld a, 7
 	call __LTI8
@@ -5725,16 +11079,16 @@ __LABEL258:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL389
+	jr z, __LABEL385
 	ld a, h
-__LABEL389:
+__LABEL385:
 	or a
-	jp z, __LABEL263
+	jp z, __LABEL257
 	ld a, 49
 	sub (ix-1)
 	ld (ix-2), a
-	jp __LABEL264
-__LABEL263:
+	jp __LABEL258
+__LABEL257:
 	ld h, (ix-1)
 	ld a, 39
 	call __LTI8
@@ -5745,23 +11099,23 @@ __LABEL263:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL390
+	jr z, __LABEL386
 	ld a, h
-__LABEL390:
+__LABEL386:
 	or a
-	jp z, __LABEL264
+	jp z, __LABEL258
 	ld a, (ix-1)
 	sub 12
 	ld (ix-2), a
-__LABEL264:
+__LABEL258:
 	ld a, (ix-4)
 	or a
-	jp nz, __LABEL267
+	jp nz, __LABEL261
 	ld (ix-4), 1
-	jp __LABEL268
-__LABEL267:
+	jp __LABEL262
+__LABEL261:
 	ld (ix-4), 0
-__LABEL268:
+__LABEL262:
 	ld a, (ix-2)
 	push af
 	ld a, (ix-1)
@@ -5781,11 +11135,11 @@ __LABEL268:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL391
+	jr z, __LABEL387
 	ld a, h
-__LABEL391:
+__LABEL387:
 	or a
-	jp z, __LABEL270
+	jp z, __LABEL264
 	ld a, 29
 	ld hl, (_girlY - 1)
 	cp h
@@ -5806,9 +11160,9 @@ __LABEL391:
 	cp h
 	sbc a, a
 	or d
-	jp z, __LABEL270
+	jp z, __LABEL264
 	call _FullOpenGate
-__LABEL270:
+__LABEL264:
 	ld a, (ix-1)
 	push af
 	ld hl, 1
@@ -5866,9 +11220,9 @@ __LABEL270:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL392
+	jr z, __LABEL388
 	ld a, h
-__LABEL392:
+__LABEL388:
 	or a
 	jp z, _UpdateWolf__leave
 	ld hl, _wolfIndex
@@ -5904,7 +11258,7 @@ _CheckGameStatus:
 	ld a, 39
 	ld hl, (_loopCount - 1)
 	cp h
-	jp nc, __LABEL276
+	jp nc, __LABEL270
 	xor a
 	ld (_loopCount), a
 	ld hl, _timeCount
@@ -5925,21 +11279,21 @@ _CheckGameStatus:
 	ld a, (_sunX)
 	push af
 	call _DrawSun
-__LABEL276:
+__LABEL270:
 	ld a, (_loopCount)
 	and 15
 	sub 15
-	jp nz, __LABEL278
+	jp nz, __LABEL272
 	ld a, (_cSmoke)
 	or a
-	jp nz, __LABEL279
+	jp nz, __LABEL273
 	ld a, 1
 	ld (_cSmoke), a
-	jp __LABEL280
-__LABEL279:
+	jp __LABEL274
+__LABEL273:
 	xor a
 	ld (_cSmoke), a
-__LABEL280:
+__LABEL274:
 	ld hl, 3
 	push hl
 	ld hl, 16
@@ -5949,17 +11303,17 @@ __LABEL280:
 	ld a, (_cSmoke)
 	add a, 14
 	call _SetTile
-__LABEL278:
+__LABEL272:
 	ld a, (_checkSheeps)
 	or a
-	jp z, __LABEL282
+	jp z, __LABEL276
 	xor a
 	ld (_checkSheeps), a
 	ld a, 1
 	ld (_nextLevel), a
 	ld (ix-1), 1
-	jp __LABEL283
-__LABEL286:
+	jp __LABEL277
+__LABEL280:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -5970,7 +11324,7 @@ __LABEL286:
 	call __ARRAY
 	ld a, (hl)
 	dec a
-	jp nz, __LABEL282
+	jp nz, __LABEL276
 	ld hl, 2
 	push hl
 	ld a, (ix-1)
@@ -5985,21 +11339,21 @@ __LABEL286:
 	ld a, 22
 	call __LTI8
 	or a
-	jp z, __LABEL287
+	jp z, __LABEL281
 	xor a
 	ld (_nextLevel), a
-	jp __LABEL282
-__LABEL291:
-	jp __LABEL287
-__LABEL288:
-	jp __LABEL282
-__LABEL287:
+	jp __LABEL276
+__LABEL285:
+	jp __LABEL281
+__LABEL282:
+	jp __LABEL276
+__LABEL281:
 	inc (ix-1)
-__LABEL283:
+__LABEL277:
 	ld a, 8
 	cp (ix-1)
-	jp nc, __LABEL286
-__LABEL282:
+	jp nc, __LABEL280
+__LABEL276:
 	ld a, (_nextLevel)
 	sub 1
 	sbc a, a
@@ -6011,14 +11365,14 @@ __LABEL282:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL393
+	jr z, __LABEL389
 	ld a, h
-__LABEL393:
+__LABEL389:
 	or a
-	jp z, __LABEL293
+	jp z, __LABEL287
 	ld a, 1
 	ld (_lose), a
-__LABEL293:
+__LABEL287:
 	call _CheckUpdateScore
 _CheckGameStatus__leave:
 	ld sp, ix
@@ -6035,14 +11389,14 @@ _CheckUpdateScore:
 	ld de, (_score)
 	or a
 	sbc hl, de
-	jp nc, __LABEL297
+	jp nc, __LABEL291
 	ld hl, (_score)
 	ld (_hiScore), hl
 	ld a, 11
 	push af
 	push hl
 	call _PrintScore
-__LABEL297:
+__LABEL291:
 	ld a, 25
 	push af
 	ld hl, (_score)
@@ -6074,8 +11428,8 @@ _SpawnSheeps:
 	or a
 	jp z, _SpawnSheeps__leave
 	ld (ix-1), 1
-	jp __LABEL300
-__LABEL303:
+	jp __LABEL294
+__LABEL297:
 	ld hl, 0
 	push hl
 	ld a, (ix-1)
@@ -6156,10 +11510,10 @@ __LABEL303:
 	call __ARRAY
 	ld (hl), 0
 	inc (ix-1)
-__LABEL300:
+__LABEL294:
 	ld a, (ix+5)
 	cp (ix-1)
-	jp nc, __LABEL303
+	jp nc, __LABEL297
 _SpawnSheeps__leave:
 	ld sp, ix
 	pop ix
@@ -6185,8 +11539,8 @@ _SpawnWolves:
 	ld a, 1
 	ld (_wolves.__DATA__ + 0), a
 	ld (ix-1), 1
-	jp __LABEL307
-__LABEL310:
+	jp __LABEL301
+__LABEL304:
 	ld hl, 1
 	push hl
 	ld a, (ix-1)
@@ -6224,10 +11578,10 @@ __LABEL310:
 	call __ARRAY
 	ld (hl), 0
 	inc (ix-1)
-__LABEL307:
+__LABEL301:
 	ld a, (ix+5)
 	cp (ix-1)
-	jp nc, __LABEL310
+	jp nc, __LABEL304
 	dec a
 	ld (_wolvesToSpawn), a
 	ld a, 1
@@ -6246,18 +11600,18 @@ _UpdateBoy:
 	add ix, sp
 	ld a, (_boyOnScreen)
 	or a
-	jp nz, __LABEL313
+	jp nz, __LABEL307
 	xor a
 	ld hl, (_boyWait - 1)
 	cp h
-	jp nc, __LABEL314
+	jp nc, __LABEL308
 	ld hl, _boyWait
 	dec (hl)
-	jp __LABEL313
-__LABEL314:
+	jp __LABEL307
+__LABEL308:
 	call _FastRnd
 	cp 2
-	jp nc, __LABEL313
+	jp nc, __LABEL307
 	ld a, 1
 	ld (_boyOnScreen), a
 	ld (_boyX), a
@@ -6265,7 +11619,7 @@ __LABEL314:
 	ld (_boyY), a
 	ld a, 255
 	ld (_boyWait), a
-__LABEL313:
+__LABEL307:
 	ld a, (_boyOnScreen)
 	dec a
 	jp nz, _UpdateBoy__leave
@@ -6274,11 +11628,11 @@ __LABEL313:
 	ld a, 57
 	ld hl, (_boyX - 1)
 	cp h
-	jp nc, __LABEL320
+	jp nc, __LABEL314
 	xor a
 	ld (_boyOnScreen), a
 	jp _UpdateBoy__leave
-__LABEL320:
+__LABEL314:
 	ld a, (_girlY)
 	sub 42
 	sub 1
@@ -6294,11 +11648,11 @@ __LABEL320:
 	ld h, a
 	pop af
 	or a
-	jr z, __LABEL394
+	jr z, __LABEL390
 	ld a, h
-__LABEL394:
+__LABEL390:
 	or a
-	jp z, __LABEL322
+	jp z, __LABEL316
 	call _PlayKiss
 	ld hl, (_score)
 	ld de, 20
@@ -6309,7 +11663,7 @@ __LABEL394:
 	xor a
 	ld (_boyOnScreen), a
 	jp _UpdateBoy__leave
-__LABEL322:
+__LABEL316:
 	ld a, (_boyY)
 	push af
 	ld a, (_boyX)
@@ -6464,101 +11818,101 @@ _InitLevel:
 	ld a, 4
 	call PAPER
 	call COPY_ATTR
-	ld a, 1
-	call BORDER
 	call CLS
+	ld a, 1
+	call _FastBorder
 	call _CreateBackground
 	ld a, (ix+5)
 	dec a
-	jp nz, __LABEL324
+	jp nz, __LABEL318
 	ld a, 1
 	push af
 	call _SpawnSheeps
 	xor a
+	push af
+	call _SpawnWolves
+	jp _InitLevel__leave
+__LABEL318:
+	ld a, (ix+5)
+	sub 2
+	jp nz, __LABEL320
+	ld a, 2
+	push af
+	call _SpawnSheeps
+	xor a
+	push af
+	call _SpawnWolves
+	jp _InitLevel__leave
+__LABEL320:
+	ld a, (ix+5)
+	sub 3
+	jp nz, __LABEL322
+	ld a, 3
+	push af
+	call _SpawnSheeps
+	xor a
+	push af
+	call _SpawnWolves
+	jp _InitLevel__leave
+__LABEL322:
+	ld a, (ix+5)
+	sub 4
+	jp nz, __LABEL324
+	ld a, 3
+	push af
+	call _SpawnSheeps
+	ld a, 1
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL324:
 	ld a, (ix+5)
-	sub 2
+	sub 5
 	jp nz, __LABEL326
-	ld a, 2
+	ld a, 4
 	push af
 	call _SpawnSheeps
-	xor a
+	ld a, 2
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL326:
 	ld a, (ix+5)
-	sub 3
+	sub 6
 	jp nz, __LABEL328
-	ld a, 3
+	ld a, 4
 	push af
 	call _SpawnSheeps
-	xor a
+	ld a, 3
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL328:
 	ld a, (ix+5)
-	sub 4
+	sub 7
 	jp nz, __LABEL330
-	ld a, 3
+	ld a, 5
 	push af
 	call _SpawnSheeps
-	ld a, 1
+	xor a
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL330:
 	ld a, (ix+5)
-	sub 5
+	sub 8
 	jp nz, __LABEL332
-	ld a, 4
+	ld a, 5
 	push af
 	call _SpawnSheeps
-	ld a, 2
+	ld a, 1
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
 __LABEL332:
 	ld a, (ix+5)
-	sub 6
-	jp nz, __LABEL334
-	ld a, 4
-	push af
-	call _SpawnSheeps
-	ld a, 3
-	push af
-	call _SpawnWolves
-	jp _InitLevel__leave
-__LABEL334:
-	ld a, (ix+5)
-	sub 7
-	jp nz, __LABEL336
-	ld a, 5
-	push af
-	call _SpawnSheeps
-	xor a
-	push af
-	call _SpawnWolves
-	jp _InitLevel__leave
-__LABEL336:
-	ld a, (ix+5)
-	sub 8
-	jp nz, __LABEL338
-	ld a, 5
-	push af
-	call _SpawnSheeps
-	ld a, 1
-	push af
-	call _SpawnWolves
-	jp _InitLevel__leave
-__LABEL338:
-	ld a, (ix+5)
 	sub 9
-	jp nz, __LABEL340
+	jp nz, __LABEL334
 	ld a, 6
 	push af
 	call _SpawnSheeps
@@ -6566,10 +11920,10 @@ __LABEL338:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL340:
+__LABEL334:
 	ld a, (ix+5)
 	sub 10
-	jp nz, __LABEL342
+	jp nz, __LABEL336
 	ld a, 6
 	push af
 	call _SpawnSheeps
@@ -6577,10 +11931,10 @@ __LABEL340:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL342:
+__LABEL336:
 	ld a, (ix+5)
 	sub 11
-	jp nz, __LABEL344
+	jp nz, __LABEL338
 	ld a, 7
 	push af
 	call _SpawnSheeps
@@ -6588,10 +11942,10 @@ __LABEL342:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL344:
+__LABEL338:
 	ld a, (ix+5)
 	sub 12
-	jp nz, __LABEL346
+	jp nz, __LABEL340
 	ld a, 7
 	push af
 	call _SpawnSheeps
@@ -6599,10 +11953,10 @@ __LABEL344:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL346:
+__LABEL340:
 	ld a, (ix+5)
 	sub 13
-	jp nz, __LABEL348
+	jp nz, __LABEL342
 	ld a, 8
 	push af
 	call _SpawnSheeps
@@ -6610,7 +11964,7 @@ __LABEL346:
 	push af
 	call _SpawnWolves
 	jp _InitLevel__leave
-__LABEL348:
+__LABEL342:
 	ld a, (ix+5)
 	sub 14
 	jp nz, _InitLevel__leave
@@ -6634,26 +11988,12 @@ _GameOver:
 	add ix, sp
 	ld hl, 0
 	push hl
-	ld hl, 856
-	push hl
-	ld hl, 98
-	call __BEEPER
-	ld hl, 964
-	push hl
-	ld hl, 87
-	call __BEEPER
-	ld hl, 1223
-	push hl
-	ld hl, 69
-	call __BEEPER
-	ld hl, 1642
-	push hl
-	ld hl, 51
-	call __BEEPER
+	call _InitGameoverMusic
+	call _PlayMusic
 	call _CancelOps
 	ld (ix-1), 59
-	jp __LABEL352
-__LABEL355:
+	jp __LABEL346
+__LABEL349:
 	ld hl, 0
 	ld (_counter), hl
 	ld a, 1
@@ -6667,10 +12007,10 @@ __LABEL355:
 	add a, 6
 	ld (ix-2), a
 	cp 60
-	jp nc, __LABEL358
+	jp nc, __LABEL352
 	ld a, 25
 	cp (ix-2)
-	jp nc, __LABEL359
+	jp nc, __LABEL353
 	ld a, 1
 	push af
 	ld a, (ix-2)
@@ -6681,28 +12021,28 @@ __LABEL355:
 	add a, 5
 	ld (ix-2), a
 	cp 60
-	jp nc, __LABEL362
+	jp nc, __LABEL356
 	ld a, 1
 	push af
 	ld a, (ix-2)
 	push af
 	ld a, 20
 	call _Draw2x2Sprite
-__LABEL362:
+__LABEL356:
 	ld a, (ix-2)
 	add a, 5
 	ld (ix-2), a
 	cp 60
-	jp nc, __LABEL358
+	jp nc, __LABEL352
 	ld a, 1
 	push af
 	ld a, (ix-2)
 	push af
 	ld a, 21
 	call _Draw2x2Sprite
-__LABEL364:
-	jp __LABEL358
-__LABEL359:
+__LABEL358:
+	jp __LABEL352
+__LABEL353:
 	ld a, 1
 	push af
 	ld a, 25
@@ -6721,27 +12061,30 @@ __LABEL359:
 	push af
 	ld a, 21
 	call _Draw2x2Sprite
-__LABEL358:
+__LABEL352:
 	call _RenderFrame
-__LABEL365:
+__LABEL359:
 	ld de, 4
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL365
+	jp c, __LABEL359
 	dec (ix-1)
-__LABEL352:
+__LABEL346:
 	ld a, (ix-1)
 	cp 1
-	jp nc, __LABEL355
-__LABEL367:
+	jp nc, __LABEL349
+__LABEL361:
 	ld de, 100
 	ld hl, (_counter)
 	or a
 	sbc hl, de
-	jp c, __LABEL367
+	jp c, __LABEL361
 	call CLS
+	ld a, 4
+	call _FastBorder
 	call _CancelOps
+	call _StopMusic
 _GameOver__leave:
 	ld sp, ix
 	pop ix
@@ -6754,6 +12097,11 @@ _DoNextLevel:
 	push hl
 	push hl
 	inc sp
+	call _InitNextlevelMusic
+	call _PlayMusic
+	ld hl, 1
+	dec hl
+	ld (_counter), hl
 	ld a, (ix+5)
 	ld h, 10
 	call __MUL8_FAST
@@ -6772,16 +12120,16 @@ _DoNextLevel:
 	ld h, 10
 	call __LTI8
 	or a
-	jp z, __LABEL369
-	ld de, __LABEL62
+	jp z, __LABEL363
+	ld de, __LABEL56
 	ld bc, -3
 	call __PSTORE_STR
-	jp __LABEL370
-__LABEL369:
-	ld de, __LABEL371
+	jp __LABEL364
+__LABEL363:
+	ld de, __LABEL365
 	ld bc, -3
 	call __PSTORE_STR
-__LABEL370:
+__LABEL364:
 	ld a, 11
 	push af
 	ld a, 7
@@ -6792,7 +12140,7 @@ __LABEL370:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL372
+	ld hl, __LABEL366
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6806,7 +12154,7 @@ __LABEL370:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL373
+	ld hl, __LABEL367
 	xor a
 	call __PRINTSTR
 	ld l, (ix-3)
@@ -6815,7 +12163,7 @@ __LABEL370:
 	call __PRINTSTR
 	ld a, (ix-1)
 	call __PRINTI8
-	ld hl, __LABEL374
+	ld hl, __LABEL368
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
@@ -6829,62 +12177,17 @@ __LABEL370:
 	call INK_TMP
 	ld a, 4
 	call PAPER_TMP
-	ld hl, __LABEL372
+	ld hl, __LABEL366
 	xor a
 	call __PRINTSTR
 	call PRINT_EOL_ATTR
-	ld hl, 715
-	push hl
-	ld hl, 116
-	call __BEEPER
-	ld hl, 908
-	push hl
-	ld hl, 92
-	call __BEEPER
-	ld hl, 1460
-	push hl
-	ld hl, 58
-	call __BEEPER
-	ld hl, 1376
-	push hl
-	ld hl, 61
-	call __BEEPER
-	ld hl, 715
-	push hl
-	ld hl, 116
-	call __BEEPER
-	ld hl, 908
-	push hl
-	ld hl, 92
-	call __BEEPER
-	ld hl, 1460
-	push hl
-	ld hl, 58
-	call __BEEPER
-	ld hl, 1376
-	push hl
-	ld hl, 61
-	call __BEEPER
-	ld hl, 1223
-	push hl
-	ld hl, 69
-	call __BEEPER
-	ld hl, 715
-	push hl
-	ld hl, 116
-	call __BEEPER
-	ld hl, 1376
-	push hl
-	ld hl, 61
-	call __BEEPER
-	ld hl, 806
-	push hl
-	ld hl, 104
-	call __BEEPER
-	ld hl, 908
-	push hl
-	ld hl, 139
-	call __BEEPER
+__LABEL369:
+	ld de, 200
+	ld hl, (_counter)
+	or a
+	sbc hl, de
+	jp c, __LABEL369
+	call _StopMusic
 _DoNextLevel__leave:
 	ex af, af'
 	exx
@@ -6900,14 +12203,28 @@ _DoNextLevel__leave:
 	ex (sp), hl
 	exx
 	ret
-__LABEL46:
+_FastBorder:
+#line 1180 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+		OUT ($FE),A
+		RLCA
+		RLCA
+		RLCA
+		BIT 5,A
+		JR NZ,BORDER_1
+		XOR $07
+BORDER_1:
+		LD ($5C48),A
+#line 1192 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+_FastBorder__leave:
+	ret
+__LABEL40:
 	DEFW 0005h
 	DEFB 53h
 	DEFB 48h
 	DEFB 45h
 	DEFB 45h
 	DEFB 50h
-__LABEL47:
+__LABEL41:
 	DEFW 0006h
 	DEFB 20h
 	DEFB 20h
@@ -6915,7 +12232,7 @@ __LABEL47:
 	DEFB 4Fh
 	DEFB 4Ch
 	DEFB 46h
-__LABEL48:
+__LABEL42:
 	DEFW 0006h
 	DEFB 20h
 	DEFB 20h
@@ -6923,7 +12240,7 @@ __LABEL48:
 	DEFB 49h
 	DEFB 52h
 	DEFB 4Ch
-__LABEL49:
+__LABEL43:
 	DEFW 0006h
 	DEFB 20h
 	DEFB 20h
@@ -6931,7 +12248,7 @@ __LABEL49:
 	DEFB 42h
 	DEFB 4Fh
 	DEFB 59h
-__LABEL50:
+__LABEL44:
 	DEFW 0006h
 	DEFB 4Fh
 	DEFB 3Ah
@@ -6939,7 +12256,7 @@ __LABEL50:
 	DEFB 45h
 	DEFB 46h
 	DEFB 54h
-__LABEL51:
+__LABEL45:
 	DEFW 0007h
 	DEFB 50h
 	DEFB 3Ah
@@ -6948,13 +12265,13 @@ __LABEL51:
 	DEFB 47h
 	DEFB 48h
 	DEFB 54h
-__LABEL52:
+__LABEL46:
 	DEFW 0004h
 	DEFB 51h
 	DEFB 3Ah
 	DEFB 55h
 	DEFB 50h
-__LABEL53:
+__LABEL47:
 	DEFW 0006h
 	DEFB 41h
 	DEFB 3Ah
@@ -6962,7 +12279,7 @@ __LABEL53:
 	DEFB 4Fh
 	DEFB 57h
 	DEFB 4Eh
-__LABEL54:
+__LABEL48:
 	DEFW 0006h
 	DEFB 53h
 	DEFB 50h
@@ -6970,12 +12287,12 @@ __LABEL54:
 	DEFB 41h
 	DEFB 43h
 	DEFB 54h
-__LABEL62:
+__LABEL56:
 	DEFW 0001h
 	DEFB 30h
-__LABEL371:
+__LABEL365:
 	DEFW 0000h
-__LABEL372:
+__LABEL366:
 	DEFW 0013h
 	DEFB 23h
 	DEFB 23h
@@ -6996,7 +12313,7 @@ __LABEL372:
 	DEFB 23h
 	DEFB 23h
 	DEFB 23h
-__LABEL373:
+__LABEL367:
 	DEFW 000Eh
 	DEFB 23h
 	DEFB 20h
@@ -7012,7 +12329,7 @@ __LABEL373:
 	DEFB 45h
 	DEFB 4Ch
 	DEFB 20h
-__LABEL374:
+__LABEL368:
 	DEFW 0003h
 	DEFB 20h
 	DEFB 20h
@@ -7185,7 +12502,7 @@ TMP_ARR_PTR:
 
 		ENDP
 
-#line 5599 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10966 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/asc.asm"
 	; Returns the ascii code for the given str
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/free.asm"
@@ -7538,7 +12855,7 @@ __ASC_END:
 
 		ret
 		ENDP
-#line 5600 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10967 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/band16.asm"
 ; vim:ts=4:et:
 	; FASTCALL bitwise and16 version.
@@ -7559,101 +12876,7 @@ __BAND16:
 
 	    ret
 
-#line 5601 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
-#line 1 "C:/zxbasic/src/arch/zx48k/library-asm/beep.asm"
-#line 1 "C:/zxbasic/src/arch/zx48k/library-asm/stackf.asm"
-	; -------------------------------------------------------------
-	; Functions to manage FP-Stack of the ZX Spectrum ROM CALC
-	; -------------------------------------------------------------
-
-
-	__FPSTACK_PUSH EQU 2AB6h	; Stores an FP number into the ROM FP stack (A, ED CB)
-	__FPSTACK_POP  EQU 2BF1h	; Pops an FP number out of the ROM FP stack (A, ED CB)
-
-__FPSTACK_PUSH2: ; Pushes Current A ED CB registers and top of the stack on (SP + 4)
-	                 ; Second argument to push into the stack calculator is popped out of the stack
-	                 ; Since the caller routine also receives the parameters into the top of the stack
-	                 ; four bytes must be removed from SP before pop them out
-
-	    call __FPSTACK_PUSH ; Pushes A ED CB into the FP-STACK
-	    exx
-	    pop hl       ; Caller-Caller return addr
-	    exx
-	    pop hl       ; Caller return addr
-
-	    pop af
-	    pop de
-	    pop bc
-
-	    push hl      ; Caller return addr
-	    exx
-	    push hl      ; Caller-Caller return addr
-	    exx
-
-	    jp __FPSTACK_PUSH
-
-
-__FPSTACK_I16:	; Pushes 16 bits integer in HL into the FP ROM STACK
-					; This format is specified in the ZX 48K Manual
-					; You can push a 16 bit signed integer as
-					; 0 SS LL HH 0, being SS the sign and LL HH the low
-					; and High byte respectively
-		ld a, h
-		rla			; sign to Carry
-		sbc	a, a	; 0 if positive, FF if negative
-		ld e, a
-		ld d, l
-		ld c, h
-		xor a
-		ld b, a
-		jp __FPSTACK_PUSH
-#line 2 "C:/zxbasic/src/arch/zx48k/library-asm/beep.asm"
-
-BEEP:	; The beep command, as in BASIC
-	        ; Duration in C,ED,LH (float)
-	        ; Pitch in top of the stack
-
-	        CALL __FPSTACK_PUSH
-
-	        pop hl    ; RET address
-			pop af
-	        pop de
-	        pop bc    ; Recovers PITCH from the stack
-	        push hl    ; CALLEE, now ret addr in top of the stack
-
-	        CALL __FPSTACK_PUSH  ; Pitch onto the FP stack
-
-	        push ix   ; BEEP routine modifies IX. We have to preserve it
-	        call 03F8h
-	        pop ix
-	        ret
-
-
-
-
-
-
-#line 5602 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
-#line 1 "C:/zxbasic/src/arch/zx48k/library-asm/beeper.asm"
-; vim:ts=4:et:sw=4:
-	; This is a fast beep routine, but needs parameters
-	; codified in a different way.
-; See http://www.wearmouth.demon.co.uk/zx82.htm#L03F8
-
-	; Needs pitch on top of the stack
-	; HL = duration
-
-__BEEPER:
-	    ex de, hl
-	    pop hl
-	    ex (sp), hl ; CALLEE
-	    push ix     ; BEEPER changes IX
-	    call 03B5h
-	    pop ix
-	    ret
-
-
-#line 5603 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10968 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/bold.asm"
 	; Sets BOLD flag in P_FLAG permanently
 ; Parameter: BOLD flag in bit 0 of A register
@@ -8840,16 +14063,7 @@ BOLD_TMP:
 
 		ENDP
 
-#line 5604 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
-#line 1 "C:/zxbasic/src/arch/zx48k/library-asm/border.asm"
-	; __FASTCALL__ Routine to change de border
-	; Parameter (color) specified in A register
-
-	BORDER EQU 229Bh
-
-	; Nothing to do! (Directly from the ZX Spectrum ROM)
-
-#line 5605 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10969 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/div8.asm"
@@ -8940,7 +14154,7 @@ __MODI8_FAST:	; __FASTCALL__ entry
 
 		ret		; a = Modulus
 
-#line 5608 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10972 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/loadstr.asm"
@@ -9170,7 +14384,7 @@ __LOADSTR:		; __FASTCALL__ entry
 			ldir	; Copies string (length number included)
 			pop hl	; Recovers destiny in hl as result
 			ret
-#line 5611 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10975 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lei8.asm"
 __LEI8: ; Signed <= comparison for 8bit int
@@ -9195,7 +14409,7 @@ checkParity:
 	    ret
 	    ENDP
 #line 2 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
-#line 5612 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10976 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/mul8.asm"
 __MUL8:		; Performs 8bit x 8bit multiplication
 		PROC
@@ -9248,7 +14462,7 @@ __MUL8B:
 		ret		; result = HL
 		ENDP
 
-#line 5613 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10977 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/print_eol_attr.asm"
@@ -9261,7 +14475,7 @@ __MUL8B:
 PRINT_EOL_ATTR:
 		call PRINT_EOL
 		jp COPY_ATTR
-#line 5616 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10980 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printi8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printnum.asm"
 
@@ -9336,7 +14550,7 @@ __PRINTU_LOOP:
 
 		ENDP
 
-#line 5617 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10981 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printstr.asm"
 
 
@@ -9394,7 +14608,7 @@ __PRINT_STR:
 
 			ENDP
 
-#line 5618 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10982 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -9711,7 +14925,7 @@ __PSTORE_STR:
 	    add hl, bc
 	    jp __STORE_STR
 
-#line 5619 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10983 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr2.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -9768,7 +14982,7 @@ __PSTORE_STR2:
 	    add hl, bc
 	    jp __STORE_STR2
 
-#line 5620 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10984 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/str.asm"
 	; The STR$( ) BASIC function implementation
 
@@ -9777,7 +14991,53 @@ __PSTORE_STR2:
 	; containing the FP number string representation
 
 
+#line 1 "C:/zxbasic/src/arch/zx48k/library-asm/stackf.asm"
+	; -------------------------------------------------------------
+	; Functions to manage FP-Stack of the ZX Spectrum ROM CALC
+	; -------------------------------------------------------------
 
+
+	__FPSTACK_PUSH EQU 2AB6h	; Stores an FP number into the ROM FP stack (A, ED CB)
+	__FPSTACK_POP  EQU 2BF1h	; Pops an FP number out of the ROM FP stack (A, ED CB)
+
+__FPSTACK_PUSH2: ; Pushes Current A ED CB registers and top of the stack on (SP + 4)
+	                 ; Second argument to push into the stack calculator is popped out of the stack
+	                 ; Since the caller routine also receives the parameters into the top of the stack
+	                 ; four bytes must be removed from SP before pop them out
+
+	    call __FPSTACK_PUSH ; Pushes A ED CB into the FP-STACK
+	    exx
+	    pop hl       ; Caller-Caller return addr
+	    exx
+	    pop hl       ; Caller return addr
+
+	    pop af
+	    pop de
+	    pop bc
+
+	    push hl      ; Caller return addr
+	    exx
+	    push hl      ; Caller-Caller return addr
+	    exx
+
+	    jp __FPSTACK_PUSH
+
+
+__FPSTACK_I16:	; Pushes 16 bits integer in HL into the FP ROM STACK
+					; This format is specified in the ZX 48K Manual
+					; You can push a 16 bit signed integer as
+					; 0 SS LL HH 0, being SS the sign and LL HH the low
+					; and High byte respectively
+		ld a, h
+		rla			; sign to Carry
+		sbc	a, a	; 0 if positive, FF if negative
+		ld e, a
+		ld d, l
+		ld c, h
+		xor a
+		ld b, a
+		jp __FPSTACK_PUSH
+#line 9 "C:/zxbasic/src/arch/zx48k/library-asm/str.asm"
 
 
 __STR:
@@ -9847,7 +15107,7 @@ __STR_END:
 
 		ENDP
 
-#line 5621 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10985 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strcat.asm"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strlen.asm"
@@ -9992,7 +15252,7 @@ __STRCATEND:
 
 			ENDP
 
-#line 5622 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10986 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strslice.asm"
 	; String slicing library
@@ -10101,7 +15361,7 @@ __FREE_ON_EXIT:
 
 		ENDP
 
-#line 5624 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10988 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/u32tofreg.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/neg32.asm"
 __ABS32:
@@ -10223,10 +15483,10 @@ __U32TOFREG_END:
 		ret
 	    ENDP
 
-#line 5625 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep\ZxBasicFiles\PrettySheep.zxbas"
+#line 10989 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
-__LABEL380:
+__LABEL376:
 	DEFB 08h
-__LABEL381:
+__LABEL377:
 	DEFB 17h
 	END

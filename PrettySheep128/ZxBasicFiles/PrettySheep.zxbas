@@ -1,0 +1,1296 @@
+﻿REM @options --asm --array-base 1 --string-base 1 --optimize 4 --org 32768 --heap-size 256 --explicit --strict -D HIDE_LOAD_MSG
+
+'Dim counter as uInteger at 23672
+'Dim hiCounter as uByte at 23674
+
+#include "MusicPlayer.zxbas"
+#include "InterruptInstaller.zxbas"
+#include <keys.bas>
+#include "FastRND.zxbas"
+#include "BeepFX.zxbas"
+
+InstallHandler()
+
+ink 7
+paper 4
+cls
+FastBorder(4)
+
+'Total number of 1x1 defined sprites
+#define TOTAL_1x1_SPRITES 1
+'Total number of 1x2 defined sprites
+#define TOTAL_1x2_SPRITES 1
+'Total number of 2x2 defined sprites
+#define TOTAL_2x2_SPRITES 21
+
+'Maximum on-screen 1x1 sprites
+#define ONSCREEN_1x1_SPRITES 0
+'Maximum on-screen 1x2 sprites
+#define ONSCREEN_1x2_SPRITES 0
+'Maximum on-screen 2x2 sprites
+#define ONSCREEN_2x2_SPRITES 13
+
+'If defined enables the tile system in its basic mode (tiles erased when sprite enters on it)
+#define ENABLE_TILES
+'If defined tiles are merged with OR instead of erased
+'Requires ENABLE_TILES
+'#define MERGE_TILES
+
+#define ENABLE_INTERRUPTS
+
+#include "GuSprites.zxbas"
+
+#define SHEEP_SPR_INDEX 1
+#define WOLF_SPR_INDEX 5
+#define GIRL_SPR_INDEX 9
+#define BOY_SPR_INDEX 13
+#define END_SPR_INDEX 17
+
+#define NUMBERS_TILE_INDEX 37
+#define SMOKE_TILE_INDEX 14
+'#define FRAMES() counter
+'#define RESET_FRAMES() counter = 0 \
+'                        hiCounter = 0
+
+#define SHED_X_1 10
+#define SHED_X_2 21
+
+#define HI_SCORE_VALUE_X 11
+#define SCORE_VALUE_X 25
+#define SCORES_X 2
+
+Dim sheep(4,32) as uByte => { _
+    {0,1,7,110,255,255,255,127,255,255,127,255,57,40,72,44,224,216,172,236,30,246,235,255,189,206,240,252,240,80,144,88}, _
+    {0,1,7,110,255,255,255,127,255,255,127,255,57,36,36,50,224,216,172,236,30,246,235,255,189,206,240,252,240,144,144,200}, _
+    {7,27,53,55,120,111,215,255,189,115,15,63,15,10,9,26,0,128,224,118,255,255,255,254,255,255,254,255,156,20,18,52}, _
+    {7,27,53,55,120,111,215,255,189,115,15,63,15,9,9,19,0,128,224,118,255,255,255,254,255,255,254,255,156,36,36,76} _
+}
+
+Dim wolf(4,32) as uByte => { _
+    {4,12,23,21,60,62,127,125,61,30,159,221,123,30,248,192,0,0,63,253,255,213,128,234,254,140,224,0,16,240,32,0}, _
+    {4,12,23,21,61,63,127,125, 61,30,255,29,123,15,26,17,15,61,127,245,192,128,128,160,234,254,140,0,0,0,0,128}, _ '{4,12,23,21,61,63,127,125,61,30,255,29,123,15,240,128,15,61,127,245,192,128,128,160,234,254,140,0,16,240,32,0}, _
+    {0,0,252,191,255,171,1,87,127,49,7,0,8,15,4,0,32,48,232,168,60,124,254,190,188,120,249,187,222,120,31,3}, _
+    {240,188,254,175,3,1,1,5, 87,127,49,0,0,0,0,1,32,48,232,168,188,252,254,190,188,120,255,184,222,240,88,136} _'{240,188,254,175,3,1,1,5,87,127,49,0,8,15,4,0,32,48,232,168,188,252,254,190,188,120,255,184,222,240,15,1} _
+}
+
+Dim girl(4,32) as uByte => { _
+    {7,12,27,27,22,63,175,69,2,7,11,11,29,15,56,32,224,176,80,240,160,224,96,198,73,209,226,224,224,240,128,192}, _
+    {7,12,27,27,22,191,111,5,2,7,13,14,15,31,14,8,224,176,80,240,160,224,96,192,64,192,254,225,49,230,64,96}, _
+    {7,13,10,15,5,7,6,99,146,139,71,7,7,15,1,3,224,48,216,216,104,252,245,162,64,224,208,208,184,240,28,4}, _
+    {7,13,10,15,5,7,6,3,2,3,127,135,140,103,2,6,224,48,216,216,104,253,246,160,64,224,176,112,240,248,112,16} _
+}
+
+Dim boy(4,32) as uByte => { _
+    {7,15,27,23,22,31,15,7,3,7,11,11,13,7,56,32,224,240,240,240,160,224,96,192,128,160,224,192,192,128,128,192}, _
+    {7,15,27,23,22,31,15,7,3,7,13,14,15,7,14,8,224,240,240,224,160,224,96,192,128,192,224,112,192,192,64,96}, _
+    {7,15,15,15,5,7,6,3,1,5,7,3,3,1,1,3,224,240,216,232,104,248,240,224,192,224,208,208,176,224,28,4}, _
+    {7,15,15,7,5,7,6,3,1,3,7,14,3,3,2,6,224,240,216,232,104,248,240,224,192,224,176,112,240,224,112,16} _
+}
+
+Dim endSprites (5,32) as uByte => { _ 
+    {0,1,3,3,1,63,251,31, 31,255,63,1,3,3,1,0,224,192,224,192,227,238,252,254, 254,252,238,227,192,224,192,224}, _
+    {0,0,1,3,3,31,123,255, 255,127,31,3,3,1,0,0,0,240,224,192,224,239,252,254, 254,252,239,224,192,224,240,0}, _
+    {31,63,127,124,248,248,255,255,255,255,248,248,124,127,63,31,252,254,255,15,6,0,224,240,240,224,0,6,15,255,254,252}, _
+    {124,248,252,254,255,255,255,255,255,247,243,241,240,248,252,124,62,63,31,15,15,143,207,239,255,255,255,255,255,127,63,30}, _
+    {127,255,255,255,241,240,240,240,240,240,240,241,255,255,255,127,0,192,224,240,248,252,126,62,62,126,252,248,240,224,192,0} _
+}
+
+Dim tileSet(49, 8) as uByte => { _
+    {0,0,0,0,0,0,0,0}, _                'vacio                  0
+    {0,0,0,0,84,124,124,56}, _          'flor 1                 1
+    {16,88,48,16,16,84,170,85}, _       'flor 2                 2
+    {153,153,255,153,255,153,153,153}, _'valla horizontal       3
+    _'{1,3,7,11,23,43,83,227}, _          'valla diagona          4
+    {153,219,189,153,153,189,219,153}, _'valla vertical
+    {66,126,66,255,255,66,126,66}, _    'puerta valla           5
+    {7,30,60,126,239,199,239,123}, _    'arbol 1                6
+    {224,248,124,246,227,247,255,188}, _'arbol 2                7
+    {1,1,1,3,3,7,15,27}, _              'arbol 3                8
+    {128,128,192,128,128,192,224,80}, _ 'arbol 4                9
+    {0,0,0,31,63,127,255,146}, _        'casa 1                 10
+    {20,8,20,252,252,254,255,73}, _     'casa 2                 11
+    {109,127,127,65,93,65,127,127}, _   'casa 3                 12
+    {182,254,254,194,218,218,218,218}, _'casa 4                 13
+    {64,224,224,120,48,6,6,0}, _        'humo 1                 14
+    {12,12,96,112,112,48,24,0}, _       'humo 2                 15
+    {83,175,95,191,121,120,249,249}, _  'sol 1                  16
+    {202,245,250,253,158,142,159,159}, _'sol 2                  17
+    {248,255,120,124,190,95,175,83}, _  'sol 3                  18
+    {143,255,30,62,125,250,245,202}, _  'sol 4                  19
+    {49,127,204,183,247,255,127,26}, _  'nubes 1                20
+    {184,204,182,126,254,252,48,0}, _   'nubes 2                21
+    {165,16,66,20,66,8,66,165}, _ '170,85,170,85,170,85,170,68}, _    'suelo solido 1         22
+    {24,165,66,0,102,24,0,153}, _ '170,68,136,68,34,85,170,68}, _     'suelo solido 2         23
+    {0,0,0,0,0,4,78,255}, _             'tapa suelo             24
+    {0,3,1,3,19,86,127,255}, _          'esquina izquierda      25
+    {0,192,128,192,200,106,254,255}, _  'esquina derecha        26
+    {16,37,66,128,1,82,36,8}, _         'cultivo                27
+    {124,254,224,252,126,14,254,124}, _ 's                      28
+    {124,254,238,224,224,238,254,124}, _'c                      29
+    {124,254,238,198,198,238,254,124}, _'o                      30
+    {252,254,198,254,252,238,238,238}, _'r                      31
+    {126,254,192,248,248,192,254,126}, _'e                      32
+    {0,0,124,254,254,124,0,0}, _        '-                      33
+    {68,238,238,254,254,238,238,68}, _  'h                      34
+    {16,56,56,56,56,56,56,16}, _        'i                      35
+    {96,240,96,0,0,96,240,96}, _        ':                      36
+    {124,254,206,214,214,230,254,124}, _'0                      37
+    {28,60,124,28,28,28,28,28}, _
+    {124,254,14,28,56,112,254,254}, _
+    {252,254,14,124,124,14,254,252}, _
+    {204,204,204,254,254,28,28,28}, _
+    {254,254,224,252,254,14,254,124}, _
+    {124,254,224,252,254,198,254,124}, _
+    {254,254,14,28,56,112,112,112}, _
+    {124,254,198,124,124,198,254,124}, _
+    {124,254,198,254,126,6,254,124}, _
+    {0,108,254,254,254,124,56,16}, _    'corazon                47
+    {0,56,124,198,222,198,124,56} _     '(c)                    48
+}
+
+Dim introScreen(32) as uInteger => {_
+/'01110011100111100111001110100010'/	$739E, $73A2, _
+/'01001010010100000010000100010100'/	$4A50, $2114, _
+/'01001010010100000010000100001000'/	$4A50, $2108, _
+/'01110011100111000010000100001000'/	$739C, $2108, _
+/'01000010100100000010000100001000'/	$4290, $2108, _
+/'01000010010100000010000100001000'/	$4250, $2108, _
+/'01000010010111100010000100001000'/	$425E, $2108, _
+/'00000000000000000000000000000000'/	$0, $0,_
+/'00110001001001111001111001110000'/	$3127, $9E70, _
+/'01001001001001000001000001001000'/	$4924, $1048, _
+/'01000001001001000001000001001000'/	$4124, $1048, _
+/'00110001111001110001110001110000'/	$31E7, $1C70, _
+/'00001001001001000001000001000000'/	$0924, $1040, _
+/'01001001001001000001000001000000'/	$4924, $1040, _
+/'00110001001001111001111001000000'/	$3127, $9E40, _
+/'00000000000000000000000000000000'/	$0, $0 _
+}
+
+'ovejas: activa, x, y, velx, vely, animFrame, lookDirection, trapped
+Dim sheeps(8, 8) as byte 
+Dim sheepOnGate as uByte = 0
+Dim gateX as uByte = 14
+Dim trappedSheep as uByte = 0
+Dim girlX as uByte = 28
+Dim girlY as uByte = 18
+Dim girlFrm as uByte = 0
+Dim girlDir as uByte = 0
+Dim girlVx as byte = 0
+Dim spaceDown as uByte = 0
+Dim loopCount as uByte = 0
+Dim timeCount as uByte = 0
+Dim sunX as uByte = 1
+Dim cSmoke as uByte = 0
+Dim introFrm as uByte
+Dim wolvesToSpawn as uByte = 0
+Dim wolfIndex as uByte = 0
+'activo, x, y, dir, frm
+Dim wolves(3, 5) as byte 
+Dim lose as uByte = 0
+Dim score as uInteger = 0
+Dim hiScore as uInteger = 0
+Dim checkSheeps as uByte = 0
+Dim currentLevel as uByte = 0
+Dim nextLevel as uByte = 0
+Dim updateScore as uByte = 0
+
+dim boyOnScreen as uByte = 0
+dim boyX as uByte = 0
+dim boyY as uByte = 0
+dim boyWait as uByte = 0
+
+sub ShowIntro(yPos as uByte)
+
+    SetTile(48, 38, 13, 1)
+    SetTile(39, 39, 15, 1)
+    SetTile(37, 39, 16, 1)
+    SetTile(39, 39, 17, 1) 
+    SetTile(38, 39, 18, 1)
+
+    Dim tmpX as uByte = 0
+    Dim tmpY as uByte = 0
+    Dim v as uInteger = 0
+
+    for tmpY = 0 to 15
+
+        v = introScreen((tmpY << 1) + 1)
+        for tmpX = 0 to 15
+            'if (tmpX = 0 and (v band $8000)) or (tmpX > 0 and (v band ($8000 >> tmpX))) then
+                if v band ($8000 >> tmpX) then SetTile(47, 38, tmpX, tmpY + yPos)
+            'end if
+        next tmpX
+
+        v = introScreen((tmpY << 1) + 2)
+        for tmpX = 0 to 15
+            'if (tmpX = 0 and (v band $8000)) or (tmpX > 0 and (v band ($8000 >> tmpX))) then
+                if v band ($8000 >> tmpX) then SetTile(47, 38, tmpX + 16, tmpY + yPos)
+            'end if
+        next tmpX
+
+    next tmpY
+
+    print at 23, 0; bold 1; "SHEEP"; ink 2; "  WOLF"; ink 3; "  GIRL";ink 1;"   BOY"
+
+    print at 19, 24; "O:LEFT"
+    print at 20, 24; "P:RIGHT"
+    print at 21, 24; "Q:UP"
+    print at 22, 24; "A:DOWN"
+    print at 23, 24; "SP:ACT"
+
+end sub
+
+function PadString(StringToPad as string, PadChar as string, Length as uByte) as string
+
+    Dim lenString as uByte = len(StringToPad)
+
+    if lenString >= Length then return StringToPad(1 TO Length)
+
+    Dim newStr as string = StringToPad
+    Dim lp as uByte
+
+    for lp = 1 to (Length - lenString)
+        newStr = PadChar + newStr
+    next lp
+
+    return newStr
+
+end function
+
+sub PrintScore(score as uInteger, x as uByte)
+
+    Dim sc as string = PadString(str$(score), "0", 5)
+
+    SetTile(code(sc(1 to 1)) - 11, 34, x, 23)
+    SetTile(code(sc(2 to 2)) - 11, 34, x + 1, 23)
+    SetTile(code(sc(3 to 3)) - 11, 34, x + 2, 23)
+    SetTile(code(sc(4 to 4)) - 11, 34, x + 3, 23)
+    SetTile(code(sc(5 to 5)) - 11, 34, x + 4, 23)
+
+end sub
+
+sub CreateBackground()
+
+    Dim tx as uByte
+    Dim ty as uByte
+
+    for ty = 0 to 7
+        for tx = 0 to 31
+            SetTile(0, 79, tx, ty)
+        next tx
+    next ty
+
+    for ty = 8 to 13
+        for tx = 0 to 31
+            if tx < SHED_X_1 or tx > SHED_X_2 then
+                SetTile(27, 34, tx, ty)
+            else
+                SetTile(0, 39, tx, ty)
+            end if
+        next tx
+    next ty
+
+    Dim yPos as uByte = 8
+    Dim btmType as uByte = 23
+
+    for tx = 0 to 15
+        
+        if tx mod 5 = 0 then
+
+            if btmType = 23 then btmType = 22 else btmType = 23
+
+            DrawTerrainStack(tx, yPos, 25, btmType)
+            DrawTerrainStack(31 - tx, yPos, 26, btmType)
+
+            yPos = yPos - 1
+
+        else
+
+            DrawTerrainStack(tx, yPos, 24, btmType)
+            DrawTerrainStack(31 - tx, yPos, 24, btmType)
+
+        end if
+
+    next tx
+
+    SetTile(12, 79, 15, 5)
+    SetTile(13, 79, 16, 5)
+    SetTile(10, 74, 15, 4)
+    SetTile(11, 74, 16, 4)
+    SetTile(SMOKE_TILE_INDEX, 79, 16, 3)
+
+    DrawTree(7, 5)
+    DrawTree(19, 4)
+    DrawTree(29, 6)
+    
+    for ty = 8 to 12
+
+        SetTile(4, 39, SHED_X_1, ty)
+        SetTile(4, 39, SHED_X_2, ty)
+    next ty
+
+    for tx = 0 to 31
+        for ty = 14 to 23
+            SetTile(0, 39, tx, ty)
+        next ty
+    next tx
+
+    for tx = 0 to 31
+        SetTile(3, 39, tx, 13)
+    next tx
+
+    for tx = 14 to 17
+        SetTile(5, 38, tx, 13)
+    next tx
+
+
+    DrawFlower(4, 19)
+    DrawFlower(12, 21)
+    DrawFlower(19, 20)
+    DrawFlower(28, 17)
+
+    DrawSun(1, 3)
+
+    DrawCloud(6, 1)
+    DrawCloud(25, 0)
+
+    
+
+    SetTile(34, 38, SCORES_X, 23)
+    SetTile(35, 38, SCORES_X + 1, 23)
+    SetTile(33, 38, SCORES_X + 2, 23)
+    SetTile(28, 34, SCORES_X + 3, 23)
+    SetTile(29, 34, SCORES_X + 4, 23)
+    SetTile(30, 34, SCORES_X + 5, 23)
+    SetTile(31, 34, SCORES_X + 6, 23)
+    SetTile(32, 34, SCORES_X + 7, 23)
+    SetTile(36, 34, SCORES_X + 8, 23)
+
+    PrintScore(hiScore, HI_SCORE_VALUE_X)
+
+    SetTile(28, 34, SCORES_X + 17, 23)
+    SetTile(29, 34, SCORES_X + 18, 23)
+    SetTile(30, 34, SCORES_X + 19, 23)
+    SetTile(31, 34, SCORES_X + 20, 23)
+    SetTile(32, 34, SCORES_X + 21, 23)
+    SetTile(36, 34, SCORES_X + 22, 23)
+
+    PrintScore(score, SCORE_VALUE_X)
+
+end sub
+
+sub DrawCloud(x as uByte, y as uByte)
+
+    SetTile(20, 79, x, y)
+    SetTile(21, 79, x+1, y)
+
+end sub
+
+sub DrawSun(x as uByte, y as uByte)
+
+    SetTile(16, 78, x, y)
+    SetTile(17, 78, x+1, y)
+    SetTile(18, 78, x, y+1)
+    SetTile(19, 78, x+1, y+1)
+
+end sub
+
+sub EraseSun(x as uByte, y as uByte)
+
+    SetTile(0, 79, x, y)
+    SetTile(0, 79, x+1, y)
+    SetTile(0, 79, x, y+1)
+    SetTile(0, 79, x+1, y+1)
+
+end sub
+
+sub DrawFlower(x as uByte, y as uByte)
+
+    SetTile(1, 38, x, y)
+    SetTile(2, 34, x, y+1)
+
+end sub
+
+sub DrawTree(x as uByte, y as uByte)
+
+    SetTile(6, 76, x, y)
+    SetTile(7, 76, x+1, y)
+    SetTile(8, 74, x, y+1)
+    SetTile(9, 74, x+1, y+1)
+
+end sub
+
+sub DrawTerrainStack(x as uByte, y as uByte, top as uByte, bottom as uByte)
+
+    SetTile(top, 76, x, y)
+    SetTile(bottom, 98, x, y+1)
+    if x < SHED_X_1 or x > SHED_X_2 then 
+        SetTile(27, 34, x, y+2)
+    else
+        SetTile(0, 39, x, y+2)
+    end if
+
+end sub
+
+sub UpdateSheeps()
+
+    Dim tmpX as uByte
+    for tmpX = 1 to 8
+        if sheeps(tmpX, 1) = 1 then
+            UpdateSheep(tmpX)
+        else
+            exit for
+        end if
+    next tmpX
+
+end sub
+
+function CanMoveTo(x as uInteger, y as uInteger) as uByte
+
+    if y > 27 then return 1
+
+    if y < 23 then
+        if x > 21 then
+            if x < 39 then return 1
+        end if
+
+        return 0
+
+    end if
+
+    if x > 27 then
+        if (x + 3) < (gateX << 1) then return 1
+    end if
+
+    return 0
+
+end function
+
+sub UpdateSheep(sheepNumber as uByte)
+
+
+    Dim x as ubyte = sheeps(sheepNumber, 2)
+    Dim y as ubyte = sheeps(sheepNumber, 3)
+    Dim vx as byte = sheeps(sheepNumber, 4)
+    Dim vy as byte = sheeps(sheepNumber, 5)
+    Dim frm as ubyte = sheeps(sheepNumber, 6)
+    Dim dir as ubyte = sheeps(sheepNumber, 7)
+    Dim tmpX as ubyte = x >> 1
+    Dim tmpY as ubyte = y >> 1
+
+    if trappedSheep = 0 and spaceDown <> 0 then
+        if tmpX > girlX - 3 and tmpX < girlX + 3 then
+            if tmpY < girlY + 5 and tmpY > girlY + 2  then trappedSheep = sheepNumber
+        end if
+
+    end if
+
+    if trappedSheep = sheepNumber then
+        if spaceDown = 0 then
+            trappedSheep = 0
+            vx = 4 - (FastRnd() band 7)
+            vy = 4 - (FastRnd() band 7)
+            if vx < 1 then vx = vx - 1
+            if vy < 1 then vy = vy - 1
+
+            if tmpY < 26 then 
+                score = score + 10
+                updateScore = 1
+            end if
+
+        else
+            x = girlX << 1
+            y = (girlY << 1) + 8
+
+            if y > 85 then y = 85
+
+            if dir = 2 then dir = 0 else dir = 2
+            if frm = 0 then frm = 1 else frm = 0
+
+            sheeps(sheepNumber, 6) = frm
+            sheeps(sheepNumber, 7) = dir
+
+            sheeps(sheepNumber, 2) = x
+            sheeps(sheepNumber, 3) = y
+
+            Draw2x2Sprite(SHEEP_SPR_INDEX + frm + dir, x >> 1, y >> 1)
+
+            return
+        end if
+    else
+        
+        if FastRnd() < 15 then
+            vx = 4 - (FastRnd() band 7)
+            vy = 4 - (FastRnd() band 7)
+            if vx < 1 then vx = vx - 1
+            if vy < 1 then vy = vy - 1
+
+            'vy = ((FastRnd() band 5) - 3)
+
+        end if
+
+        if tmpY < 27 then
+            if tmpX > girlX - 5 and tmpX < girlX + 5 and _
+                tmpY > girlY - 5 and tmpY < girlY + 5 then
+                vy = -1
+            end if
+        else if tmpY < 29 then
+            vy = 1
+        else
+            if tmpX > girlX - 5 then 
+            if tmpX < girlX + 5 then
+            if tmpY > girlY - 5 then 
+            if tmpY < girlY + 5 then
+                if tmpX < girlX then vx = -2 else vx = 2
+            end if
+            end if
+            end if
+            end if
+        end if        
+
+    end if
+
+    
+    Dim reversedX as uByte = 0
+    Dim reversedY as uByte = 0
+
+    tmpX = x + vx
+    tmpY = y + vy
+
+    if tmpX < 2 or tmpX > 120 then
+
+        vx = -vx
+        tmpX = x + vx
+        reversedX = 1
+
+    end if
+
+    if tmpY < 28 or tmpY > 85 then
+
+        vy = -vy
+        tmpY = y + vy
+        reversedY = 1
+
+    end if
+
+    if CanMoveTo(tmpX >> 1, y >> 1) = 0 then
+
+        if reversedX = 0 then
+            vx = -vx
+            tmpX = x + vx
+
+            if CanMoveTo(tmpX >> 1, y >> 1) = 0 then
+                vx = 0
+                tmpX = x
+            end if
+
+        end if
+
+    end if
+
+    if CanMoveTo(tmpX >> 1, tmpY >> 1) = 0 then
+
+        if reversedY = 0 then
+            vy = -vy
+            tmpY = y + vy
+
+            if CanMoveTo(tmpX >> 1, tmpY >> 1) = 0 then
+                vy = 0
+                tmpY = y
+            end if
+
+        end if
+
+    end if
+
+    if vx > 0 then
+        dir = 0
+    else if vx < 0 then
+        dir = 2
+    end if
+
+    if frm = 0 then frm = 1 else frm = 0
+
+    sheeps(sheepNumber, 2) = tmpX
+    sheeps(sheepNumber, 3) = tmpY
+    sheeps(sheepNumber, 4) = vx
+    sheeps(sheepNumber, 5) = vy
+    sheeps(sheepNumber, 6) = frm
+    sheeps(sheepNumber, 7) = dir
+
+    tmpY = tmpY >> 1
+    if tmpY > 22 and tmpY < 28 then sheepOnGate = 1
+
+    Draw2x2Sprite(SHEEP_SPR_INDEX + frm + dir, tmpX >> 1, tmpY)
+
+
+end sub
+
+
+sub OpenGate()
+
+    if gateX < 18 then
+        
+        SetTile(0, 39, gateX, 13)
+        SetTile(5, 38, gateX + 4, 13)
+        gateX = gateX + 1
+
+    end if
+
+end sub
+
+sub CloseGate()
+
+    if gateX > 14 then
+        
+        SetTile(3, 39, gateX + 3, 13)
+        gateX = gateX - 1
+        SetTile(5, 38, gateX, 13)
+
+        if gateX = 14 then checkSheeps = 1
+
+    end if
+
+end sub
+
+sub UpdateGirl()
+
+    Dim vx as byte
+    Dim vy as byte
+    
+    if MultiKeys(KEYO) then
+        vx = -1
+    else if MultiKeys(KEYP) then
+        vx = 1
+    end if
+    
+    if MultiKeys(KEYQ) then
+        vy = -1
+    else if MultiKeys(KEYA) then
+        vy = 1
+    end if
+
+    Dim tmpX as byte = girlX + vx
+    Dim tmpY as byte = girlY + vy
+
+    if tmpX < 3 or tmpX > 57 then
+
+        vx = 0
+        tmpX = girlX
+
+    end if
+
+    if tmpY < 14 or tmpY > 42 then tmpY = girlY
+
+    if CanMoveTo(tmpX, tmpY) = 0 then
+
+        tmpX = girlX
+        tmpY = girlY
+
+    end if
+
+    girlVx = vx
+    if vx > 0 then
+        girlDir = 0
+    else if vx < 0 then
+        girlDir = 2
+    end if
+
+    if tmpX <> girlX or tmpY <> girlY then
+
+        if girlFrm = 0 then girlFrm = 1 else girlFrm = 0
+        girlX = tmpX
+        girlY = tmpY
+
+    end if
+
+    Draw2x2Sprite(GIRL_SPR_INDEX + girlFrm + girlDir, girlX, girlY)
+
+end sub
+
+sub CheckGate()
+
+    if sheepOnGate > 0 then 
+        sheepOnGate = 0
+        return
+    end if
+
+    if girlVx <> 0 then
+        if spaceDown then
+            if girlY = 22 or girlY = 28 then
+                if girlX = gateX << 1 then
+                    if girlVx > 0 then
+                        OpenGate()
+                    else
+                        CloseGate()
+                    end if
+                end if
+            end if
+        end if
+    end if
+
+end sub
+
+function GetSunY(x as uByte) as uByte
+
+    Dim y as uByte
+    Dim t as uByte
+
+    if x < 16 then
+        y = 3 - ((x - 1) / 5)
+    else
+        t = ((x-16) / 5)
+        y = 1 + t
+    end if
+
+    return y
+
+end function
+
+sub UpdateWolves()
+
+    Dim tmpX as uByte
+    for tmpX = 1 to 3
+        if wolves(tmpX, 1) = 1 then
+            UpdateWolf(tmpX)
+        else
+            exit for
+        end if
+    next tmpX
+
+end sub
+
+sub FullOpenGate()
+
+    gateX = 18
+    SetTile(0, 39, 14, 13)
+    SetTile(0, 39, 15, 13)
+    SetTile(0, 39, 16, 13)
+    SetTile(0, 39, 17, 13)
+
+    SetTile(5, 38, 18, 13)
+    SetTile(5, 38, 19, 13)
+    SetTile(5, 38, 20, 13)
+    SetTile(5, 38, 21, 13)
+
+end sub
+
+sub UpdateWolf(wolfNumber as uByte)
+
+    'activo, x, y, dir, frm
+    Dim x as Byte = wolves(wolfNumber, 2)
+    Dim y as Byte = wolves(wolfNumber, 3)
+    Dim dir as Byte = wolves(wolfNumber, 4)
+    Dim frm as Byte = wolves(wolfNumber, 5)
+
+
+    if dir = 0 then
+
+        x = x + 1
+        if x > 58 then
+            dir = 2
+            x = x - 2
+        end if
+
+    else
+
+        x = x - 1
+        if x < 2 then
+            dir = 0
+            x = x + 2
+        end if
+
+    end if
+
+    if x > 7 and x < 22 then
+        y = 49 - x
+    else if x > 39 and x < 54 then
+        y = x - 12
+    end if
+
+    if frm = 0 then frm = 1 else frm = 0
+
+    Draw2x2Sprite(WOLF_SPR_INDEX + dir + frm, x, y)
+
+    if x = 28 and gateX < 18 then
+
+        if girlY > 29 or girlY < 26 or girlX < 22 or girlX > 38 then FullOpenGate()
+
+    end if
+
+    wolves(wolfNumber, 2) = x
+    wolves(wolfNumber, 3) = y
+    wolves(wolfNumber, 4) = dir
+    wolves(wolfNumber, 5) = frm
+
+    if wolvesToSpawn <> 0 and x = 22 then 
+        wolfIndex = wolfIndex + 1
+        wolvesToSpawn = wolvesToSpawn - 1
+        wolves(wolfIndex,1) = 1
+    end if
+
+end sub
+
+sub CheckGameStatus()
+
+    loopCount = loopCount + 1
+
+    if loopCount > 39 then
+
+        loopCount = 0
+        timeCount = timeCount + 1
+        EraseSun(sunX, GetSunY(sunX))
+        sunX = sunX + 1
+        DrawSun(sunX, GetSunY(sunX))
+
+    end if
+
+    if (loopCount band 15) = 15 then
+        if cSmoke = 0 then cSmoke = 1 else cSmoke = 0
+        SetTile(SMOKE_TILE_INDEX + cSmoke, 79, 16, 3)
+    end if
+
+    if checkSheeps then
+        checkSheeps = 0
+        Dim tSheep as uByte
+        nextLevel = 1
+        for tSheep = 1 to 8
+            if sheeps(tSheep, 1) = 1 then
+                if sheeps(tSheep, 3) >> 1 > 22 then
+                    nextLevel = 0
+                    exit for
+                end if
+            else 
+                exit for
+            end if
+        next tSheep
+    end if
+
+    if not nextLevel and sunX > 28 then lose = 1
+
+    CheckUpdateScore()
+
+end sub
+
+sub CheckUpdateScore()
+
+    if updateScore then
+
+        if score > hiScore then
+            hiScore = score
+            PrintScore(hiScore, HI_SCORE_VALUE_X)
+        end if
+
+        PrintScore(score, SCORE_VALUE_X)
+
+        updateScore = 0
+
+    end if
+
+end sub
+
+sub SpawnSheeps(sheepCount as uByte)
+
+    
+    Dim buc as uByte = 0
+
+    sheeps(1, 1) = 0
+    sheeps(2, 1) = 0
+    sheeps(3, 1) = 0
+    sheeps(4, 1) = 0
+    sheeps(5, 1) = 0
+    sheeps(6, 1) = 0
+    sheeps(7, 1) = 0
+    sheeps(8, 1) = 0
+
+    if sheepCount = 0 then return
+
+    for buc = 1 to sheepCount
+
+        sheeps(buc, 1) = 1
+        sheeps(buc, 2) = 63
+        sheeps(buc, 3) = 74
+        sheeps(buc, 4) = 4 - (FastRnd() mod 9)
+        sheeps(buc, 5) = 4 - (FastRnd() mod 9)
+        sheeps(buc, 6) = 0
+        sheeps(buc, 7) = 0
+
+    next buc
+
+end sub
+
+sub SpawnWolves(wolvesCount as uByte)
+
+    wolves(1, 1) = 0
+    wolves(2, 1) = 0
+    wolves(3, 1) = 0
+
+    if wolvesCount = 0 then return
+
+    wolves(1, 1) = 1
+
+    Dim buc as uByte
+
+    for buc = 1 to wolvesCount
+
+        wolves(buc, 2) = 0
+        wolves(buc, 3) = 42
+        wolves(buc, 4) = 0
+        wolves(buc, 5) = 0
+
+    next buc
+
+    wolvesToSpawn = wolvesCount - 1
+    wolfIndex = 1
+
+end sub
+
+sub UpdateBoy()
+
+    if boyOnScreen = 0 then
+        if boyWait > 0 then
+            boyWait = boyWait - 1
+        else
+            if FastRnd() < 2 then 
+                boyOnScreen = 1
+                boyX = 1
+                boyY = 42
+                boyWait = 255
+            end if
+        end if
+    end if
+
+    if boyOnScreen = 1 then
+
+        boyX = boyX + 1
+        if boyX > 57 then 
+            boyOnScreen = 0
+        else
+            if girlY = 42 and girlX = boyX + 4 then
+                PlayKiss()
+                score = score + 20
+                updateScore = 1
+                boyOnScreen = 0
+            else
+                Draw2x2Sprite(BOY_SPR_INDEX + (boyX band 1), boyX, boyY)
+            end if
+        end if
+
+    end if
+
+end sub
+
+sub PlayKiss()
+
+    Draw2x2Sprite(BOY_SPR_INDEX + (boyX band 1), boyX, boyY)
+    Draw2x2Sprite(GIRL_SPR_INDEX + 3, girlX, girlY)
+    RenderFrame()
+
+    DoPause(25)
+
+    SetTile(47, 38, (boyX >> 1) + 1, (boyY >> 1) - 1)
+
+    DoPause(25)
+
+    SetTile(47, 38,(girlX >> 1) + (girlX band 1), (girlY >> 1) - 1)
+
+    DoPause(25)
+
+    PlayFX(0)
+
+    DoPause(25)
+
+    SetTile(0, 39, (boyX >> 1) + 1, (boyY >> 1) - 1)
+    SetTile(0, 39, (girlX >> 1) + (girlX band 1), (girlY >> 1) - 1)
+
+end sub
+
+sub InitLevel(lvlNumber as uByte)
+
+    gateX  = 14
+    trappedSheep  = 0
+    girlX  = 28
+    girlY  = 18
+    girlFrm  = 0
+    girlDir  = 0
+    girlVx = 0
+    spaceDown  = 0
+    loopCount  = 0
+    timeCount  = 0
+    sunX  = 1
+    cSmoke  = 0
+    wolvesToSpawn  = 0
+    wolfIndex  = 0
+    nextLevel = 0
+    checkSheeps = 0
+    updateScore = 0
+    boyWait = 255
+
+    paper 4
+    cls
+    FastBorder(1)
+
+    CreateBackground()
+
+    if lvlNumber = 1 then
+        SpawnSheeps(1)
+        SpawnWolves(0)
+    else if lvlNumber = 2 then
+        SpawnSheeps(2)
+        SpawnWolves(0)
+    else if lvlNumber = 3 then
+        SpawnSheeps(3)
+        SpawnWolves(0)
+    else if lvlNumber = 4 then
+        SpawnSheeps(3)
+        SpawnWolves(1)
+    else if lvlNumber = 5 then
+        SpawnSheeps(4)
+        SpawnWolves(2)
+    else if lvlNumber = 6 then
+        SpawnSheeps(4)
+        SpawnWolves(3)
+    else if lvlNumber = 7 then
+        SpawnSheeps(5)
+        SpawnWolves(0)
+    else if lvlNumber = 8 then
+        SpawnSheeps(5)
+        SpawnWolves(1)
+    else if lvlNumber = 9 then
+        SpawnSheeps(6)
+        SpawnWolves(2)
+    else if lvlNumber = 10 then
+        SpawnSheeps(6)
+        SpawnWolves(3)
+    else if lvlNumber = 11 then
+        SpawnSheeps(7)
+        SpawnWolves(0)
+    else if lvlNumber = 12 then
+        SpawnSheeps(7)
+        SpawnWolves(1)
+    else if lvlNumber = 13 then
+        SpawnSheeps(8)
+        SpawnWolves(2)
+    else if lvlNumber = 14 then
+        SpawnSheeps(8)
+        SpawnWolves(3)
+    end if
+
+end sub
+
+
+sub GameOver()
+
+    InitGameoverMusic()
+    PlayMusic()
+
+    'beep .2, 11
+    'beep .2, 9
+    'beep .2, 5
+    'beep .2, 0
+
+    CancelOps()
+    
+    dim buc as uByte
+    dim tmpX as uByte
+
+    for buc = 59 to 1 step -1
+
+        counter = 0
+
+        Draw2x2Sprite(END_SPR_INDEX + (buc band 1), buc, 1)
+        
+        tmpX = buc + 6
+
+        if tmpX < 60 then
+            
+            if tmpX > 25 then
+                Draw2x2Sprite(END_SPR_INDEX + 2, tmpX, 1)
+                tmpX = tmpX + 5
+                if tmpX < 60 then Draw2x2Sprite(END_SPR_INDEX + 3, tmpX, 1)
+                tmpX = tmpX + 5
+                if tmpX < 60 then Draw2x2Sprite(END_SPR_INDEX + 4, tmpX, 1)
+            else
+                Draw2x2Sprite(END_SPR_INDEX + 2, 25, 1)
+                Draw2x2Sprite(END_SPR_INDEX + 3, 30, 1)
+                Draw2x2Sprite(END_SPR_INDEX + 4, 35, 1)
+            end if
+        end if
+
+        RenderFrame()
+
+        while counter < 4
+        end while
+
+    next buc
+
+    while counter < 100
+    end while
+
+    cls
+    FastBorder(4)
+    CancelOps()
+    StopMusic()
+
+end sub
+
+sub DoNextLevel(currentLevel as uByte)
+
+    InitNextlevelMusic()
+    PlayMusic()
+
+    counter = 1
+    counter = counter - 1
+
+    score = score + (currentLevel * 10)
+    updateScore = 1
+    CheckUpdateScore()
+
+    Dim pad as string 
+    Dim lvl as byte
+    lvl = currentLevel + 1
+    if lvl < 10 then pad = "0" else pad = ""
+
+    print at 11, 7; bold 1; ink 2; paper 4; "###################"
+    print at 12, 7; bold 1; ink 2; paper 4;  "#  NEXT LEVEL "; pad ; lvl ; "  #"
+    print at 13, 7; bold 1; ink 2; paper 4; "###################"
+
+    while counter < 200
+    end while
+
+    'beep 0.2, 14
+    'beep 0.2, 10
+    'beep 0.2, 2
+    'beep 0.2, 3
+    'beep 0.2, 14
+    'beep 0.2, 10
+    'beep 0.2, 2
+    'beep 0.2, 3
+    'beep 0.2, 5
+    'beep 0.2, 14
+    'beep 0.2, 3
+    'beep 0.2, 12
+    'beep 0.3, 10
+
+    StopMusic()
+
+end sub
+
+sub fastcall FastBorder(Color as uByte)
+
+    asm
+        OUT ($FE),A 	;The 'OUT' instruction is then used to set the border colour.
+        RLCA 		    ;The parameter is then multiplied by eight.
+        RLCA
+        RLCA
+        BIT 5,A 	    ;Is the border colour a 'light' colour?
+        JR NZ,BORDER_1 	;Jump if so (the INK colour will be black).
+        XOR $07 	    ;Change the INK colour to white.
+BORDER_1:
+        LD ($5C48),A 	;Set the system variable (BORDCR) as required and return.
+    end asm
+
+end sub
+
+InitGFXLib()
+
+SetTileset(@tileSet)
+
+Create2x2Sprite(@sheep)
+Create2x2Sprite(@sheep + 32)
+Create2x2Sprite(@sheep + 64)
+Create2x2Sprite(@sheep + 96)
+
+Create2x2Sprite(@wolf)
+Create2x2Sprite(@wolf + 32)
+Create2x2Sprite(@wolf + 64)
+Create2x2Sprite(@wolf + 96)
+
+Create2x2Sprite(@girl)
+Create2x2Sprite(@girl + 32)
+Create2x2Sprite(@girl + 64)
+Create2x2Sprite(@girl + 96)
+
+Create2x2Sprite(@boy)
+Create2x2Sprite(@boy + 32)
+Create2x2Sprite(@boy + 64)
+Create2x2Sprite(@boy + 96)
+
+Create2x2Sprite(@endSprites)
+Create2x2Sprite(@endSprites + 32)
+Create2x2Sprite(@endSprites + 64)
+Create2x2Sprite(@endSprites + 96)
+Create2x2Sprite(@endSprites + 128)
+
+gameLoop:
+
+while 1
+
+    InitMaryMusic()
+    ShowIntro(3)
+    PlayMusic()
+
+    while not MultiKeys(KEYSPACE)
+
+        counter = 0
+        if introFrm = 0 then introFrm = 1 else introFrm = 0
+
+        Draw2x2Sprite(SHEEP_SPR_INDEX + introFrm, 4, 41)
+        Draw2x2Sprite(WOLF_SPR_INDEX + introFrm, 16, 41)
+        Draw2x2Sprite(GIRL_SPR_INDEX + introFrm, 28, 41)
+        Draw2x2Sprite(BOY_SPR_INDEX + introFrm, 40, 41)
+
+        RenderFrame()
+
+        while counter < 5
+        end while
+
+    end while
+
+    InitFastRnd()
+
+    currentLevel = 0
+    nextLevel = 0
+    lose = 0
+    score = 0
+    PrintScore(score, SCORE_VALUE_X)
+
+    while lose = 0
+
+        currentLevel = currentLevel + 1
+        if currentLevel > 14 then currentLevel = 1
+
+        InitLevel(currentLevel)
+
+        do
+            counter = 0
+            spaceDown = MultiKeys(KEYSPACE)
+            CheckGate()
+            UpdateBoy()
+            UpdateGirl()
+            UpdateSheeps()
+            UpdateWolves()
+            RenderFrame()
+            CheckGameStatus()
+            'print at 0,0;counter
+            while counter < 4
+            end while
+
+        loop while lose = 0 and nextLevel = 0
+
+        if not lose then 
+            StopMusic()
+            DoNextLevel(currentLevel)
+            InitMaryMusic()
+            PlayMusic()
+        end if
+
+        nextLevel = 0
+
+    end while
+
+    StopMusic()
+
+    GameOver()
+
+end while

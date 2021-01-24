@@ -1,0 +1,118 @@
+﻿'WARNING!!! Your program must start at $8001 instead of $8000
+Dim intHandlerAddress as uInteger at $FEFF
+Dim counter as uInteger 
+
+sub DoPause(Frames as uInteger)
+
+    counter = 1
+    counter = counter - 1
+    while counter < Frames
+    end while
+
+end sub
+
+
+sub fastcall InstallHandler()
+
+asm
+
+    ld hl, INT_HANDLER
+    ld (_intHandlerAddress), hl
+    di
+    ld a, $fe
+    ld i, a
+    im 2
+    ei
+    ret
+
+INT_HANDLER: ;modified for 128k music
+
+
+    push af                     ;store all registers
+    push hl
+
+    ld hl, (_counter)
+    inc hl
+    ld (_counter), hl
+
+    ld a, (_enableMusic)
+    and a
+    jp z, INT_NO_MUSIC
+
+    ;jp INT_NO_MUSIC
+
+    push bc
+    push de
+    push ix
+    push iy
+
+    exx
+    ex af, af'
+
+    push af
+    push bc
+    push de
+    push hl
+
+    call PLY_AKG_PLAY           ;play music
+
+    pop hl                      ;restore all registers
+    pop de
+    pop bc
+    pop af
+
+    ex af, af'
+    exx
+
+    pop iy
+    pop ix
+    
+    pop de
+    pop bc
+
+INT_NO_MUSIC:
+
+    pop hl
+    pop af
+
+    ei                          ;reenable interrupts
+
+    ret                         ;return from interrupt handler
+
+end asm
+
+end sub
+
+
+/'
+sub fastcall InstallHandler()
+
+asm
+
+    ld hl, INT_HANDLER
+    ld (_intHandlerAddress), hl
+    di
+    ld a, $fe
+    ld i, a
+    im 2
+    ei
+    ret
+
+INT_HANDLER: ;modified for 128k music
+
+
+    push hl
+
+    ld hl, (_counter)
+    inc hl
+    ld (_counter), hl
+
+    pop hl
+    ei                          ;reenable interrupts
+
+    ret                         ;return from interrupt handler
+
+end asm
+
+end sub
+'/
