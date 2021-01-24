@@ -1381,7 +1381,7 @@ __MAIN_PROGRAM__:
 	call CLS
 	ld a, 4
 	call _FastBorder
-#line 29 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 31 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 #line 40 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 #line 47 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 #line 52 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
@@ -2783,10 +2783,7 @@ __END_PROGRAM:
 __CALL_BACK__:
 	DEFW 0
 _PlayerHolder:
-	push ix
-	ld ix, 0
-	add ix, sp
-#line 6 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+#line 8 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 		jp SKIP_MUSIC
 		_enableMusic db 0
 #line 1 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/mainmusic.z80asm"
@@ -8060,15 +8057,10 @@ _PlayerHolder:
 SKIP_MUSIC:
 #line 5285 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 _PlayerHolder__leave:
-	ld sp, ix
-	pop ix
 	ret
 _InitMaryMusic:
-	push ix
-	ld ix, 0
-	add ix, sp
 	call _PlayerHolder
-#line 26 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+#line 28 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 		push af
 		push bc
 		push de
@@ -8098,15 +8090,10 @@ _InitMaryMusic:
 		pop af
 #line 65 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 _InitMaryMusic__leave:
-	ld sp, ix
-	pop ix
 	ret
 _InitNextlevelMusic:
-	push ix
-	ld ix, 0
-	add ix, sp
 	call _PlayerHolder
-#line 71 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+#line 73 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 		push af
 		push bc
 		push de
@@ -8136,15 +8123,10 @@ _InitNextlevelMusic:
 		pop af
 #line 110 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 _InitNextlevelMusic__leave:
-	ld sp, ix
-	pop ix
 	ret
 _InitGameoverMusic:
-	push ix
-	ld ix, 0
-	add ix, sp
 	call _PlayerHolder
-#line 116 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+#line 118 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 		push af
 		push bc
 		push de
@@ -8174,26 +8156,16 @@ _InitGameoverMusic:
 		pop af
 #line 155 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 _InitGameoverMusic__leave:
-	ld sp, ix
-	pop ix
 	ret
 _PlayMusic:
-	push ix
-	ld ix, 0
-	add ix, sp
-#line 160 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+#line 162 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 		ld a, 1
 		ld (_enableMusic), a
 #line 165 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 _PlayMusic__leave:
-	ld sp, ix
-	pop ix
 	ret
 _StopMusic:
-	push ix
-	ld ix, 0
-	add ix, sp
-#line 170 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
+#line 172 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 		push ix
 		ld a, 0
 		ld (_enableMusic), a
@@ -8203,8 +8175,6 @@ _StopMusic:
 		pop ix
 #line 182 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/MusicPlayer.zxbas"
 _StopMusic__leave:
-	ld sp, ix
-	pop ix
 	ret
 _DoPause:
 	push ix
@@ -8230,7 +8200,7 @@ _DoPause__leave:
 	exx
 	ret
 _InstallHandler:
-#line 16 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/InterruptInstaller.zxbas"
+#line 18 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/InterruptInstaller.zxbas"
 		ld hl, INT_HANDLER
 		ld (_intHandlerAddress), hl
 		di
@@ -8278,7 +8248,7 @@ INT_NO_MUSIC:
 _InstallHandler__leave:
 	ret
 _MultiKeys:
-#line 41 "C:/zxbasic/src/arch/zx48k/library/keys.bas"
+#line 43 "C:/zxbasic/src/arch/zx48k/library/keys.bas"
 		ld a, h
 		in a, (0FEh)
 		cpl
@@ -8287,7 +8257,7 @@ _MultiKeys:
 _MultiKeys__leave:
 	ret
 _InitFastRnd:
-#line 3 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
+#line 5 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
 		PROC
 		LOCAL NOT_EMPTY_L, TEST_H, NOT_EMPTY_H, LOAD_SEED
 		ld hl, ($5C78)
@@ -8319,7 +8289,7 @@ LOAD_SEED:
 _InitFastRnd__leave:
 	ret
 _FastRnd:
-#line 37 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
+#line 39 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/FastRND.zxbas"
 FAST_RAND:
 		ld hl,$FFFF
 		ld a,r
@@ -8333,7 +8303,7 @@ FAST_RAND:
 _FastRnd__leave:
 	ret
 _PlayFX:
-#line 2 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/BeepFX.zxbas"
+#line 4 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/BeepFX.zxbas"
 play:
 		ld hl,sfxData
 		di
@@ -8490,29 +8460,19 @@ SoundEffect0Data:
 _PlayFX__leave:
 	ret
 _InitGFXLib:
-	push ix
-	ld ix, 0
-	add ix, sp
-#line 1660 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1662 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		call INIT_GFX_LIB
 #line 1666 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _InitGFXLib__leave:
-	ld sp, ix
-	pop ix
 	ret
 _RenderFrame:
-	push ix
-	ld ix, 0
-	add ix, sp
-#line 1680 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1682 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		call RENDER_FRAME
 #line 1686 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _RenderFrame__leave:
-	ld sp, ix
-	pop ix
 	ret
 _Create2x2Sprite:
-#line 1765 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1767 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		push ix
 		push iy
 		call CREATE_2x2_SPRITE
@@ -8522,7 +8482,7 @@ _Create2x2Sprite:
 _Create2x2Sprite__leave:
 	ret
 _Draw2x2Sprite:
-#line 1779 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1781 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -8541,7 +8501,7 @@ _Draw2x2Sprite:
 _Draw2x2Sprite__leave:
 	ret
 _CancelOps:
-#line 1802 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1804 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		xor a
 		ld (CURRENT_DRAW_COUNT), a
 		ld (CURRENT_CLEAR_COUNT), a
@@ -8549,13 +8509,13 @@ _CancelOps:
 _CancelOps__leave:
 	ret
 _SetTileset:
-#line 1827 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1829 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		call SET_TILEMAP
 #line 1831 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 _SetTileset__leave:
 	ret
 _SetTile:
-#line 1835 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
+#line 1837 "C:/Users/geniw/source/repos/PrettySheep/PrettySheep128/ZxBasicFiles/GuSprites.zxbas"
 		exx
 		pop hl
 		exx
@@ -10592,9 +10552,6 @@ _UpdateSheep__leave:
 	exx
 	ret
 _OpenGate:
-	push ix
-	ld ix, 0
-	add ix, sp
 	ld a, (_gateX)
 	cp 18
 	jp nc, _OpenGate__leave
@@ -10619,13 +10576,8 @@ _OpenGate:
 	ld hl, _gateX
 	inc (hl)
 _OpenGate__leave:
-	ld sp, ix
-	pop ix
 	ret
 _CloseGate:
-	push ix
-	ld ix, 0
-	add ix, sp
 	ld a, 14
 	ld hl, (_gateX - 1)
 	cp h
@@ -10657,8 +10609,6 @@ _CloseGate:
 	ld a, 1
 	ld (_checkSheeps), a
 _CloseGate__leave:
-	ld sp, ix
-	pop ix
 	ret
 _UpdateGirl:
 	push ix
@@ -10804,9 +10754,6 @@ _UpdateGirl__leave:
 	pop ix
 	ret
 _CheckGate:
-	push ix
-	ld ix, 0
-	add ix, sp
 	xor a
 	ld hl, (_sheepOnGate - 1)
 	cp h
@@ -10847,8 +10794,6 @@ __LABEL231:
 __LABEL240:
 	call _CloseGate
 _CheckGate__leave:
-	ld sp, ix
-	pop ix
 	ret
 _GetSunY:
 	push ix
@@ -10922,9 +10867,6 @@ _UpdateWolves__leave:
 	pop ix
 	ret
 _FullOpenGate:
-	push ix
-	ld ix, 0
-	add ix, sp
 	ld a, 18
 	ld (_gateX), a
 	ld hl, 13
@@ -10992,8 +10934,6 @@ _FullOpenGate:
 	ld a, 5
 	call _SetTile
 _FullOpenGate__leave:
-	ld sp, ix
-	pop ix
 	ret
 _UpdateWolf:
 	push ix
@@ -11379,9 +11319,6 @@ _CheckGameStatus__leave:
 	pop ix
 	ret
 _CheckUpdateScore:
-	push ix
-	ld ix, 0
-	add ix, sp
 	ld a, (_updateScore)
 	or a
 	jp z, _CheckUpdateScore__leave
@@ -11405,8 +11342,6 @@ __LABEL291:
 	xor a
 	ld (_updateScore), a
 _CheckUpdateScore__leave:
-	ld sp, ix
-	pop ix
 	ret
 _SpawnSheeps:
 	push ix
@@ -11595,9 +11530,6 @@ _SpawnWolves__leave:
 	exx
 	ret
 _UpdateBoy:
-	push ix
-	ld ix, 0
-	add ix, sp
 	ld a, (_boyOnScreen)
 	or a
 	jp nz, __LABEL307
@@ -11672,13 +11604,8 @@ __LABEL316:
 	add a, 13
 	call _Draw2x2Sprite
 _UpdateBoy__leave:
-	ld sp, ix
-	pop ix
 	ret
 _PlayKiss:
-	push ix
-	ld ix, 0
-	add ix, sp
 	ld a, (_boyY)
 	push af
 	ld a, (_boyX)
@@ -11782,8 +11709,6 @@ _PlayKiss:
 	xor a
 	call _SetTile
 _PlayKiss__leave:
-	ld sp, ix
-	pop ix
 	ret
 _InitLevel:
 	push ix
@@ -12204,7 +12129,7 @@ _DoNextLevel__leave:
 	exx
 	ret
 _FastBorder:
-#line 1180 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 1182 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 		OUT ($FE),A
 		RLCA
 		RLCA
@@ -12502,7 +12427,7 @@ TMP_ARR_PTR:
 
 		ENDP
 
-#line 10966 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10891 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/asc.asm"
 	; Returns the ascii code for the given str
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/free.asm"
@@ -12855,7 +12780,7 @@ __ASC_END:
 
 		ret
 		ENDP
-#line 10967 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10892 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/band16.asm"
 ; vim:ts=4:et:
 	; FASTCALL bitwise and16 version.
@@ -12876,7 +12801,7 @@ __BAND16:
 
 	    ret
 
-#line 10968 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10893 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/bold.asm"
 	; Sets BOLD flag in P_FLAG permanently
 ; Parameter: BOLD flag in bit 0 of A register
@@ -13613,11 +13538,8 @@ INVERSE_MODE:   ; 00 -> NOP -> INVERSE 0
 	        ld hl, (MAXX)
 	        ld a, e
 	        dec l            ; l = MAXX
-	        cp l            ; Lower than max?
-	        jp c, __PRINT_CONT; Nothing to do
-	        call __PRINT_EOL1
-	        exx            ; counteracts __PRINT_EOL1 exx
-	        jp __PRINT_CONT2
+	        cp l             ; Lower than max?
+	        jp nc, __PRINT_EOL1
 
 __PRINT_CONT:
 	        call __SAVE_S_POSN
@@ -13640,7 +13562,7 @@ PRINT_EOL:        ; Called WHENEVER there is no ";" at end of PRINT sentence
 __PRINT_0Dh:        ; Called WHEN printing CHR$(13)
 
 	        call __SCROLL
-#line 210 "C:/zxbasic/src/arch/zx48k/library-asm/print.asm"
+#line 207 "C:/zxbasic/src/arch/zx48k/library-asm/print.asm"
 	        call __LOAD_S_POSN
 
 __PRINT_EOL1:        ; Another entry called from PRINT when next line required
@@ -13652,13 +13574,13 @@ __PRINT_EOL2:
 
 __PRINT_AT1_END:
 	        ld hl, (MAXY)
-	        cp h
+	        cp l
 	        jr c, __PRINT_EOL_END    ; Carry if (MAXY) < d
 
 	        ld hl, __TVFLAGS
 	        set 1, (hl)
 	        dec a
-#line 230 "C:/zxbasic/src/arch/zx48k/library-asm/print.asm"
+#line 227 "C:/zxbasic/src/arch/zx48k/library-asm/print.asm"
 
 __PRINT_EOL_END:
 	        ld d, a
@@ -13891,7 +13813,11 @@ CONTINUE:
 	        ld b, a
 LOOP:
 	        ld a, ' '
+	        push bc
+	        exx
 	        call __PRINTCHAR
+	        exx
+	        pop bc
 	        djnz LOOP
 	        ret
 	        ENDP
@@ -13910,7 +13836,7 @@ PRINT_AT: ; Changes cursor to ROW, COL
 
 	        ld hl, __TVFLAGS
 	        res 1, (hl)
-#line 482 "C:/zxbasic/src/arch/zx48k/library-asm/print.asm"
+#line 483 "C:/zxbasic/src/arch/zx48k/library-asm/print.asm"
 	        jp __SAVE_S_POSN
 
 	        LOCAL __PRINT_COM
@@ -14063,7 +13989,7 @@ BOLD_TMP:
 
 		ENDP
 
-#line 10969 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10894 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/div8.asm"
@@ -14154,7 +14080,7 @@ __MODI8_FAST:	; __FASTCALL__ entry
 
 		ret		; a = Modulus
 
-#line 10972 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10897 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/loadstr.asm"
@@ -14384,7 +14310,7 @@ __LOADSTR:		; __FASTCALL__ entry
 			ldir	; Copies string (length number included)
 			pop hl	; Recovers destiny in hl as result
 			ret
-#line 10975 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10900 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/lei8.asm"
 __LEI8: ; Signed <= comparison for 8bit int
@@ -14409,7 +14335,7 @@ checkParity:
 	    ret
 	    ENDP
 #line 2 "C:/zxbasic/src/arch/zx48k/library-asm/lti8.asm"
-#line 10976 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10901 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/mul8.asm"
 __MUL8:		; Performs 8bit x 8bit multiplication
 		PROC
@@ -14462,7 +14388,7 @@ __MUL8B:
 		ret		; result = HL
 		ENDP
 
-#line 10977 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10902 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/print_eol_attr.asm"
@@ -14475,7 +14401,7 @@ __MUL8B:
 PRINT_EOL_ATTR:
 		call PRINT_EOL
 		jp COPY_ATTR
-#line 10980 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10905 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printi8.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printnum.asm"
 
@@ -14550,7 +14476,7 @@ __PRINTU_LOOP:
 
 		ENDP
 
-#line 10981 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10906 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/printstr.asm"
 
 
@@ -14608,7 +14534,7 @@ __PRINT_STR:
 
 			ENDP
 
-#line 10982 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10907 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -14925,7 +14851,7 @@ __PSTORE_STR:
 	    add hl, bc
 	    jp __STORE_STR
 
-#line 10983 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10908 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/pstorestr2.asm"
 ; vim:ts=4:et:sw=4
 	;
@@ -14982,7 +14908,7 @@ __PSTORE_STR2:
 	    add hl, bc
 	    jp __STORE_STR2
 
-#line 10984 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10909 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/str.asm"
 	; The STR$( ) BASIC function implementation
 
@@ -15107,7 +15033,7 @@ __STR_END:
 
 		ENDP
 
-#line 10985 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10910 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strcat.asm"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strlen.asm"
@@ -15252,7 +15178,7 @@ __STRCATEND:
 
 			ENDP
 
-#line 10986 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10911 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/strslice.asm"
 	; String slicing library
@@ -15361,7 +15287,7 @@ __FREE_ON_EXIT:
 
 		ENDP
 
-#line 10988 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10913 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/u32tofreg.asm"
 #line 1 "C:/zxbasic/src/arch/zx48k/library-asm/neg32.asm"
 __ABS32:
@@ -15483,7 +15409,7 @@ __U32TOFREG_END:
 		ret
 	    ENDP
 
-#line 10989 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
+#line 10914 "C:\Users\geniw\source\repos\PrettySheep\PrettySheep128\ZxBasicFiles\PrettySheep.zxbas"
 
 __LABEL376:
 	DEFB 08h
